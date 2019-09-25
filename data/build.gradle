@@ -42,5 +42,7 @@ dependencies {
     implementation "org.koin:koin-core:$koinVersion"
     implementation "org.koin:koin-android:$koinVersion"
     implementation "org.koin:koin-androidx-scope:$koinVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
 
 }

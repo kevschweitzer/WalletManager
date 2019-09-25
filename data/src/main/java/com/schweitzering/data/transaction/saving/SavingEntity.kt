@@ -1,4 +1,4 @@
-package com.schweitzering.data.transaction
+package com.schweitzering.data.transaction.saving
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

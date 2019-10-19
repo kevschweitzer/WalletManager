@@ -9,7 +9,7 @@ import java.sql.Timestamp
 @Entity(tableName = "incomes")
 data class IncomeEntity (
     @PrimaryKey val id: Int,
-    @ColumnInfo(name = "value") var value: Int,
+    @ColumnInfo(name = "value") var value: Double,
     @ColumnInfo(name = "category") var category: IncomeCategory,
     @ColumnInfo(name = "date") var date: Timestamp
 )

@@ -1,12 +1,11 @@
 package com.schweitzering.walletmanager.transaction
 
 import android.content.Intent
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.schweitzering.domain.finance.FinanceCategory
-import com.schweitzering.walletmanager.utils.Constants.Companion.FINANCE_CATEGORY
+import com.schweitzering.domain.transaction.TransactionCategory
 import com.schweitzering.walletmanager.R
+import com.schweitzering.walletmanager.utils.Constants.Companion.TRANSACTION_CATEGORY
 
 class TransactionViewModel: ViewModel() {
 
@@ -19,22 +18,22 @@ class TransactionViewModel: ViewModel() {
     var state = MutableLiveData<TransactionState>()
 
 
-    private lateinit var financeCategory: FinanceCategory
+    private lateinit var transactionCategory: TransactionCategory
 
     fun handleIntent(intent: Intent?) {
         intent?.let {
-            financeCategory = intent.getSerializableExtra(FINANCE_CATEGORY) as FinanceCategory
+            transactionCategory = intent.getSerializableExtra(TRANSACTION_CATEGORY) as TransactionCategory
             setPredefinedCategories()
         }
     }
 
     private fun setPredefinedCategories() {
         state.value = TransactionState.FullLoaded(
-            when(financeCategory) {
-            FinanceCategory.INCOME -> R.array.income_categories
-            FinanceCategory.EXPENSE -> R.array.expense_categories
-            FinanceCategory.SAVING -> R.array.saving_categories
-            FinanceCategory.INVESTMENT -> R.array.investment_categories
+            when(transactionCategory) {
+            TransactionCategory.INCOME -> R.array.income_categories
+            TransactionCategory.EXPENSE -> R.array.expense_categories
+            TransactionCategory.SAVING -> R.array.saving_categories
+            TransactionCategory.INVESTMENT -> R.array.investment_categories
             }
         )
     }

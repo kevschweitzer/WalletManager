@@ -7,8 +7,8 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import com.schweitzering.domain.finance.FinanceCategory
-import com.schweitzering.walletmanager.utils.Constants.Companion.FINANCE_CATEGORY
+import com.schweitzering.domain.transaction.TransactionCategory
+import com.schweitzering.walletmanager.utils.Constants.Companion.TRANSACTION_CATEGORY
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.ActivityTransactionBinding
 import kotlinx.android.synthetic.main.activity_transaction.*
@@ -21,22 +21,22 @@ class TransactionActivity : AppCompatActivity() {
     companion object {
         fun getExpenseIntent(context: Context): Intent{
             val intent = Intent(context, TransactionActivity::class.java)
-            intent.putExtra(FINANCE_CATEGORY, FinanceCategory.EXPENSE)
+            intent.putExtra(TRANSACTION_CATEGORY, TransactionCategory.EXPENSE)
             return intent
         }
         fun getIncomeIntent(context: Context): Intent {
             val intent = Intent(context, TransactionActivity::class.java)
-            intent.putExtra(FINANCE_CATEGORY, FinanceCategory.INCOME)
+            intent.putExtra(TRANSACTION_CATEGORY, TransactionCategory.INCOME)
             return intent
         }
         fun getSavingIntent(context: Context): Intent {
             val intent = Intent(context, TransactionActivity::class.java)
-            intent.putExtra(FINANCE_CATEGORY, FinanceCategory.SAVING)
+            intent.putExtra(TRANSACTION_CATEGORY, TransactionCategory.SAVING)
             return intent
         }
         fun getInvestmentIntent(context: Context): Intent {
             val intent = Intent(context, TransactionActivity::class.java)
-            intent.putExtra(FINANCE_CATEGORY, FinanceCategory.INVESTMENT)
+            intent.putExtra(TRANSACTION_CATEGORY, TransactionCategory.INVESTMENT)
             return intent
         }
     }

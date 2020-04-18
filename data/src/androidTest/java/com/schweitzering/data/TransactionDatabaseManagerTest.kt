@@ -7,9 +7,9 @@ import androidx.room.Room
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
 import com.schweitzering.data.database.AppDatabase
-import com.schweitzering.data.finance.FinanceDatabaseManager
-import com.schweitzering.data.finance.FinanceEntity
-import com.schweitzering.domain.finance.FinanceCategory
+import com.schweitzering.data.transaction.TransactionDatabaseManager
+import com.schweitzering.data.transaction.TransactionEntity
+import com.schweitzering.domain.transaction.TransactionCategory
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -20,40 +20,40 @@ import java.sql.Timestamp
 import java.time.LocalDate
 
 @RunWith(AndroidJUnit4ClassRunner::class)
-class FinanceDaoTest {
+class TransactionsDaoTest {
 
-    private lateinit var databaseManager: FinanceDatabaseManager
+    private lateinit var databaseManager: TransactionDatabaseManager
+
     private lateinit var appDatabase: AppDatabase
-    //private val dao by lazy { database.financeDao() }
 
     //ID is set by database in order so the entities need to have id set to 1,2,3...n
-    private val entity1 = FinanceEntity(
+    private val entity1 = TransactionEntity(
         id = 1,
         value = 200f,
         date = Timestamp(System.currentTimeMillis() - 10 * ONE_DAY_IN_MILLIS),
-        category = FinanceCategory.INCOME,
-        financeCategoryType = SALARY_TYPE
+        category = TransactionCategory.INCOME,
+        categoryType = SALARY_TYPE
     )
-    private val entity2 = FinanceEntity(
+    private val entity2 = TransactionEntity(
         id = 2,
         value = 10.5f,
         date = Timestamp(System.currentTimeMillis() - 5 * ONE_DAY_IN_MILLIS),
-        category = FinanceCategory.EXPENSE,
-        financeCategoryType = FOOD_TYPE
+        category = TransactionCategory.EXPENSE,
+        categoryType = FOOD_TYPE
     )
-    private val entity3 = FinanceEntity(
+    private val entity3 = TransactionEntity(
         id = 3,
         value = 92.3f,
         date = Timestamp(System.currentTimeMillis() - 2 * ONE_DAY_IN_MILLIS),
-        category = FinanceCategory.EXPENSE,
-        financeCategoryType = CLOTHES_TYPE
+        category = TransactionCategory.EXPENSE,
+        categoryType = CLOTHES_TYPE
     )
-    private val entity4 = FinanceEntity(
+    private val entity4 = TransactionEntity(
         id = 4,
         value = 92.3f,
         date = Timestamp(System.currentTimeMillis()),
-        category = FinanceCategory.EXPENSE,
-        financeCategoryType = CLOTHES_TYPE
+        category = TransactionCategory.EXPENSE,
+        categoryType = CLOTHES_TYPE
     )
 
     companion object {
@@ -72,7 +72,7 @@ class FinanceDaoTest {
         appDatabase = Room.inMemoryDatabaseBuilder(
             InstrumentationRegistry.getInstrumentation().targetContext,
             AppDatabase::class.java).build()
-        databaseManager = FinanceDatabaseManager(appDatabase)
+        databaseManager = TransactionDatabaseManager(appDatabase)
     }
 
     @After
@@ -80,18 +80,18 @@ class FinanceDaoTest {
         appDatabase.close()
     }
 
-    @Test fun insertFinanceEntityTest() {
+    @Test fun insertTransactionEntityTest() {
         databaseManager.insert(entity1)
         databaseManager.getAll().observeOnce {
             assertEquals(it, listOf(entity1))
         }
     }
 
-    @Test fun deleteFinanceEntityTest() {
+    @Test fun deleteTransactionEntityTest() {
         databaseManager.insert(entity1)
         databaseManager.delete(entity1)
         databaseManager.getAll().observeOnce {
-            assertEquals(it, listOf<FinanceEntity>())
+            assertEquals(it, listOf<TransactionEntity>())
         }
     }
 
@@ -100,17 +100,17 @@ class FinanceDaoTest {
         databaseManager.insert(entity2)
         databaseManager.insert(entity3)
 
-        databaseManager.getByCategory(FinanceCategory.EXPENSE).observeOnce {
+        databaseManager.getByCategory(TransactionCategory.EXPENSE).observeOnce {
            assertEquals(it, listOf(entity2, entity3))
         }
     }
 
-    @Test fun getByFinanceCategoryType() {
+    @Test fun getByCategoryTypeTest() {
         databaseManager.insert(entity1)
         databaseManager.insert(entity2)
         databaseManager.insert(entity3)
 
-        databaseManager.getByFinanceCategoryType(SALARY_TYPE).observeOnce {
+        databaseManager.getByCategoryType(SALARY_TYPE).observeOnce {
             assertEquals(it, listOf(entity1))
         }
     }

@@ -1,13 +1,13 @@
 package com.schweitzering.data.mappers
 
-import com.schweitzering.data.finance.FinanceEntity
-import com.schweitzering.domain.finance.Finance
+import com.schweitzering.data.transaction.TransactionEntity
+import com.schweitzering.domain.transaction.Transaction
 
-fun Finance.toFinanceEntity() = FinanceEntity(
+fun Transaction.toTransactionEntity() = TransactionEntity(
     value = value,
     date = date,
     category = category,
-    financeCategoryType = financeCategoryType
+    categoryType = categoryType
 )
 
-fun FinanceEntity.toFinance() = Finance(value = value, date = date, category = category, financeCategoryType = financeCategoryType)
+fun TransactionEntity.toTransaction() = Transaction(value = value, date = date, category = category, categoryType = categoryType)

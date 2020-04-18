@@ -49,8 +49,6 @@ class TransactionViewModel(private val addTransactionUseCase: AddTransactionUseC
             TransactionProfile(value, Timestamp(System.currentTimeMillis()), transactionCategory, it)
         }
     }
-
-
 }
 
 @InverseMethod("convertStringToFloat")

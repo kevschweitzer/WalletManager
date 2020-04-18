@@ -2,6 +2,8 @@ package com.schweitzering.walletmanager.inject
 
 import com.schweitzering.domain.categories.GetCategoryTypesUseCase
 import com.schweitzering.domain.transaction.AddTransactionUseCase
+import com.schweitzering.walletmanager.main.MainActivity
+import com.schweitzering.walletmanager.main.MainViewModel
 import com.schweitzering.walletmanager.transaction.TransactionActivity
 import com.schweitzering.walletmanager.transaction.TransactionViewModel
 import org.koin.core.qualifier.named
@@ -11,6 +13,10 @@ val appModule = module{
 
     scope(named<TransactionActivity>()) {
         scoped { TransactionViewModel(get(), get()) }
+    }
+
+    scope(named<MainActivity>()) {
+        scoped { MainViewModel() }
     }
 
     single {GetCategoryTypesUseCase(get())}

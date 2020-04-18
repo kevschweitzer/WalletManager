@@ -13,10 +13,11 @@ import com.schweitzering.domain.transaction.TransactionCategory
 import com.schweitzering.walletmanager.utils.Constants.Companion.TRANSACTION_CATEGORY
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.ActivityTransactionBinding
+import com.schweitzering.walletmanager.utils.DataBindingProtocol
 import kotlinx.android.synthetic.main.activity_transaction.*
 import org.koin.androidx.scope.currentScope
 
-class TransactionActivity : AppCompatActivity() {
+class TransactionActivity : AppCompatActivity(), DataBindingProtocol {
 
     private val viewModel: TransactionViewModel by currentScope.inject()
 
@@ -81,7 +82,7 @@ class TransactionActivity : AppCompatActivity() {
         viewModel.categories.observe(this, Observer { addItemsToSpinner(it) })
     }
 
-    private fun setDataBinding() {
+    override fun setDataBinding() {
         val binding = DataBindingUtil.setContentView<ActivityTransactionBinding>(this, R.layout.activity_transaction)
         binding.viewModel = viewModel
     }

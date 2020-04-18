@@ -1,4 +1,4 @@
-package com.schweitzering.walletmanager
+package com.schweitzering.walletmanager.transaction
 
 import com.schweitzering.domain.finance.FinanceCategory
 import java.sql.Timestamp

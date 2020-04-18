@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="income_categories">
+        <item>Salary</item>
+        <item>Sale</item>
+        <item>Loan</item>
+    </string-array>
+
+    <string-array name="expense_categories">
+        <item>Food</item>
+        <item>House</item>
+        <item>Car</item>
+    </string-array>
+
+    <string-array name="saving_categories">
+        <item>Bank Account</item>
+        <item>Cash</item>
+    </string-array>
+
+    <string-array name="investment_categories">
+        <item>Shares</item>
+        <item>Bonds</item>
+    </string-array>
+</resources>

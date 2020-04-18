@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.schweitzering.walletmanager.R
-import com.schweitzering.walletmanager.expense.ExpenseActivity
+import com.schweitzering.walletmanager.transaction.TransactionActivity
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
@@ -17,10 +17,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onNewExpenseClicked(view: View) {
-        startActivity(ExpenseActivity.getIntent(this))
+        startActivity(TransactionActivity.getExpenseIntent(this))
     }
 
     fun onNewIncomeClicked(view: View) {
-
+        startActivity(TransactionActivity.getIncomeIntent(this))
     }
 }

@@ -8,15 +8,15 @@ class CategoryTypesDatabaseManager(private val database: AppDatabase) {
 
     private val categoryTypesDao = database.categoryTypesDao()
 
-    fun add(category: TransactionCategory, type: String) {
+    fun add(categoryType: CategoryTypeEntity) {
         runBlocking {
-            categoryTypesDao.insert(CategoryTypeEntity(category = category, type = type))
+            categoryTypesDao.insert(categoryType)
         }
     }
 
-    fun remove(category: TransactionCategory, type: String) {
+    fun remove(categoryType: CategoryTypeEntity) {
         runBlocking {
-            categoryTypesDao.delete(CategoryTypeEntity(category = category, type = type))
+            categoryTypesDao.delete(categoryType)
         }
     }
 

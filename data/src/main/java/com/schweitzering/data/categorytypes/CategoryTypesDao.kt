@@ -16,7 +16,7 @@ interface CategoryTypesDao {
     @Delete
     suspend fun delete(type: CategoryTypeEntity)
 
-    @Query("SELECT category FROM category_types WHERE category == :category")
+    @Query("SELECT type FROM category_types WHERE category == :category")
     fun getAllByCategory(category: TransactionCategory): LiveData<List<String>>
 
 }

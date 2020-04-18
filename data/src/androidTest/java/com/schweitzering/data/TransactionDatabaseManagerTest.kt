@@ -6,6 +6,9 @@ import androidx.lifecycle.*
 import androidx.room.Room
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
+import com.schweitzering.data.Constants.Companion.CLOTHES_TYPE
+import com.schweitzering.data.Constants.Companion.FOOD_TYPE
+import com.schweitzering.data.Constants.Companion.SALARY_TYPE
 import com.schweitzering.data.database.AppDatabase
 import com.schweitzering.data.transaction.TransactionDatabaseManager
 import com.schweitzering.data.transaction.TransactionEntity
@@ -57,9 +60,6 @@ class TransactionsDaoTest {
     )
 
     companion object {
-        const val SALARY_TYPE = "salary"
-        const val FOOD_TYPE = "food"
-        const val CLOTHES_TYPE = "clothes"
         const val ONE_DAY_IN_MILLIS = 86400000
     }
 

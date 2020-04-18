@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -46,7 +48,28 @@ class TransactionActivity : AppCompatActivity() {
         setDataBinding()
         viewModel.handleIntent(intent)
 
-        observeState()
+        observeCategories()
+        observeCategorySelection()
+    }
+
+    private fun observeCategorySelection() {
+        spinner_category.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+               viewModel.selectedCategoryPosition = position
+            }
+
+        }
+    }
+
+    private fun observeCategories() {
+        viewModel.categories.observe(this, Observer { addItemsToSpinner(it) })
     }
 
     private fun setDataBinding() {
@@ -54,17 +77,7 @@ class TransactionActivity : AppCompatActivity() {
         binding.viewModel = viewModel
     }
 
-    private fun observeState() {
-        viewModel.state.observe(this, Observer {
-            when(it) {
-                is TransactionViewModel.TransactionState.FullLoaded -> addItemsToSpinner(it.categoriesResource)
-                is TransactionViewModel.TransactionState.Finished -> finish()
-            }
-        })
-    }
-
-    private fun addItemsToSpinner(resourceId: Int) {
-        val categories = resources.getStringArray(resourceId)
+    private fun addItemsToSpinner(categories: List<String>) {
         val arrayAdapter = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, categories)
         spinner_category.adapter = arrayAdapter
     }

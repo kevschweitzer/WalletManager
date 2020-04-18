@@ -18,7 +18,6 @@ class TransactionViewModel(private val addTransactionUseCase: AddTransactionUseC
                            private val getCategoryTypeUseCase: GetCategoryTypesUseCase): ViewModel() {
 
     sealed class TransactionState {
-        data class FullLoaded(val categoriesResource: Int): TransactionState()
         object Finished: TransactionState()
     }
 
@@ -37,19 +36,7 @@ class TransactionViewModel(private val addTransactionUseCase: AddTransactionUseC
     fun handleIntent(intent: Intent?) {
         intent?.let {
             transactionCategory = intent.getSerializableExtra(TRANSACTION_CATEGORY) as TransactionCategory
-            setPredefinedCategories()
         }
-    }
-
-    private fun setPredefinedCategories() {
-        state.value = TransactionState.FullLoaded(
-            when(transactionCategory) {
-            TransactionCategory.INCOME -> R.array.income_categories
-            TransactionCategory.EXPENSE -> R.array.expense_categories
-            TransactionCategory.SAVING -> R.array.saving_categories
-            TransactionCategory.INVESTMENT -> R.array.investment_categories
-            }
-        )
     }
 
     fun onContinueClicked() {

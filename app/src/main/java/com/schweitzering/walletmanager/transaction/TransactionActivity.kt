@@ -48,8 +48,17 @@ class TransactionActivity : AppCompatActivity() {
         setDataBinding()
         viewModel.handleIntent(intent)
 
+        observeState()
         observeCategories()
         observeCategorySelection()
+    }
+
+    private fun observeState() {
+        viewModel.state.observe(this, Observer {
+            when(it) {
+                TransactionViewModel.TransactionState.Finished -> finish()
+            }
+        })
     }
 
     private fun observeCategorySelection() {

@@ -2,9 +2,10 @@ package com.schweitzering.data.categorytypes
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.schweitzering.data.R
+import com.schweitzering.data.mappers.toCategoryTypeEntity
+import com.schweitzering.domain.categories.CategoryType
 import com.schweitzering.domain.categories.CategoryTypesRepository
 import com.schweitzering.domain.transaction.TransactionCategory
 
@@ -24,9 +25,11 @@ class CategoryTypesRepositoryImpl(private val context: Context,
        }
     }
 
-    override fun addCategoryType(category: TransactionCategory, type: String) {
+    override fun addCategoryType(categoryType: CategoryType) {
+        database.add(categoryType.toCategoryTypeEntity())
     }
 
-    override fun removeCategoryType(category: TransactionCategory, type: String) {
+    override fun removeCategoryType(categoryType: CategoryType) {
+        database.remove(categoryType.toCategoryTypeEntity())
     }
 }

@@ -7,8 +7,8 @@ interface CategoryTypesRepository {
 
     fun getCategoryTypes(category: TransactionCategory): LiveData<List<String>>
 
-    fun addCategoryType(category: TransactionCategory, type: String)
+    fun addCategoryType(categoryType: CategoryType)
 
-    fun removeCategoryType(category: TransactionCategory, type: String)
+    fun removeCategoryType(categoryType: CategoryType)
 
 }

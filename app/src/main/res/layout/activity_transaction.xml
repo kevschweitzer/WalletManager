@@ -17,14 +17,17 @@
             tools:context=".transaction.TransactionActivity"
             android:layout_gravity="center">
 
-        <TextView
+        <EditText
                 android:id="@+id/et_value"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/value_input_et_height"
                 android:layout_marginStart="@dimen/standard_margin_separation"
                 android:layout_marginEnd="@dimen/standard_margin_separation"
-                android:text="@{Float.toString(viewModel.value)}"
+                android:text="@={`` + viewModel.value}"
                 android:hint="$0 usd"
+                android:inputType="number"
+                android:digits="0123456789"
+                android:background="@drawable/bg_description_et"
                 style="@style/BalanceText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

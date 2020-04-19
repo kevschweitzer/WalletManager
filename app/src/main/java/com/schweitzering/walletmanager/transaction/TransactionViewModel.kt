@@ -50,7 +50,3 @@ class TransactionViewModel(private val addTransactionUseCase: AddTransactionUseC
         }
     }
 }
-
-@InverseMethod("convertStringToFloat")
-fun convertStringToFloat(value: String) = value.toFloat()
-

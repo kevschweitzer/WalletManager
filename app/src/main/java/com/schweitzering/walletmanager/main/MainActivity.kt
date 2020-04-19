@@ -49,5 +49,6 @@ class MainActivity : AppCompatActivity(), DataBindingProtocol {
     override fun setDataBinding() {
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         binding.viewModel = viewModel
+        binding.lifecycleOwner = this
     }
 }

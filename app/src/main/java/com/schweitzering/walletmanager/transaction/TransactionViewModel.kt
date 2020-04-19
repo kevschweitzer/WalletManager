@@ -29,7 +29,7 @@ class TransactionViewModel(private val addTransactionUseCase: AddTransactionUseC
     val categories: LiveData<List<String>> by lazy { getCategoryTypeUseCase.execute(transactionCategory) }
 
     //UI fields
-    var value: Float = 0f
+    var value: Float = 10f
     var description: String = ""
     var selectedCategoryPosition: Int = 0
 

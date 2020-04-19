@@ -1,10 +1,8 @@
 package com.schweitzering.data.utils
 
 import androidx.room.TypeConverter
-import com.schweitzering.domain.finance.FinanceCategory
+import com.schweitzering.domain.transaction.TransactionCategory
 import java.sql.Timestamp
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 class Converters {
 
@@ -19,12 +17,12 @@ class Converters {
     }
 
     @TypeConverter
-    fun fromFinanceCategory(category: FinanceCategory): String {
+    fun fromTransactionCategory(category: TransactionCategory): String {
         return category.name
     }
 
     @TypeConverter
-    fun toFinanceCategory(name: String): FinanceCategory {
-        return FinanceCategory.valueOf(name)
+    fun toTransactionCategory(name: String): TransactionCategory {
+        return TransactionCategory.valueOf(name)
     }
 }

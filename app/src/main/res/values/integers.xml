@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer name="max_amount_digits">8</integer>
+    <dimen name="standard_margin_separation">8dp</dimen>
+    <dimen name="title_description_separation">8dp</dimen>
+    <dimen name="view_separation">20dp</dimen>
 </resources>

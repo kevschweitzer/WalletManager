@@ -18,7 +18,7 @@ class MainViewModel(private val getAllTransactionsUseCase: GetAllTransactionsUse
     //Exposed data
     val state = MutableLiveData<FlowState>()
     val lastTransactions = Transformations.map(getAllTransactionsUseCase.execute()) {
-        it.map { it.toTransactionProfile() }
+        it.map { it.toTransactionProfile() }.reversed()
     }
 
     fun onNewExpenseClicked() {

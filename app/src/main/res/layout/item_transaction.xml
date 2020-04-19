@@ -41,6 +41,10 @@
             android:layout_height="wrap_content"
             android:text="@{viewHolder.transaction.categoryType}"/>
 
+    <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="#000000"/>
 </LinearLayout>
 
 </layout>

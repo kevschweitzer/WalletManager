@@ -1,9 +1,12 @@
 package com.schweitzering.walletmanager.main
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import com.schweitzering.domain.transaction.GetAllTransactionsUseCase
+import com.schweitzering.walletmanager.mappers.toTransactionProfile
 
 
-class MainViewModel {
+class MainViewModel(private val getAllTransactionsUseCase: GetAllTransactionsUseCase) {
 
     sealed class FlowState {
         object NewExpense: FlowState()
@@ -14,6 +17,9 @@ class MainViewModel {
 
     //Exposed data
     val state = MutableLiveData<FlowState>()
+    val lastTransactions = Transformations.map(getAllTransactionsUseCase.execute()) {
+        it.map { it.toTransactionProfile() }
+    }
 
     fun onNewExpenseClicked() {
         state.value = FlowState.NewExpense

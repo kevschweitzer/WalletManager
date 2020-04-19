@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.ActivityMainBinding
 import com.schweitzering.walletmanager.transaction.TransactionActivity
 import com.schweitzering.walletmanager.utils.DataBindingProtocol
+import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.currentScope
 
@@ -21,6 +23,16 @@ class MainActivity : AppCompatActivity(), DataBindingProtocol {
         setDataBinding()
 
         observeFlowChanges()
+        observeLastTransactions()
+    }
+
+    private fun observeLastTransactions() {
+        viewModel.lastTransactions.observe(this, Observer {
+            transaction_list.apply {
+                layoutManager = LinearLayoutManager(this@MainActivity)
+                adapter = TransactionsAdapter(it, viewModel)
+            }
+        })
     }
 
     private fun observeFlowChanges() {

@@ -16,8 +16,9 @@ class GetPartialBalanceUseCase(private val transactionsRepository: TransactionsR
         it.forEach {
             when(it.category) {
                 TransactionCategory.INCOME -> balance += it.value
-                TransactionCategory.EXPENSE -> balance -= it.value
-                else -> Unit //Do nothing
+                TransactionCategory.EXPENSE,
+                TransactionCategory.SAVING,
+                TransactionCategory.INVESTMENT -> balance -= it.value
             }
         }
         balance

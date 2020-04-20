@@ -1,6 +1,7 @@
 package com.schweitzering.walletmanager.inject
 
 import com.schweitzering.domain.balance.GetPartialBalanceUseCase
+import com.schweitzering.domain.balance.GetTotalBalanceUseCase
 import com.schweitzering.domain.categories.GetCategoryTypesUseCase
 import com.schweitzering.domain.transaction.AddTransactionUseCase
 import com.schweitzering.domain.transaction.GetAllTransactionsUseCase
@@ -18,10 +19,12 @@ val appModule = module{
     }
 
     scope(named<MainActivity>()) {
-        scoped { MainViewModel(get(), get()) }
+        scoped { MainViewModel(get(), get(), get()) }
     }
 
     single {GetPartialBalanceUseCase(get())}
+
+    single {GetTotalBalanceUseCase(get())}
 
     single {GetCategoryTypesUseCase(get())}
 

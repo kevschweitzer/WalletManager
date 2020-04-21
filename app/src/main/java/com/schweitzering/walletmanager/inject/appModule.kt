@@ -22,13 +22,13 @@ val appModule = module{
         scoped { MainViewModel(get(), get(), get()) }
     }
 
-    single {GetPartialBalanceUseCase(get())}
+    factory {GetPartialBalanceUseCase(get())}
 
-    single {GetTotalBalanceUseCase(get())}
+    factory {GetTotalBalanceUseCase(get())}
 
-    single {GetCategoryTypesUseCase(get())}
+    factory {GetCategoryTypesUseCase(get())}
 
-    single {AddTransactionUseCase(get())}
+    factory {AddTransactionUseCase(get())}
 
-    single {GetAllTransactionsUseCase(get())}
+    factory {GetAllTransactionsUseCase(get())}
 }

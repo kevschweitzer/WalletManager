@@ -21,11 +21,11 @@ val dataModule = module {
         ).build()
     }
 
-    single<CategoryTypesRepository> {CategoryTypesRepositoryImpl(androidContext(), get())}
+    factory<CategoryTypesRepository> {CategoryTypesRepositoryImpl(androidContext(), get())}
 
-    single {CategoryTypesDatabaseManager(get())}
+    factory {CategoryTypesDatabaseManager(get())}
 
-    single<TransactionsRepository> {TransactionsRepositoryImpl(get())}
+    factory<TransactionsRepository> {TransactionsRepositoryImpl(get())}
 
-    single {TransactionDatabaseManager(get())}
+    factory {TransactionDatabaseManager(get())}
 }

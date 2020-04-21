@@ -1,10 +1,9 @@
-package com.schweitzering.data.inject
+package com.schweitzering.data.xsupport.inject
 
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.schweitzering.data.categorytypes.CategoryTypesDatabaseManager
 import com.schweitzering.data.categorytypes.CategoryTypesRepositoryImpl
-import com.schweitzering.data.database.AppDatabase
+import com.schweitzering.data.xsupport.database.AppDatabase
 import com.schweitzering.data.transaction.TransactionDatabaseManager
 import com.schweitzering.data.transaction.TransactionsRepositoryImpl
 import com.schweitzering.domain.categories.CategoryTypesRepository

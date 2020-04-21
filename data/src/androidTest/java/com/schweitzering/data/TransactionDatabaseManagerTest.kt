@@ -9,7 +9,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.schweitzering.data.Constants.Companion.CLOTHES_TYPE
 import com.schweitzering.data.Constants.Companion.FOOD_TYPE
 import com.schweitzering.data.Constants.Companion.SALARY_TYPE
-import com.schweitzering.data.database.AppDatabase
+import com.schweitzering.data.xsupport.database.AppDatabase
 import com.schweitzering.data.transaction.TransactionDatabaseManager
 import com.schweitzering.data.transaction.TransactionEntity
 import com.schweitzering.domain.transaction.TransactionCategory

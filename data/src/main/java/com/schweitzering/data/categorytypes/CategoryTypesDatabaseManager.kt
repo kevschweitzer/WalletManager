@@ -1,6 +1,6 @@
 package com.schweitzering.data.categorytypes
 
-import com.schweitzering.data.database.AppDatabase
+import com.schweitzering.data.xsupport.database.AppDatabase
 import com.schweitzering.domain.transaction.TransactionCategory
 import kotlinx.coroutines.runBlocking
 

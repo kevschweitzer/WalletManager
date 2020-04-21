@@ -1,4 +1,4 @@
-package com.schweitzering.data.mappers
+package com.schweitzering.data.xsupport.mappers
 
 import com.schweitzering.data.categorytypes.CategoryTypeEntity
 import com.schweitzering.data.transaction.TransactionEntity

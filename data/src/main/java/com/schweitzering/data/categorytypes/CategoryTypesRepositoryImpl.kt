@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.schweitzering.data.R
-import com.schweitzering.data.mappers.toCategoryTypeEntity
+import com.schweitzering.data.xsupport.mappers.toCategoryTypeEntity
 import com.schweitzering.domain.categories.CategoryType
 import com.schweitzering.domain.categories.CategoryTypesRepository
 import com.schweitzering.domain.transaction.TransactionCategory

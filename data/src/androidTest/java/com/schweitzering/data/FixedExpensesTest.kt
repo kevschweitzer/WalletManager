@@ -5,13 +5,9 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
-import com.schweitzering.data.categorytypes.CategoryTypeEntity
-import com.schweitzering.data.categorytypes.CategoryTypesDatabaseManager
 import com.schweitzering.data.fixedExpenses.FixedExpenseEntity
 import com.schweitzering.data.fixedExpenses.FixedExpensesDatabaseManager
 import com.schweitzering.data.xsupport.database.AppDatabase
-import com.schweitzering.domain.fixedExpenses.RenewalDays
-import com.schweitzering.domain.fixedExpenses.TimePeriod
 import com.schweitzering.domain.transaction.TransactionCategory
 import junit.framework.Assert.assertEquals
 import org.junit.After
@@ -38,10 +34,6 @@ class FixedExpensesTest {
         category = TransactionCategory.EXPENSE, //Each Transaction has a category
         categoryType = Constants.FOOD_TYPE,
         isAlreadyPaid = false, //In the current period
-        everyXTime = 1,
-        timePeriod = TimePeriod.MONTH,
-        renewalDay = RenewalDays.MON1,
-        startDate = Timestamp(System.currentTimeMillis()),
         creationDate = Timestamp(System.currentTimeMillis())
     )
 
@@ -52,10 +44,6 @@ class FixedExpensesTest {
         category = TransactionCategory.EXPENSE, //Each Transaction has a category
         categoryType = Constants.CLOTHES_TYPE,
         isAlreadyPaid = false, //In the current period
-        everyXTime = 1,
-        timePeriod = TimePeriod.DAY,
-        renewalDay = RenewalDays.MON,
-        startDate = Timestamp(System.currentTimeMillis()),
         creationDate = Timestamp(System.currentTimeMillis())
     )
 

@@ -4,7 +4,7 @@ import com.schweitzering.domain.transaction.Transaction
 import java.sql.Timestamp
 
 data class FixedExpense(
-    var exopense: Transaction,
+    var expense: Transaction,
     var isAlreadyPaid: Boolean, //In the current period
     var period: Period,
     var startDate: Timestamp,
@@ -12,7 +12,7 @@ data class FixedExpense(
 )
 
 
-class Period(everyXTime: Int, timePeriod: TimePeriod, renewalDay: RenewalDays)
+data class Period(var everyXTime: Int, var timePeriod: TimePeriod, var renewalDay: RenewalDays)
 
 enum class TimePeriod {DAY, WEEK, MONTH, YEAR}
 

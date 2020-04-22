@@ -1,14 +1,12 @@
-package com.schweitzering.walletmanager.xsupport.inject
+package com.schweitzering.walletmanager.inject
 
 import com.schweitzering.domain.balance.GetPartialBalanceUseCase
 import com.schweitzering.domain.balance.GetTotalBalanceUseCase
 import com.schweitzering.domain.categories.GetCategoryTypesUseCase
 import com.schweitzering.domain.transaction.AddTransactionUseCase
 import com.schweitzering.domain.transaction.GetAllTransactionsUseCase
-import com.schweitzering.walletmanager.balance.BalanceFragment
 import com.schweitzering.walletmanager.main.MainActivity
 import com.schweitzering.walletmanager.balance.BalanceViewModel
-import com.schweitzering.walletmanager.fixedExpenses.FixedExpensesFragment
 import com.schweitzering.walletmanager.fixedExpenses.FixedExpensesViewModel
 import com.schweitzering.walletmanager.transaction.TransactionActivity
 import com.schweitzering.walletmanager.transaction.TransactionViewModel

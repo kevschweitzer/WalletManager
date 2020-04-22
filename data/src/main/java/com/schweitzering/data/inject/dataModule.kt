@@ -1,4 +1,4 @@
-package com.schweitzering.data.xsupport.inject
+package com.schweitzering.data.inject
 
 import androidx.room.Room
 import com.schweitzering.data.categorytypes.CategoryTypesDatabaseManager

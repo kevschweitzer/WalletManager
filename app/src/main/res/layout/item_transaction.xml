@@ -5,11 +5,11 @@
     <data>
         <variable
                 name="viewModel"
-                type="com.schweitzering.walletmanager.main.MainViewModel" />
+                type="com.schweitzering.walletmanager.balance.BalanceViewModel" />
 
         <variable
                 name="viewHolder"
-                type="com.schweitzering.walletmanager.main.TransactionsAdapter.TransactionsViewHolder" />
+                type="com.schweitzering.walletmanager.balance.TransactionsAdapter.TransactionsViewHolder" />
     </data>
     
 <LinearLayout

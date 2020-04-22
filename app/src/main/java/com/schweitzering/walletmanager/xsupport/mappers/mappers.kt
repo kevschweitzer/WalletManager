@@ -1,4 +1,4 @@
-package com.schweitzering.walletmanager.mappers
+package com.schweitzering.walletmanager.xsupport.mappers
 
 import com.schweitzering.domain.transaction.Transaction
 import com.schweitzering.walletmanager.transaction.TransactionProfile

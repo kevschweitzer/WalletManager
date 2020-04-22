@@ -1,12 +1,15 @@
-package com.schweitzering.walletmanager.inject
+package com.schweitzering.walletmanager.xsupport.inject
 
 import com.schweitzering.domain.balance.GetPartialBalanceUseCase
 import com.schweitzering.domain.balance.GetTotalBalanceUseCase
 import com.schweitzering.domain.categories.GetCategoryTypesUseCase
 import com.schweitzering.domain.transaction.AddTransactionUseCase
 import com.schweitzering.domain.transaction.GetAllTransactionsUseCase
+import com.schweitzering.walletmanager.balance.BalanceFragment
 import com.schweitzering.walletmanager.main.MainActivity
-import com.schweitzering.walletmanager.main.MainViewModel
+import com.schweitzering.walletmanager.balance.BalanceViewModel
+import com.schweitzering.walletmanager.fixedExpenses.FixedExpensesFragment
+import com.schweitzering.walletmanager.fixedExpenses.FixedExpensesViewModel
 import com.schweitzering.walletmanager.transaction.TransactionActivity
 import com.schweitzering.walletmanager.transaction.TransactionViewModel
 import org.koin.core.qualifier.named
@@ -19,16 +22,17 @@ val appModule = module{
     }
 
     scope(named<MainActivity>()) {
-        scoped { MainViewModel(get(), get(), get()) }
+        factory { BalanceViewModel(get(), get(), get()) }
+        factory { FixedExpensesViewModel()}
     }
 
-    factory {GetPartialBalanceUseCase(get())}
+    single {GetPartialBalanceUseCase(get())}
 
-    factory {GetTotalBalanceUseCase(get())}
+    single {GetTotalBalanceUseCase(get())}
 
-    factory {GetCategoryTypesUseCase(get())}
+    single {GetCategoryTypesUseCase(get())}
 
-    factory {AddTransactionUseCase(get())}
+    single {AddTransactionUseCase(get())}
 
-    factory {GetAllTransactionsUseCase(get())}
+    single {GetAllTransactionsUseCase(get())}
 }

@@ -1,6 +1,6 @@
 package com.schweitzering.walletmanager.inject
 
-import com.schweitzering.data.fixedExpenses.GetFixedExpensesUseCase
+import com.schweitzering.domain.fixedExpenses.GetFixedExpensesUseCase
 import com.schweitzering.domain.balance.GetPartialBalanceUseCase
 import com.schweitzering.domain.balance.GetTotalBalanceUseCase
 import com.schweitzering.domain.categories.GetCategoryTypesUseCase
@@ -44,5 +44,5 @@ val appModule = module{
 
     factory {NewFixedExpenseUseCase(get())}
 
-    factory {GetFixedExpensesUseCase(get())}
+    factory { GetFixedExpensesUseCase(get()) }
 }

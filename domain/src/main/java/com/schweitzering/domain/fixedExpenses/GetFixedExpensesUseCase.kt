@@ -1,4 +1,4 @@
-package com.schweitzering.data.fixedExpenses
+package com.schweitzering.domain.fixedExpenses
 
 import com.schweitzering.domain.fixedExpenses.FixedExpensesRepository
 

@@ -63,6 +63,7 @@ class TransactionActivity : AppCompatActivity(), DataBindingProtocol {
     }
 
     private fun observeCategorySelection() {
+        spinner_category.selectedItem
         spinner_category.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 

@@ -8,6 +8,8 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.schweitzering.data.fixedExpenses.FixedExpenseEntity
 import com.schweitzering.data.fixedExpenses.FixedExpensesDatabaseManager
 import com.schweitzering.data.xsupport.database.AppDatabase
+import com.schweitzering.domain.schedule.Schedule
+import com.schweitzering.domain.schedule.TimePeriod
 import com.schweitzering.domain.transaction.TransactionCategory
 import junit.framework.Assert.assertEquals
 import org.junit.After
@@ -26,25 +28,36 @@ class FixedExpensesTest {
 
     private lateinit var context: Context
 
-
-    val entity1 = FixedExpenseEntity(
+    val entity1 by lazy{ FixedExpenseEntity(
         id = 1,
         value = 300f,
         date = Timestamp(System.currentTimeMillis()),
         category = TransactionCategory.EXPENSE, //Each Transaction has a category
         categoryType = Constants.FOOD_TYPE,
         isAlreadyPaid = false, //In the current period
-        creationDate = Timestamp(System.currentTimeMillis())
-    )
+        creationDate = Timestamp(System.currentTimeMillis()),
+        schedule = schedule1
+    )}
 
-    val entity2 = FixedExpenseEntity(
+    val entity2 by lazy { FixedExpenseEntity(
         id = 2,
         value = 150f,
         date = Timestamp(System.currentTimeMillis()),
         category = TransactionCategory.EXPENSE, //Each Transaction has a category
         categoryType = Constants.CLOTHES_TYPE,
         isAlreadyPaid = false, //In the current period
-        creationDate = Timestamp(System.currentTimeMillis())
+        creationDate = Timestamp(System.currentTimeMillis()),
+        schedule = schedule2
+    )}
+
+    val schedule1 = Schedule(
+        period = TimePeriod.MONTH,
+        startDate = Timestamp(System.currentTimeMillis())
+    )
+
+    val schedule2 = Schedule(
+        period = TimePeriod.WEEK,
+        startDate = Timestamp(System.currentTimeMillis())
     )
 
     @get:Rule
@@ -86,6 +99,4 @@ class FixedExpensesTest {
             assertEquals(it, listOf(entity1, entity2))
         }
     }
-
-
 }

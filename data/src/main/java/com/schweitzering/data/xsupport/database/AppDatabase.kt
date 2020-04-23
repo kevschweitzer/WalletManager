@@ -11,12 +11,10 @@ import com.schweitzering.data.categorytypes.CategoryTypeEntity
 import com.schweitzering.data.categorytypes.CategoryTypesDao
 import com.schweitzering.data.fixedExpenses.FixedExpenseEntity
 import com.schweitzering.data.fixedExpenses.FixedExpensesDao
-import com.schweitzering.data.schedule.ScheduleDao
-import com.schweitzering.data.schedule.ScheduleEntity
 import com.schweitzering.data.xsupport.utils.Converters
 
 @Database(entities = [BalanceEntity::class, TransactionEntity::class,
-    CategoryTypeEntity::class, FixedExpenseEntity::class, ScheduleEntity::class], version = 1)
+    CategoryTypeEntity::class, FixedExpenseEntity::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class AppDatabase: RoomDatabase() {
 
@@ -24,5 +22,4 @@ abstract class AppDatabase: RoomDatabase() {
     abstract fun transactionsDao(): TransactionsDao
     abstract fun categoryTypesDao(): CategoryTypesDao
     abstract fun fixedExpensesDao(): FixedExpensesDao
-    abstract fun scheduleDao(): ScheduleDao
 }

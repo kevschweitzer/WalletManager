@@ -1,6 +1,7 @@
 package com.schweitzering.walletmanager.fixedExpenses
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +30,15 @@ class FixedExpensesFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         observeFlowState()
+        observeFixedExpenses()
+    }
+
+    private fun observeFixedExpenses() {
+        viewModel.fixedExpenses.observe(this, Observer {
+            it.forEach {
+                Log.e("FiXED EXPENSE", "${it.expense.value}")
+            }
+        })
     }
 
     private fun observeFlowState() {

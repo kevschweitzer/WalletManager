@@ -1,20 +1,22 @@
 package com.schweitzering.data.fixedExpenses
 
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
+import com.schweitzering.data.xsupport.mappers.toFixedExpense
+import com.schweitzering.data.xsupport.mappers.toFixedExpenseEntity
 import com.schweitzering.domain.fixedExpenses.FixedExpense
 import com.schweitzering.domain.fixedExpenses.FixedExpensesRepository
 
-class FixedExpensesRepositoryImpl: FixedExpensesRepository {
+class FixedExpensesRepositoryImpl(private val databaseManager: FixedExpensesDatabaseManager): FixedExpensesRepository {
 
-    override fun getFixedExpenses(): LiveData<List<FixedExpense>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getFixedExpenses() = Transformations.map(databaseManager.getAll()) {
+        it.map { it.toFixedExpense() }
     }
 
     override fun removeFixedExpense(expense: FixedExpense) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        databaseManager.remove(expense.toFixedExpenseEntity())
     }
 
     override fun addFixedExpense(expense: FixedExpense) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        databaseManager.add(expense.toFixedExpenseEntity())
     }
 }

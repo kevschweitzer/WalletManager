@@ -18,7 +18,7 @@ fun TransactionEntity.toTransaction() = Transaction(value = value, date = date, 
 fun CategoryType.toCategoryTypeEntity() = CategoryTypeEntity(category = category, type = type)
 fun CategoryTypeEntity.toCategoryType() = CategoryType(category = category, type = type)
 
-fun FixedExpenseEntity.toFixedExpense() = FixedExpense(Transaction(value, date, category, categoryType), isAlreadyPaid, creationDate, schedule)
+fun FixedExpenseEntity.toFixedExpense() = FixedExpense(id, Transaction(value, date, category, categoryType), isAlreadyPaid, creationDate, schedule)
 
-fun FixedExpense.toFixedExpenseEntity() = FixedExpenseEntity(value = expense.value, category = expense.category, categoryType = expense.categoryType,
+fun FixedExpense.toFixedExpenseEntity() = FixedExpenseEntity(id = id, value = expense.value, category = expense.category, categoryType = expense.categoryType,
     date = expense.date, schedule = schedule, isAlreadyPaid = isAlreadyPaid, creationDate = creationDate)

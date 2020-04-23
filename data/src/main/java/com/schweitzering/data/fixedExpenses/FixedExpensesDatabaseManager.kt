@@ -21,4 +21,12 @@ class FixedExpensesDatabaseManager(private val appDatabase: AppDatabase) {
 
     fun getAll() = fixedExpensesDao.getAll()
 
+    fun update(expense: FixedExpenseEntity) {
+        runBlocking {
+            fixedExpensesDao.update(expense)
+        }
+    }
+
+    fun getByPayment(isPaid: Boolean) = fixedExpensesDao.getByPayment(isPaid)
+
 }

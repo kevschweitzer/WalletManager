@@ -1,5 +1,6 @@
 package com.schweitzering.data.fixedExpenses
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.schweitzering.data.xsupport.mappers.toFixedExpense
 import com.schweitzering.data.xsupport.mappers.toFixedExpenseEntity
@@ -18,5 +19,13 @@ class FixedExpensesRepositoryImpl(private val databaseManager: FixedExpensesData
 
     override fun addFixedExpense(expense: FixedExpense) {
         databaseManager.add(expense.toFixedExpenseEntity())
+    }
+
+    override fun updateFixedExpense(expense: FixedExpense) {
+        databaseManager.update(expense.toFixedExpenseEntity())
+    }
+
+    override fun getByPayment(isPaid: Boolean) = Transformations.map(databaseManager.getByPayment(isPaid)) {
+        it.map{ it.toFixedExpense() }
     }
 }

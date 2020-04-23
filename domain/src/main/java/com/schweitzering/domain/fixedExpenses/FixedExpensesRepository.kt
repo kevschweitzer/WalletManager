@@ -9,4 +9,8 @@ interface FixedExpensesRepository {
     fun removeFixedExpense(expense: FixedExpense)
 
     fun addFixedExpense(expense: FixedExpense)
+
+    fun updateFixedExpense(expense: FixedExpense)
+
+    fun getByPayment(isPaid: Boolean): LiveData<List<FixedExpense>>
 }

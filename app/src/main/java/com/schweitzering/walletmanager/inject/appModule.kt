@@ -4,7 +4,9 @@ import com.schweitzering.domain.fixedExpenses.GetFixedExpensesUseCase
 import com.schweitzering.domain.balance.GetPartialBalanceUseCase
 import com.schweitzering.domain.balance.GetTotalBalanceUseCase
 import com.schweitzering.domain.categories.GetCategoryTypesUseCase
+import com.schweitzering.domain.fixedExpenses.GetFixedExpensesByPaymentUseCase
 import com.schweitzering.domain.fixedExpenses.NewFixedExpenseUseCase
+import com.schweitzering.domain.fixedExpenses.PayFixedExpenseUseCase
 import com.schweitzering.domain.transaction.AddTransactionUseCase
 import com.schweitzering.domain.transaction.GetAllTransactionsUseCase
 import com.schweitzering.walletmanager.main.MainActivity
@@ -25,7 +27,7 @@ val appModule = module{
 
     scope(named<MainActivity>()) {
         factory { BalanceViewModel(get(), get(), get()) }
-        factory { FixedExpensesViewModel(get())}
+        factory { FixedExpensesViewModel(get(), get())}
     }
 
     scope(named<NewFixedExpenseActivity>()) {
@@ -45,4 +47,8 @@ val appModule = module{
     factory {NewFixedExpenseUseCase(get())}
 
     factory { GetFixedExpensesUseCase(get()) }
+
+    factory { GetFixedExpensesByPaymentUseCase(get()) }
+
+    factory { PayFixedExpenseUseCase(get(), get()) }
 }

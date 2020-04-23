@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.FragmentFixedExpensesBinding
 import com.schweitzering.walletmanager.fixedExpenses.create.NewFixedExpenseActivity
+import kotlinx.android.synthetic.main.fragment_fixed_expenses.*
 import org.koin.androidx.scope.currentScope
 
 class FixedExpensesFragment: Fragment() {
@@ -34,9 +36,10 @@ class FixedExpensesFragment: Fragment() {
     }
 
     private fun observeFixedExpenses() {
-        viewModel.fixedExpenses.observe(this, Observer {
-            it.forEach {
-                Log.e("FiXED EXPENSE", "${it.expense.value}")
+        viewModel.unpaidFixedExpenses.observe(this, Observer {
+            fixed_expenses_list.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                adapter = FixedExpensesAdapter(it, viewModel)
             }
         })
     }

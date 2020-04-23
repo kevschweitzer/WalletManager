@@ -1,9 +1,14 @@
 package com.schweitzering.walletmanager.fixedExpenses
 
 import androidx.lifecycle.MutableLiveData
-import com.schweitzering.domain.fixedExpenses.GetFixedExpensesUseCase
+import androidx.lifecycle.Transformations
+import com.schweitzering.domain.fixedExpenses.GetFixedExpensesByPaymentUseCase
+import com.schweitzering.domain.fixedExpenses.PayFixedExpenseUseCase
+import com.schweitzering.walletmanager.xsupport.mappers.toFixedExpense
+import com.schweitzering.walletmanager.xsupport.mappers.toFixedExpenseProfile
 
-class FixedExpensesViewModel(private val getFixedExpensesUseCase: GetFixedExpensesUseCase) {
+class FixedExpensesViewModel(private val getFixedExpensesByPaymentUseCase: GetFixedExpensesByPaymentUseCase,
+                             private val payFixedExpenseUseCase: PayFixedExpenseUseCase) {
 
     sealed class FlowState {
         object NewExepenseClicked: FlowState()
@@ -11,9 +16,15 @@ class FixedExpensesViewModel(private val getFixedExpensesUseCase: GetFixedExpens
 
     //Exposed
     val state = MutableLiveData<FlowState>()
-    val fixedExpenses = getFixedExpensesUseCase.execute()
+    val unpaidFixedExpenses = Transformations.map(getFixedExpensesByPaymentUseCase.execute(false)) {
+        it.map { it.toFixedExpenseProfile() }
+    }
 
     fun onNewFixedExpenseClicked() {
         state.value = FlowState.NewExepenseClicked
+    }
+
+    fun payFixedExpense(fixedExpense: FixedExpenseProfile) {
+        payFixedExpenseUseCase.execute(fixedExpense.toFixedExpense())
     }
 }

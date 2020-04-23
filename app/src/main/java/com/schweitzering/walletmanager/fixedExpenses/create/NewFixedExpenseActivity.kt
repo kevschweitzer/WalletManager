@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.ActivityNewFixedExpenseBinding
 import com.schweitzering.walletmanager.xsupport.utils.DataBindingProtocol
@@ -21,6 +22,14 @@ class NewFixedExpenseActivity : AppCompatActivity(), DataBindingProtocol {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setDataBinding()
+
+        observeState()
+    }
+
+    private fun observeState() {
+        viewModel.state.observe(this, Observer {
+            finish()
+        })
     }
 
     override fun setDataBinding() {

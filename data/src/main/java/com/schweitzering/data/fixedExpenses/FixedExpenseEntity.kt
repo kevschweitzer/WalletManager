@@ -9,10 +9,9 @@ import java.sql.Timestamp
 data class FixedExpenseEntity (
     @PrimaryKey(autoGenerate = true) var id: Int = 0,
     var value: Float,
-    var date: Timestamp,
     var category: TransactionCategory, //Each Transaction has a category
     var categoryType: String,
-    var isAlreadyPaid: Boolean, //In the current period
+    var isAlreadyPaid: Boolean = false, //In the current period
     var creationDate: Timestamp,
     var paymentDate: Timestamp? = null
 )

@@ -31,23 +31,17 @@ class FixedExpensesTest {
     val entity1 by lazy{ FixedExpenseEntity(
         id = 1,
         value = 300f,
-        date = Timestamp(System.currentTimeMillis()),
         category = TransactionCategory.EXPENSE, //Each Transaction has a category
         categoryType = Constants.FOOD_TYPE,
-        isAlreadyPaid = false, //In the current period
-        creationDate = Timestamp(System.currentTimeMillis()),
-        schedule = schedule1
+        creationDate = Timestamp(System.currentTimeMillis())
     )}
 
     val entity2 by lazy { FixedExpenseEntity(
         id = 2,
         value = 150f,
-        date = Timestamp(System.currentTimeMillis()),
         category = TransactionCategory.EXPENSE, //Each Transaction has a category
         categoryType = Constants.CLOTHES_TYPE,
-        isAlreadyPaid = false, //In the current period
-        creationDate = Timestamp(System.currentTimeMillis()),
-        schedule = schedule2
+        creationDate = Timestamp(System.currentTimeMillis())
     )}
 
     val schedule1 = Schedule(

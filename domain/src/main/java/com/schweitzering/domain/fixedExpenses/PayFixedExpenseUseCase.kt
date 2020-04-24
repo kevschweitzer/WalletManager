@@ -1,6 +1,8 @@
 package com.schweitzering.domain.fixedExpenses
 
+import com.schweitzering.domain.transaction.Transaction
 import com.schweitzering.domain.transaction.TransactionsRepository
+import java.sql.Timestamp
 
 /*
     Paying a fixed expense will set the expense as paid for that period and add a new transaction
@@ -12,6 +14,9 @@ class PayFixedExpenseUseCase(private val fixedExpenseRepository: FixedExpensesRe
     fun execute(fixedExpense: FixedExpense) {
         fixedExpense.isAlreadyPaid = true
         fixedExpenseRepository.updateFixedExpense(fixedExpense)
-        transactionsRepository.add(fixedExpense.expense)
+        transactionsRepository.add(Transaction(fixedExpense.value,
+            Timestamp(System.currentTimeMillis()),
+            fixedExpense.category,
+            fixedExpense.categoryType))
     }
 }

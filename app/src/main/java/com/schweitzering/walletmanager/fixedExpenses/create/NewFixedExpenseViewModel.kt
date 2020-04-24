@@ -28,15 +28,9 @@ class NewFixedExpenseViewModel(private val newFixedExpenseUseCase: NewFixedExpen
     val state = MutableLiveData<State>()
 
     fun onCreateClicked() {
-        newFixedExpenseUseCase.execute(getCurrentFixedExpense().toFixedExpense())
+        //newFixedExpenseUseCase.execute(getCurrentFixedExpense().toFixedExpense())
         state.value = State.FixedExpenseCreationSuccess
     }
 
-    private fun getCurrentFixedExpense() = FixedExpenseProfile(
-        id = 0,
-        expense = TransactionEntity(value = value, date = Timestamp(System.currentTimeMillis()),
-            category = TransactionCategory.EXPENSE, categoryType = categoryType).toTransaction(),
-        isAlreadyPaid = false,
-        creationDate = Timestamp(System.currentTimeMillis())
-    )
+    private fun getCurrentFixedExpense(){}
 }

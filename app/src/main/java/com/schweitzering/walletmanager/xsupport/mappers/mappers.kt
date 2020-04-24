@@ -9,6 +9,6 @@ fun TransactionProfile.toTransaction() = Transaction(value = value, date = date,
 
 fun Transaction.toTransactionProfile() = TransactionProfile(value = value, date = date, category = category, categoryType = categoryType)
 
-fun FixedExpenseProfile.toFixedExpense() = FixedExpense(id, expense, isAlreadyPaid, creationDate, schedule)
+fun FixedExpenseProfile.toFixedExpense() = FixedExpense(id, expense, isAlreadyPaid, creationDate, paymentDate)
 
-fun FixedExpense.toFixedExpenseProfile() = FixedExpenseProfile(id, expense, isAlreadyPaid, creationDate, schedule)
+fun FixedExpense.toFixedExpenseProfile() = FixedExpenseProfile(id, expense, isAlreadyPaid, creationDate, paymentDate)

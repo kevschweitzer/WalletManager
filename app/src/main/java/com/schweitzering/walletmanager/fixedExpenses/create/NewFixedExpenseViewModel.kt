@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import com.schweitzering.data.transaction.TransactionEntity
 import com.schweitzering.data.xsupport.mappers.toTransaction
 import com.schweitzering.domain.fixedExpenses.NewFixedExpenseUseCase
-import com.schweitzering.domain.schedule.Schedule
 import com.schweitzering.domain.schedule.TimePeriod
 import com.schweitzering.domain.transaction.TransactionCategory
 import com.schweitzering.walletmanager.fixedExpenses.FixedExpenseProfile
@@ -38,7 +37,6 @@ class NewFixedExpenseViewModel(private val newFixedExpenseUseCase: NewFixedExpen
         expense = TransactionEntity(value = value, date = Timestamp(System.currentTimeMillis()),
             category = TransactionCategory.EXPENSE, categoryType = categoryType).toTransaction(),
         isAlreadyPaid = false,
-        creationDate = Timestamp(System.currentTimeMillis()),
-        schedule = Schedule(period, startDate)
+        creationDate = Timestamp(System.currentTimeMillis())
     )
 }

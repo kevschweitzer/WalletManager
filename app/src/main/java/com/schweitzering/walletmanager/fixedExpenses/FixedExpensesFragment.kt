@@ -36,7 +36,7 @@ class FixedExpensesFragment: Fragment() {
     }
 
     private fun observeFixedExpenses() {
-        viewModel.unpaidFixedExpenses.observe(this, Observer {
+        viewModel.fixedExpenses.observe(this, Observer {
             fixed_expenses_list.apply {
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = FixedExpensesAdapter(it, viewModel)

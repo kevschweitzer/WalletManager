@@ -11,10 +11,19 @@
             android:orientation="vertical" android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+        <Button
+            android:id="@+id/already_paid_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already paid"
+            android:onClick="@{() -> viewModel.onAlreadyPaidClicked()}"
+            android:layout_centerHorizontal="true"/>
+
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/fixed_expenses_list"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:layout_below="@+id/already_paid_button"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:layout_width="wrap_content"

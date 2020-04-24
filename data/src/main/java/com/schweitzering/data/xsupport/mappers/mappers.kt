@@ -30,4 +30,4 @@ fun FixedExpense.toFixedExpenseEntity() = FixedExpenseEntity(id = id, value = va
 
 fun FixedExpenseGeneratorEntity.toFixedExpenseGenerator() = FixedExpenseGenerator(id, value, categoryType, creationDate, schedule)
 
-fun FixedExpenseGenerator.toFixedExpenseGeneratorEntity() = FixedExpenseGeneratorEntity(id, value, categoryType, creationDate, schedule)
+fun FixedExpenseGenerator.toFixedExpenseGeneratorEntity() = FixedExpenseGeneratorEntity(id ?: 0, value, categoryType, creationDate, schedule)

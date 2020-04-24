@@ -8,7 +8,7 @@ import java.sql.Timestamp
 
 @Entity(tableName = "fixed_expenses_generators")
 class FixedExpenseGeneratorEntity(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     var id: Int,
     var value: Float,
     var categoryType: String,

@@ -7,13 +7,17 @@ import com.schweitzering.domain.categories.GetCategoryTypesUseCase
 import com.schweitzering.domain.fixedExpenses.GetFixedExpensesByPaymentUseCase
 import com.schweitzering.domain.fixedExpenses.NewFixedExpenseUseCase
 import com.schweitzering.domain.fixedExpenses.PayFixedExpenseUseCase
+import com.schweitzering.domain.fixedExpenses.generator.GetAllFixedExpensesGeneratorsUseCase
+import com.schweitzering.domain.fixedExpenses.generator.NewFixedExpenseGeneratorUseCase
 import com.schweitzering.domain.transaction.AddTransactionUseCase
 import com.schweitzering.domain.transaction.GetAllTransactionsUseCase
 import com.schweitzering.walletmanager.main.MainActivity
 import com.schweitzering.walletmanager.balance.BalanceViewModel
 import com.schweitzering.walletmanager.fixedExpenses.FixedExpensesViewModel
-import com.schweitzering.walletmanager.fixedExpenses.create.NewFixedExpenseActivity
-import com.schweitzering.walletmanager.fixedExpenses.create.NewFixedExpenseViewModel
+import com.schweitzering.walletmanager.fixedExpenses.generator.NewFixedExpenseGeneratorActivity
+import com.schweitzering.walletmanager.fixedExpenses.generator.NewFixedExpenseGeneratorViewModel
+import com.schweitzering.walletmanager.fixedExpenses.generator.list.FixedExpensesGeneratorsActivity
+import com.schweitzering.walletmanager.fixedExpenses.generator.list.FixedExpensesGeneratorsViewModel
 import com.schweitzering.walletmanager.transaction.TransactionActivity
 import com.schweitzering.walletmanager.transaction.TransactionViewModel
 import org.koin.core.qualifier.named
@@ -30,8 +34,12 @@ val appModule = module{
         factory { FixedExpensesViewModel(get(), get())}
     }
 
-    scope(named<NewFixedExpenseActivity>()) {
-        scoped {NewFixedExpenseViewModel(get())}
+    scope(named<NewFixedExpenseGeneratorActivity>()) {
+        scoped {NewFixedExpenseGeneratorViewModel(get())}
+    }
+
+    scope(named<FixedExpensesGeneratorsActivity>()) {
+        scoped {FixedExpensesGeneratorsViewModel(get())}
     }
 
     factory {GetPartialBalanceUseCase(get())}
@@ -51,4 +59,8 @@ val appModule = module{
     factory { GetFixedExpensesByPaymentUseCase(get()) }
 
     factory { PayFixedExpenseUseCase(get(), get()) }
+
+    factory { NewFixedExpenseGeneratorUseCase(get()) }
+
+    factory { GetAllFixedExpensesGeneratorsUseCase(get()) }
 }

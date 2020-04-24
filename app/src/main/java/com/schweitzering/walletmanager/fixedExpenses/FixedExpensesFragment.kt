@@ -1,7 +1,6 @@
 package com.schweitzering.walletmanager.fixedExpenses
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.FragmentFixedExpensesBinding
-import com.schweitzering.walletmanager.fixedExpenses.create.NewFixedExpenseActivity
+import com.schweitzering.walletmanager.fixedExpenses.generator.NewFixedExpenseGeneratorActivity
+import com.schweitzering.walletmanager.fixedExpenses.generator.list.FixedExpensesGeneratorsActivity
 import kotlinx.android.synthetic.main.fragment_fixed_expenses.*
 import org.koin.androidx.scope.currentScope
 
@@ -48,7 +48,10 @@ class FixedExpensesFragment: Fragment() {
         viewModel.state.observe(this, Observer {
             when(it) {
                 FixedExpensesViewModel.FlowState.NewExepenseClicked -> startActivity(
-                    NewFixedExpenseActivity.getIntent(requireContext()))
+                    NewFixedExpenseGeneratorActivity.getIntent(requireContext()))
+                FixedExpensesViewModel.FlowState.ShowGeneratorsClicked -> startActivity(
+                    FixedExpensesGeneratorsActivity.getIntent(requireContext())
+                )
             }
         })
     }

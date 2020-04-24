@@ -12,18 +12,18 @@
             android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/already_paid_button"
+            android:id="@+id/generators"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Already paid"
-            android:onClick="@{() -> viewModel.onAlreadyPaidClicked()}"
+            android:text="Show Generators"
+            android:onClick="@{() -> viewModel.onShowGeneratorsClicked()}"
             android:layout_centerHorizontal="true"/>
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/fixed_expenses_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/already_paid_button"/>
+                android:layout_below="@+id/generators"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:layout_width="wrap_content"

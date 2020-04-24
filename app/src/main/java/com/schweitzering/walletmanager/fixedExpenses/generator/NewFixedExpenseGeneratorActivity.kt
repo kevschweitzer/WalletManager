@@ -1,4 +1,4 @@
-package com.schweitzering.walletmanager.fixedExpenses.create
+package com.schweitzering.walletmanager.fixedExpenses.generator
 
 import android.content.Context
 import android.content.Intent
@@ -11,12 +11,12 @@ import com.schweitzering.walletmanager.databinding.ActivityNewFixedExpenseBindin
 import com.schweitzering.walletmanager.xsupport.utils.DataBindingProtocol
 import org.koin.androidx.scope.currentScope
 
-class NewFixedExpenseActivity : AppCompatActivity(), DataBindingProtocol {
+class NewFixedExpenseGeneratorActivity : AppCompatActivity(), DataBindingProtocol {
 
-    private val viewModel: NewFixedExpenseViewModel by currentScope.inject()
+    private val generatorViewModel: NewFixedExpenseGeneratorViewModel by currentScope.inject()
 
     companion object {
-        fun getIntent(context: Context) = Intent(context, NewFixedExpenseActivity::class.java)
+        fun getIntent(context: Context) = Intent(context, NewFixedExpenseGeneratorActivity::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,13 +27,13 @@ class NewFixedExpenseActivity : AppCompatActivity(), DataBindingProtocol {
     }
 
     private fun observeState() {
-        viewModel.state.observe(this, Observer {
+        generatorViewModel.state.observe(this, Observer {
             finish()
         })
     }
 
     override fun setDataBinding() {
         val binding = DataBindingUtil.setContentView<ActivityNewFixedExpenseBinding>(this, R.layout.activity_new_fixed_expense)
-        binding.viewModel = viewModel
+        binding.viewModel = generatorViewModel
     }
 }

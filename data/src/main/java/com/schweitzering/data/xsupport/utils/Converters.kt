@@ -9,10 +9,10 @@ import java.sql.Timestamp
 class Converters {
 
     @TypeConverter
-    fun fromTimestamp(value: Timestamp) = value.time
+    fun fromTimestamp(value: Timestamp?) = value?.time
 
     @TypeConverter
-    fun toTimestamp(value: Long) = Timestamp(value)
+    fun toTimestamp(value: Long?) = value?.let{Timestamp(it)}
 
     @TypeConverter
     fun fromTransactionCategory(category: TransactionCategory) = category.name

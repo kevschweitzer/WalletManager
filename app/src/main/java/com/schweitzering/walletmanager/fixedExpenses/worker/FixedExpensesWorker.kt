@@ -2,6 +2,9 @@ package com.schweitzering.walletmanager.fixedExpenses.worker
 
 import android.content.Context
 import androidx.work.*
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -36,15 +39,22 @@ class FixedExpensesWorker(appContext: Context,
     }
 
     private val viewModel: FixedExpensesWorkerViewModel by inject()
+    private val disposables = CompositeDisposable()
 
     override fun doWork(): Result {
-        val disposable = viewModel.createFixedExpensesForPeriod()
-            .subscribeOn(Schedulers.io())
-            .subscribe()
+         val disposable = viewModel.createFixedExpensesForPeriod()
+             .subscribeOn(Schedulers.io())
+             .subscribe()
+        disposables.add(disposable)
 
         //create again for next day
         WorkManager.getInstance(applicationContext).enqueueUniqueWork(WORKER_ID, ExistingWorkPolicy.KEEP, getWorker())
 
         return Result.success()
+    }
+
+    override fun onStopped() {
+        super.onStopped()
+        disposables.clear()
     }
 }

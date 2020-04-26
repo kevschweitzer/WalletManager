@@ -1,10 +1,10 @@
-package com.schweitzering.walletmanager.fixedExpenses
+package com.schweitzering.walletmanager.fixedExpenses.list
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.schweitzering.domain.fixedExpenses.GetFixedExpensesByPaymentUseCase
 import com.schweitzering.domain.fixedExpenses.GetFixedExpensesUseCase
 import com.schweitzering.domain.fixedExpenses.PayFixedExpenseUseCase
+import com.schweitzering.walletmanager.fixedExpenses.FixedExpenseProfile
 import com.schweitzering.walletmanager.xsupport.mappers.toFixedExpense
 import com.schweitzering.walletmanager.xsupport.mappers.toFixedExpenseProfile
 
@@ -23,7 +23,8 @@ class FixedExpensesViewModel(private val getFixedExpensesUseCase: GetFixedExpens
     }
 
     fun onNewFixedExpenseClicked() {
-        state.value = FlowState.NewExepenseClicked
+        state.value =
+            FlowState.NewExepenseClicked
     }
 
     fun payFixedExpense(fixedExpense: FixedExpenseProfile) {
@@ -31,6 +32,7 @@ class FixedExpensesViewModel(private val getFixedExpensesUseCase: GetFixedExpens
     }
 
     fun onShowGeneratorsClicked() {
-        state.value = FlowState.ShowGeneratorsClicked
+        state.value =
+            FlowState.ShowGeneratorsClicked
     }
 }

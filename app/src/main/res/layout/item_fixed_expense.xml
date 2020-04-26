@@ -5,11 +5,11 @@
 <data>
     <variable
             name="viewModel"
-            type="com.schweitzering.walletmanager.fixedExpenses.FixedExpensesViewModel" />
+            type="com.schweitzering.walletmanager.fixedExpenses.list.FixedExpensesViewModel" />
 
     <variable
             name="viewHolder"
-            type="com.schweitzering.walletmanager.fixedExpenses.FixedExpensesAdapter.FixedExpenseViewHolder" />
+            type="com.schweitzering.walletmanager.fixedExpenses.list.FixedExpensesAdapter.FixedExpenseViewHolder" />
 </data>
     <LinearLayout
             android:orientation="horizontal" android:layout_width="match_parent"

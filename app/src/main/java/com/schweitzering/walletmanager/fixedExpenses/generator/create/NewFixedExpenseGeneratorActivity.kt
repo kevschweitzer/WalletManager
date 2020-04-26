@@ -1,4 +1,4 @@
-package com.schweitzering.walletmanager.fixedExpenses.generator
+package com.schweitzering.walletmanager.fixedExpenses.generator.create
 
 import android.content.Context
 import android.content.Intent

@@ -24,8 +24,4 @@ class FixedExpensesRepositoryImpl(private val databaseManager: FixedExpensesData
     override fun updateFixedExpense(expense: FixedExpense) {
         databaseManager.update(expense.toFixedExpenseEntity())
     }
-
-    override fun getByPayment(isPaid: Boolean) = Transformations.map(databaseManager.getByPayment(isPaid)) {
-        it.map{ it.toFixedExpense() }
-    }
 }

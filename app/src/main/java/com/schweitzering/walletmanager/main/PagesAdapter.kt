@@ -2,12 +2,9 @@ package com.schweitzering.walletmanager.main
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.schweitzering.walletmanager.balance.BalanceFragment
-import com.schweitzering.walletmanager.fixedExpenses.FixedExpensesFragment
+import com.schweitzering.walletmanager.fixedExpenses.list.FixedExpensesFragment
 
 class PagesAdapter(activity: AppCompatActivity): FragmentStateAdapter(activity) {
 

@@ -1,4 +1,4 @@
-package com.schweitzering.walletmanager.fixedExpenses
+package com.schweitzering.walletmanager.fixedExpenses.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,10 +6,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.ItemFixedExpenseBinding
+import com.schweitzering.walletmanager.fixedExpenses.FixedExpenseProfile
 
 
 class FixedExpensesAdapter(private val fixedExpensesList: List<FixedExpenseProfile>,
-                          private val viewModel: FixedExpensesViewModel
+                           private val viewModel: FixedExpensesViewModel
 ): RecyclerView.Adapter<FixedExpensesAdapter.FixedExpenseViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FixedExpenseViewHolder {

@@ -26,7 +26,4 @@ class FixedExpensesDatabaseManager(private val appDatabase: AppDatabase) {
             fixedExpensesDao.update(expense)
         }
     }
-
-    fun getByPayment(isPaid: Boolean) = fixedExpensesDao.getByPayment(isPaid)
-
 }

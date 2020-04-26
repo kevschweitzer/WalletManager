@@ -22,8 +22,6 @@ data class Schedule(
                     startDateC.get(Calendar.DAY_OF_WEEK) == today.get(Calendar.DAY_OF_WEEK)
                 }
                 TimePeriod.MONTH -> {
-                    Log.e("startDate", startDateC.get(Calendar.DAY_OF_MONTH).toString())
-                    Log.e("today", today.get(Calendar.DAY_OF_MONTH).toString())
                     startDateC.get(Calendar.DAY_OF_MONTH) == today.get(Calendar.DAY_OF_MONTH)
                 }
             }

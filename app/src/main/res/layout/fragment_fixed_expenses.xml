@@ -4,7 +4,7 @@
     <data>
         <variable
                 name="viewModel"
-                type="com.schweitzering.walletmanager.fixedExpenses.FixedExpensesViewModel" />
+                type="com.schweitzering.walletmanager.fixedExpenses.list.FixedExpensesViewModel" />
     </data>
 
     <RelativeLayout

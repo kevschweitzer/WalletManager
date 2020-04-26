@@ -10,9 +10,9 @@ import com.schweitzering.domain.transaction.AddTransactionUseCase
 import com.schweitzering.domain.transaction.GetAllTransactionsUseCase
 import com.schweitzering.walletmanager.main.MainActivity
 import com.schweitzering.walletmanager.balance.BalanceViewModel
-import com.schweitzering.walletmanager.fixedExpenses.FixedExpensesViewModel
-import com.schweitzering.walletmanager.fixedExpenses.generator.NewFixedExpenseGeneratorActivity
-import com.schweitzering.walletmanager.fixedExpenses.generator.NewFixedExpenseGeneratorViewModel
+import com.schweitzering.walletmanager.fixedExpenses.list.FixedExpensesViewModel
+import com.schweitzering.walletmanager.fixedExpenses.generator.create.NewFixedExpenseGeneratorActivity
+import com.schweitzering.walletmanager.fixedExpenses.generator.create.NewFixedExpenseGeneratorViewModel
 import com.schweitzering.walletmanager.fixedExpenses.generator.list.FixedExpensesGeneratorsActivity
 import com.schweitzering.walletmanager.fixedExpenses.generator.list.FixedExpensesGeneratorsViewModel
 import com.schweitzering.walletmanager.fixedExpenses.worker.FixedExpensesWorkerViewModel
@@ -29,11 +29,20 @@ val appModule = module{
 
     scope(named<MainActivity>()) {
         factory { BalanceViewModel(get(), get(), get()) }
-        factory { FixedExpensesViewModel(get(), get())}
+        factory {
+            FixedExpensesViewModel(
+                get(),
+                get()
+            )
+        }
     }
 
     scope(named<NewFixedExpenseGeneratorActivity>()) {
-        scoped {NewFixedExpenseGeneratorViewModel(get())}
+        scoped {
+            NewFixedExpenseGeneratorViewModel(
+                get()
+            )
+        }
     }
 
     scope(named<FixedExpensesGeneratorsActivity>()) {
@@ -53,8 +62,6 @@ val appModule = module{
     factory {NewFixedExpenseUseCase(get())}
 
     factory { GetFixedExpensesUseCase(get()) }
-
-    factory { GetFixedExpensesByPaymentUseCase(get()) }
 
     factory { PayFixedExpenseUseCase(get(), get()) }
 

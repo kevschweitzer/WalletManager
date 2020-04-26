@@ -41,6 +41,7 @@ class FixedExpensesWorker(appContext: Context,
     private val viewModel: FixedExpensesWorkerViewModel by inject()
     private val disposables = CompositeDisposable()
 
+    //TODO: Add retry policy
     override fun doWork(): Result {
          val disposable = viewModel.createFixedExpensesForPeriod()
              .subscribeOn(Schedulers.io())

@@ -17,6 +17,7 @@ class FixedExpensesWorker(appContext: Context,
                           workerParams: WorkerParameters): Worker(appContext, workerParams), KoinComponent {
 
     companion object {
+        const val WORKER_ID = "fixed_exp_worker"
         fun getWorker(): OneTimeWorkRequest {
             val currentDate = Calendar.getInstance()
             val dueDate = Calendar.getInstance()
@@ -42,8 +43,7 @@ class FixedExpensesWorker(appContext: Context,
             .subscribe()
 
         //create again for next day
-        val worker = FixedExpensesWorker.getWorker()
-        WorkManager.getInstance(applicationContext).enqueue(worker)
+        WorkManager.getInstance(applicationContext).enqueueUniqueWork(WORKER_ID, ExistingWorkPolicy.KEEP, getWorker())
 
         return Result.success()
     }

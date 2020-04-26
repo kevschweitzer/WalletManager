@@ -5,12 +5,14 @@ import android.os.PersistableBundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
+import androidx.work.ExistingWorkPolicy
 import androidx.work.PeriodicWorkRequest
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.google.android.material.tabs.TabLayoutMediator
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.fixedExpenses.worker.FixedExpensesWorker
+import com.schweitzering.walletmanager.fixedExpenses.worker.FixedExpensesWorker.Companion.WORKER_ID
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.concurrent.TimeUnit
 
@@ -26,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun periodicWorkerSetup() {
         val worker = FixedExpensesWorker.getWorker()
-        WorkManager.getInstance(this).enqueue(worker)
+        WorkManager.getInstance(this).enqueueUniqueWork(WORKER_ID, ExistingWorkPolicy.KEEP, worker)
     }
 
     override fun onResume() {

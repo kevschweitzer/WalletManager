@@ -27,9 +27,32 @@ class NewFixedExpenseGeneratorViewModel(private val newFixedExpenseGeneratorUseC
     val state = MutableLiveData<State>()
 
     fun onCreateClicked() {
-        newFixedExpenseGeneratorUseCase.execute(getCurrentFixedExpenseGenerator().toFixedExpenseGenerator())
+        newFixedExpenseGeneratorUseCase.execute(getDayFixedExpenseGenerator().toFixedExpenseGenerator())
+        newFixedExpenseGeneratorUseCase.execute(getMonthFixedExpenseGenerator().toFixedExpenseGenerator())
+        newFixedExpenseGeneratorUseCase.execute(getWeekFixedExpenseGenerator().toFixedExpenseGenerator())
         state.value = State.FixedExpenseCreationSuccess
     }
+
+    private fun getWeekFixedExpenseGenerator() = FixedExpenseGeneratorProfile (
+        value = 120f,
+        categoryType = "Gym",
+        creationDate = Timestamp(System.currentTimeMillis()),
+        schedule = Schedule(TimePeriod.WEEK, Timestamp(1587477600000))
+    )
+
+    private fun getMonthFixedExpenseGenerator() = FixedExpenseGeneratorProfile (
+        value = 240f,
+        categoryType = "Clothes",
+        creationDate = Timestamp(System.currentTimeMillis()),
+        schedule = Schedule(TimePeriod.MONTH, Timestamp(1585200600000))
+    )
+
+    private fun getDayFixedExpenseGenerator() = FixedExpenseGeneratorProfile (
+        value = 25f,
+        categoryType = "Food",
+        creationDate = Timestamp(System.currentTimeMillis()),
+        schedule = Schedule(TimePeriod.DAY, Timestamp(1584045000000))
+    )
 
     private fun getCurrentFixedExpenseGenerator() = FixedExpenseGeneratorProfile(
         value = value,

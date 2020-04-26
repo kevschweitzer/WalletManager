@@ -1,111 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <data>
-        <variable
-                name="viewModel"
-                type="com.schweitzering.walletmanager.main.MainViewModel" />
-    </data>
-
-<androidx.constraintlayout.widget.ConstraintLayout
-       android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".main.MainActivity">
+        android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/balance_container"
+    <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_balance"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        <TextView
-                android:id="@+id/text_partial_balance"
-                style="@style/BalanceText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{Float.toString(viewModel.partialBalance)}"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_height="wrap_content"/>
 
-        <TextView
-                android:id="@+id/text_total_balance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:layout_marginTop="5dp"
-                android:text="@{Float.toString(viewModel.totalBalance)}"
-                app:layout_constraintTop_toBottomOf="@id/text_partial_balance"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"/>
-
-        <Button
-                android:id="@+id/button_new_expense"
-                style="@style/TransactionButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Expense"
-                android:onClick="@{() -> viewModel.onNewExpenseClicked()}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/button_new_income"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_total_balance" />
-
-        <Button
-                android:id="@+id/button_new_income"
-                style="@style/TransactionButton"
-                android:text="Income"
-                android:onClick="@{ () -> viewModel.onNewIncomeClicked() }"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toStartOf="@id/button_new_saving"
-                app:layout_constraintStart_toEndOf="@id/button_new_expense"
-                app:layout_constraintTop_toBottomOf="@id/text_total_balance"/>
-
-        <Button
-                android:id="@+id/button_new_saving"
-                style="@style/TransactionButton"
-                android:text="Saving"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="@{() -> viewModel.onNewSavingClicked()}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/button_new_investment"
-                app:layout_constraintStart_toEndOf="@id/button_new_income"
-                app:layout_constraintTop_toBottomOf="@id/text_total_balance" />
-
-        <Button
-                android:id="@+id/button_new_investment"
-                style="@style/TransactionButton"
-                android:text="investment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="@{() -> viewModel.onNewInvestmentClicked()}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/button_new_saving"
-                app:layout_constraintTop_toBottomOf="@id/text_total_balance" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/transaction_list"
+    <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="40dp"
-            android:scrollbars="vertical"
-            android:background="@drawable/bg_transactions_container"
-            app:layout_constraintTop_toBottomOf="@+id/balance_container"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            android:layout_weight="1" >
 
 
-    </androidx.recyclerview.widget.RecyclerView>
-</androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+    </androidx.viewpager2.widget.ViewPager2>
+
+</LinearLayout>

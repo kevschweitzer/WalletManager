@@ -1,4 +1,4 @@
-package com.schweitzering.walletmanager.main
+package com.schweitzering.walletmanager.balance
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import com.schweitzering.walletmanager.transaction.TransactionProfile
 
 
 class TransactionsAdapter(private val transactionsList: List<TransactionProfile>,
-                          private val viewModel: MainViewModel
+                          private val viewModel: BalanceViewModel
 ): RecyclerView.Adapter<TransactionsAdapter.TransactionsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionsViewHolder {
@@ -31,7 +31,7 @@ class TransactionsAdapter(private val transactionsList: List<TransactionProfile>
 
 
     class TransactionsViewHolder(val binding: ItemTransactionBinding,
-                                 val viewModel: MainViewModel
+                                 val viewModel: BalanceViewModel
     ): RecyclerView.ViewHolder(binding.root) {
 
         lateinit var transaction: TransactionProfile

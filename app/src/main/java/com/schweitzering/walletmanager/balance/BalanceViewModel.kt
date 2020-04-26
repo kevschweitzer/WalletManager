@@ -1,16 +1,16 @@
-package com.schweitzering.walletmanager.main
+package com.schweitzering.walletmanager.balance
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.schweitzering.domain.balance.GetPartialBalanceUseCase
 import com.schweitzering.domain.balance.GetTotalBalanceUseCase
 import com.schweitzering.domain.transaction.GetAllTransactionsUseCase
-import com.schweitzering.walletmanager.mappers.toTransactionProfile
+import com.schweitzering.walletmanager.xsupport.mappers.toTransactionProfile
 
 
-class MainViewModel(private val getAllTransactionsUseCase: GetAllTransactionsUseCase,
-                    private val getPartialBalanceUseCase: GetPartialBalanceUseCase,
-                    private val getTotalBalanceUseCase: GetTotalBalanceUseCase) {
+class BalanceViewModel(private val getAllTransactionsUseCase: GetAllTransactionsUseCase,
+                       private val getPartialBalanceUseCase: GetPartialBalanceUseCase,
+                       private val getTotalBalanceUseCase: GetTotalBalanceUseCase) {
 
     sealed class FlowState {
         object NewExpense: FlowState()
@@ -35,7 +35,11 @@ class MainViewModel(private val getAllTransactionsUseCase: GetAllTransactionsUse
         state.value = FlowState.NewIncome
     }
 
-    fun onNewSavingClicked() {state.value = FlowState.NewSaving}
+    fun onNewSavingClicked() {state.value =
+        FlowState.NewSaving
+    }
 
-    fun onNewInvestmentClicked() {state.value = FlowState.NewInvestment}
+    fun onNewInvestmentClicked() {state.value =
+        FlowState.NewInvestment
+    }
 }

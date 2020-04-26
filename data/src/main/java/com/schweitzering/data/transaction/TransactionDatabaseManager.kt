@@ -1,7 +1,7 @@
 package com.schweitzering.data.transaction
 
-import com.schweitzering.data.database.AppDatabase
-import com.schweitzering.data.utils.Converters
+import com.schweitzering.data.xsupport.database.AppDatabase
+import com.schweitzering.data.xsupport.utils.Converters
 import com.schweitzering.domain.transaction.TransactionCategory
 import kotlinx.coroutines.runBlocking
 import java.sql.Timestamp

@@ -2,8 +2,8 @@ package com.schweitzering.data.transaction
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.schweitzering.data.mappers.toTransaction
-import com.schweitzering.data.mappers.toTransactionEntity
+import com.schweitzering.data.xsupport.mappers.toTransaction
+import com.schweitzering.data.xsupport.mappers.toTransactionEntity
 import com.schweitzering.domain.transaction.Transaction
 import com.schweitzering.domain.transaction.TransactionCategory
 import com.schweitzering.domain.transaction.TransactionsRepository

@@ -19,7 +19,6 @@ class GetTotalBalanceUseCase(private val transactionsRepository: TransactionsRep
                 TransactionCategory.EXPENSE -> balance -= it.value
                 else -> Unit //Do nothing
             }
-            Log.e("Category/value", "${it.category.name} / ${it.value}")
         }
         balance
     }

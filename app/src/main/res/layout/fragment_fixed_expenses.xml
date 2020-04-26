@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+                name="viewModel"
+                type="com.schweitzering.walletmanager.fixedExpenses.list.FixedExpensesViewModel" />
+    </data>
+
+    <RelativeLayout
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/generators"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show Generators"
+            android:onClick="@{() -> viewModel.onShowGeneratorsClicked()}"
+            android:layout_centerHorizontal="true"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fixed_expenses_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/generators"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="30dp"
+                android:layout_marginEnd="20dp"
+                android:onClick="@{() -> viewModel.onNewFixedExpenseClicked()}"/>
+    </RelativeLayout>
+
+</layout>

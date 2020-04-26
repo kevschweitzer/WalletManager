@@ -52,6 +52,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
     implementation 'org.mockito:mockito-core:2.28.2'
     androidTestImplementation "androidx.arch.core:core-testing:2.0.0"
-
-
+    // RxJava support for Room
+    implementation 'android.arch.persistence.room:rxjava2:1.1.1'
 }

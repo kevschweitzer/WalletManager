@@ -16,7 +16,7 @@ class FixedExpensesGeneratorRepositoryImpl(private val databaseManager: FixedExp
         databaseManager.delete(generator.toFixedExpenseGeneratorEntity())
     }
 
-    override fun getAll() = Transformations.map(databaseManager.getAll()) {
+    override fun getAll() = databaseManager.getAll().map {
         it.map { it.toFixedExpenseGenerator() }
     }
 }

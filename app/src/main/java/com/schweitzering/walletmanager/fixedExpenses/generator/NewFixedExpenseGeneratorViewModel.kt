@@ -18,10 +18,10 @@ class NewFixedExpenseGeneratorViewModel(private val newFixedExpenseGeneratorUseC
     companion object {
         const val ONE_DAY_IN_MILLIS = 86400000
     }
-    var value: Float = 250f
-    var categoryType: String = "Food"
-    var period = TimePeriod.MONTH
-    var startDate: Timestamp = Timestamp(System.currentTimeMillis() + ONE_DAY_IN_MILLIS*2)
+    var value: Float = 120f
+    var categoryType: String = "Gym"
+    var period = TimePeriod.WEEK
+    var startDate: Timestamp = Timestamp(1587477600000)
 
     //Exposed
     val state = MutableLiveData<State>()
@@ -35,6 +35,6 @@ class NewFixedExpenseGeneratorViewModel(private val newFixedExpenseGeneratorUseC
         value = value,
         categoryType = categoryType,
         creationDate = Timestamp(System.currentTimeMillis()),
-        schedule = Schedule(TimePeriod.MONTH, Timestamp(System.currentTimeMillis()))
+        schedule = Schedule(period, startDate)
     )
 }

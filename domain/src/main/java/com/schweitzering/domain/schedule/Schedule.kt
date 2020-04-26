@@ -1,15 +1,39 @@
 package com.schweitzering.domain.schedule
 
+import android.util.Log
 import java.sql.Timestamp
+import java.util.*
 
 data class Schedule(
     var period: TimePeriod,
     var startDate: Timestamp
-)
+) {
+
+    fun todayMeetsRequirements(): Boolean {
+        val today = Calendar.getInstance()
+        val startDateC = Calendar.getInstance()
+        startDateC.time = startDate
+        return if(startDateC.before(today)) {
+            when (period) {
+                TimePeriod.DAY -> {
+                    true
+                }
+                TimePeriod.WEEK -> {
+                    startDateC.get(Calendar.DAY_OF_WEEK) == today.get(Calendar.DAY_OF_WEEK)
+                }
+                TimePeriod.MONTH -> {
+                    Log.e("startDate", startDateC.get(Calendar.DAY_OF_MONTH).toString())
+                    Log.e("today", today.get(Calendar.DAY_OF_MONTH).toString())
+                    startDateC.get(Calendar.DAY_OF_MONTH) == today.get(Calendar.DAY_OF_MONTH)
+                }
+            }
+        } else { false }
+    }
+}
 
 data class Period(var everyXTime: Int, var timePeriod: TimePeriod, var renewalDay: RenewalDays)
 
-enum class TimePeriod {DAY, WEEK, MONTH, YEAR}
+enum class TimePeriod {DAY, WEEK, MONTH}
 
 enum class RenewalDays {
     MON, TUE, WED, THU, FRI, SAT, SUN, //Applicable to week

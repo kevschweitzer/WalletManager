@@ -1,12 +1,9 @@
 package com.schweitzering.walletmanager.inject
 
-import com.schweitzering.domain.fixedExpenses.GetFixedExpensesUseCase
 import com.schweitzering.domain.balance.GetPartialBalanceUseCase
 import com.schweitzering.domain.balance.GetTotalBalanceUseCase
 import com.schweitzering.domain.categories.GetCategoryTypesUseCase
-import com.schweitzering.domain.fixedExpenses.GetFixedExpensesByPaymentUseCase
-import com.schweitzering.domain.fixedExpenses.NewFixedExpenseUseCase
-import com.schweitzering.domain.fixedExpenses.PayFixedExpenseUseCase
+import com.schweitzering.domain.fixedExpenses.*
 import com.schweitzering.domain.fixedExpenses.generator.GetAllFixedExpensesGeneratorsUseCase
 import com.schweitzering.domain.fixedExpenses.generator.NewFixedExpenseGeneratorUseCase
 import com.schweitzering.domain.transaction.AddTransactionUseCase
@@ -18,6 +15,7 @@ import com.schweitzering.walletmanager.fixedExpenses.generator.NewFixedExpenseGe
 import com.schweitzering.walletmanager.fixedExpenses.generator.NewFixedExpenseGeneratorViewModel
 import com.schweitzering.walletmanager.fixedExpenses.generator.list.FixedExpensesGeneratorsActivity
 import com.schweitzering.walletmanager.fixedExpenses.generator.list.FixedExpensesGeneratorsViewModel
+import com.schweitzering.walletmanager.fixedExpenses.worker.FixedExpensesWorkerViewModel
 import com.schweitzering.walletmanager.transaction.TransactionActivity
 import com.schweitzering.walletmanager.transaction.TransactionViewModel
 import org.koin.core.qualifier.named
@@ -63,4 +61,8 @@ val appModule = module{
     factory { NewFixedExpenseGeneratorUseCase(get()) }
 
     factory { GetAllFixedExpensesGeneratorsUseCase(get()) }
+
+    factory { FixedExpensesWorkerViewModel(get()) }
+
+    factory {CreateFixedExpensesForPeriodUseCase(get(), get())}
 }

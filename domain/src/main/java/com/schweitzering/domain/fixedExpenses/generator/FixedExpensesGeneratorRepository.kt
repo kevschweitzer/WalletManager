@@ -1,6 +1,6 @@
 package com.schweitzering.domain.fixedExpenses.generator
 
-import androidx.lifecycle.LiveData
+import io.reactivex.Maybe
 
 /*
     Generator of Fixed Expenses.
@@ -10,5 +10,5 @@ interface FixedExpensesGeneratorRepository {
 
     fun insert(generator: FixedExpenseGenerator)
     fun delete(generator: FixedExpenseGenerator)
-    fun getAll(): LiveData<List<FixedExpenseGenerator>>
+    fun getAll(): Maybe<List<FixedExpenseGenerator>>
 }

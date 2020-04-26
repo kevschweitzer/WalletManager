@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import io.reactivex.Maybe
 
 @Dao
 interface FixedExpensesGeneratorsDao {
@@ -16,5 +17,5 @@ interface FixedExpensesGeneratorsDao {
     suspend fun delete(generator: FixedExpenseGeneratorEntity)
 
     @Query("SELECT * FROM fixed_expenses_generators")
-    fun getAll(): LiveData<List<FixedExpenseGeneratorEntity>>
+    fun getAll(): Maybe<List<FixedExpenseGeneratorEntity>>
 }

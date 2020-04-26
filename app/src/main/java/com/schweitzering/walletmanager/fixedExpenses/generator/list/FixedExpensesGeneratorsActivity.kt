@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.schweitzering.walletmanager.R
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_fixed_expenses_generators.*
 import org.koin.androidx.scope.currentScope
 
@@ -17,6 +18,7 @@ class FixedExpensesGeneratorsActivity : AppCompatActivity() {
     }
 
     private val viewModel: FixedExpensesGeneratorsViewModel by currentScope.inject()
+    private val disposables = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,11 +28,17 @@ class FixedExpensesGeneratorsActivity : AppCompatActivity() {
     }
 
     private fun observeFixedExpenseGenerators() {
-        viewModel.fixedExpenseGeneratos.observe(this, Observer {
+        val disposable = viewModel.fixedExpenseGeneratos.doOnSuccess {
             generators_list.apply {
                 adapter = FixedExpensesGeneratorsAdapter(it, viewModel)
                 layoutManager = LinearLayoutManager(this@FixedExpensesGeneratorsActivity)
             }
-        })
+        }.subscribe()
+        disposables.add(disposable)
+    }
+
+    override fun onDestroy() {
+        disposables.clear()
+        super.onDestroy()
     }
 }

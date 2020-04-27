@@ -10,7 +10,9 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".transaction.TransactionActivity"></activity>
+        <activity android:name=".fixedExpenses.generator.list.FixedExpensesGeneratorsActivity"></activity>
+        <activity android:name=".fixedExpenses.generator.create.NewFixedExpenseGeneratorActivity" />
+        <activity android:name=".transaction.TransactionActivity" />
         <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.schweitzering.walletmanager.utils
+package com.schweitzering.walletmanager.xsupport.utils
 
 class Constants {
 

@@ -10,10 +10,10 @@ import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.schweitzering.domain.transaction.TransactionCategory
-import com.schweitzering.walletmanager.utils.Constants.Companion.TRANSACTION_CATEGORY
+import com.schweitzering.walletmanager.xsupport.utils.Constants.Companion.TRANSACTION_CATEGORY
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.ActivityTransactionBinding
-import com.schweitzering.walletmanager.utils.DataBindingProtocol
+import com.schweitzering.walletmanager.xsupport.utils.DataBindingProtocol
 import kotlinx.android.synthetic.main.activity_transaction.*
 import org.koin.androidx.scope.currentScope
 
@@ -63,6 +63,7 @@ class TransactionActivity : AppCompatActivity(), DataBindingProtocol {
     }
 
     private fun observeCategorySelection() {
+        spinner_category.selectedItem
         spinner_category.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 

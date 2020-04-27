@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<data>
+    <variable
+            name="viewModel"
+            type="com.schweitzering.walletmanager.fixedExpenses.list.FixedExpensesViewModel" />
+
+    <variable
+            name="viewHolder"
+            type="com.schweitzering.walletmanager.fixedExpenses.list.FixedExpensesAdapter.FixedExpenseViewHolder" />
+</data>
+    <LinearLayout
+            android:orientation="horizontal" android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Float.toString(viewHolder.fixedExpense.value)}"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{Boolean.toString(viewHolder.fixedExpense.alreadyPaid)}"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="pay"
+            android:onClick="@{() -> viewModel.payFixedExpense(viewHolder.fixedExpense)}" />
+
+    </LinearLayout>
+</layout>

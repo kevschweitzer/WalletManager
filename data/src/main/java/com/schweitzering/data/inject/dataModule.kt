@@ -3,6 +3,9 @@ package com.schweitzering.data.inject
 import androidx.room.Room
 import com.schweitzering.data.categorytypes.CategoryTypesDatabaseManager
 import com.schweitzering.data.categorytypes.CategoryTypesRepositoryImpl
+import com.schweitzering.data.debts.DebtsDao
+import com.schweitzering.data.debts.DebtsDatabaseManager
+import com.schweitzering.data.debts.DebtsRepositoryImpl
 import com.schweitzering.data.fixedExpenses.FixedExpensesDatabaseManager
 import com.schweitzering.data.fixedExpenses.FixedExpensesRepositoryImpl
 import com.schweitzering.data.fixedExpenses.generator.FixedExpensesGeneratorDatabaseManager
@@ -11,6 +14,7 @@ import com.schweitzering.data.xsupport.database.AppDatabase
 import com.schweitzering.data.transaction.TransactionDatabaseManager
 import com.schweitzering.data.transaction.TransactionsRepositoryImpl
 import com.schweitzering.domain.categories.CategoryTypesRepository
+import com.schweitzering.domain.debts.DebtsRepository
 import com.schweitzering.domain.fixedExpenses.FixedExpensesRepository
 import com.schweitzering.domain.fixedExpenses.generator.FixedExpensesGeneratorRepository
 import com.schweitzering.domain.transaction.TransactionsRepository
@@ -41,4 +45,9 @@ val dataModule = module {
     factory<FixedExpensesGeneratorRepository> { FixedExpensesGeneratorRepositoryImpl(get()) }
 
     factory { FixedExpensesGeneratorDatabaseManager(get()) }
+
+    factory<DebtsRepository> { DebtsRepositoryImpl(get()) }
+
+    factory { DebtsDatabaseManager(get()) }
+
 }

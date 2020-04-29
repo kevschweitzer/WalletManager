@@ -7,6 +7,8 @@ import com.schweitzering.data.balance.BalanceDao
 import com.schweitzering.data.balance.BalanceEntity
 import com.schweitzering.data.categorytypes.CategoryTypeEntity
 import com.schweitzering.data.categorytypes.CategoryTypesDao
+import com.schweitzering.data.debts.DebtEntity
+import com.schweitzering.data.debts.DebtsDao
 import com.schweitzering.data.fixedExpenses.FixedExpenseEntity
 import com.schweitzering.data.fixedExpenses.FixedExpensesDao
 import com.schweitzering.data.fixedExpenses.generator.FixedExpenseGeneratorEntity
@@ -16,7 +18,8 @@ import com.schweitzering.data.transaction.TransactionsDao
 import com.schweitzering.data.xsupport.utils.Converters
 
 @Database(entities = [BalanceEntity::class, TransactionEntity::class,
-    CategoryTypeEntity::class, FixedExpenseEntity::class, FixedExpenseGeneratorEntity::class], version = 1)
+    CategoryTypeEntity::class, FixedExpenseEntity::class, FixedExpenseGeneratorEntity::class,
+    DebtEntity::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class AppDatabase: RoomDatabase() {
 
@@ -25,4 +28,5 @@ abstract class AppDatabase: RoomDatabase() {
     abstract fun categoryTypesDao(): CategoryTypesDao
     abstract fun fixedExpensesDao(): FixedExpensesDao
     abstract fun fixedExpensesGeneratorDao(): FixedExpensesGeneratorsDao
+    abstract fun debtsDao(): DebtsDao
 }

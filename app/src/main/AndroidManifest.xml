@@ -10,7 +10,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".fixedExpenses.generator.list.FixedExpensesGeneratorsActivity"></activity>
+        <activity android:name=".debts.create.NewDebtActivity"></activity>
+        <activity android:name=".fixedExpenses.generator.list.FixedExpensesGeneratorsActivity" />
         <activity android:name=".fixedExpenses.generator.create.NewFixedExpenseGeneratorActivity" />
         <activity android:name=".transaction.TransactionActivity" />
         <activity android:name=".main.MainActivity">

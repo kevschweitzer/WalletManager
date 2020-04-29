@@ -1,10 +1,12 @@
 package com.schweitzering.data.xsupport.mappers
 
 import com.schweitzering.data.categorytypes.CategoryTypeEntity
+import com.schweitzering.data.debts.DebtEntity
 import com.schweitzering.data.fixedExpenses.FixedExpenseEntity
 import com.schweitzering.data.fixedExpenses.generator.FixedExpenseGeneratorEntity
 import com.schweitzering.data.transaction.TransactionEntity
 import com.schweitzering.domain.categories.CategoryType
+import com.schweitzering.domain.debts.Debt
 import com.schweitzering.domain.fixedExpenses.FixedExpense
 import com.schweitzering.domain.fixedExpenses.generator.FixedExpenseGenerator
 import com.schweitzering.domain.transaction.Transaction
@@ -29,5 +31,7 @@ fun FixedExpense.toFixedExpenseEntity() = FixedExpenseEntity(id = id, value = va
 
 
 fun FixedExpenseGeneratorEntity.toFixedExpenseGenerator() = FixedExpenseGenerator(id, value, categoryType, creationDate, schedule)
-
 fun FixedExpenseGenerator.toFixedExpenseGeneratorEntity() = FixedExpenseGeneratorEntity(id ?: 0, value, categoryType, creationDate, schedule)
+
+fun Debt.toDebtEntity() = DebtEntity(id, value, category, categoryType, creationDate, isResolved, resolveDate)
+fun DebtEntity.toDebt() = Debt(id, value, category, categoryType, creationDate, isResolved, resolveDate)

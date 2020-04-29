@@ -5,6 +5,7 @@ import com.schweitzering.domain.balance.GetTotalBalanceUseCase
 import com.schweitzering.domain.categories.GetCategoryTypesUseCase
 import com.schweitzering.domain.debts.GetAllDebtsUseCase
 import com.schweitzering.domain.debts.NewDebtUseCase
+import com.schweitzering.domain.debts.ResolveDebtUseCase
 import com.schweitzering.domain.fixedExpenses.*
 import com.schweitzering.domain.fixedExpenses.generator.GetAllFixedExpensesGeneratorsUseCase
 import com.schweitzering.domain.fixedExpenses.generator.NewFixedExpenseGeneratorUseCase
@@ -35,7 +36,7 @@ val appModule = module{
     scope(named<MainActivity>()) {
         factory { BalanceViewModel(get(), get(), get()) }
         factory { FixedExpensesViewModel(get(), get()) }
-        factory { DebtsViewModel(get())}
+        factory { DebtsViewModel(get(), get())}
     }
 
     scope(named<NewFixedExpenseGeneratorActivity>()) {
@@ -81,4 +82,6 @@ val appModule = module{
     factory { GetAllDebtsUseCase(get()) }
 
     factory { NewDebtUseCase(get()) }
+
+    factory { ResolveDebtUseCase(get(), get()) }
 }

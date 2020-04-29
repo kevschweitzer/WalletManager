@@ -8,10 +8,12 @@
         <variable
                 name="viewHolder"
                 type="com.schweitzering.walletmanager.debts.DebtsAdapter.DebtViewHolder" />
+        <import type="com.schweitzering.domain.transaction.TransactionCategory"/>
+        <import type="android.view.View"/>
     </data>
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -19,6 +21,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{Float.toString(viewHolder.debt.value)}"/>
+
+    <Button
+            android:text="@{(viewHolder.debt.category == TransactionCategory.EXPENSE) ? `Pay` : `Receive`}"
+            android:visibility="@{viewHolder.debt.resolved ? View.GONE : View.VISIBLE}"
+            android:onClick="@{() -> viewModel.resolveDebt(viewHolder.debt)}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
 </LinearLayout>
 </layout>

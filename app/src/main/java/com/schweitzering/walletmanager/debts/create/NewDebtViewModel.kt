@@ -19,7 +19,7 @@ class NewDebtViewModel(private val newDebtUseCase: NewDebtUseCase) {
     fun onCreateDebtClicked() {
         newDebtUseCase.execute(DebtProfile(
             value = 40f,
-            category = TransactionCategory.EXPENSE,
+            category = TransactionCategory.INCOME,
             categoryType = "Friend",
             creationDate = Timestamp(System.currentTimeMillis())
         ).toDebt())

@@ -3,6 +3,8 @@ package com.schweitzering.walletmanager.inject
 import com.schweitzering.domain.balance.GetPartialBalanceUseCase
 import com.schweitzering.domain.balance.GetTotalBalanceUseCase
 import com.schweitzering.domain.categories.GetCategoryTypesUseCase
+import com.schweitzering.domain.debts.GetAllDebtsUseCase
+import com.schweitzering.domain.debts.NewDebtUseCase
 import com.schweitzering.domain.fixedExpenses.*
 import com.schweitzering.domain.fixedExpenses.generator.GetAllFixedExpensesGeneratorsUseCase
 import com.schweitzering.domain.fixedExpenses.generator.NewFixedExpenseGeneratorUseCase
@@ -10,6 +12,9 @@ import com.schweitzering.domain.transaction.AddTransactionUseCase
 import com.schweitzering.domain.transaction.GetAllTransactionsUseCase
 import com.schweitzering.walletmanager.main.MainActivity
 import com.schweitzering.walletmanager.balance.BalanceViewModel
+import com.schweitzering.walletmanager.debts.DebtsViewModel
+import com.schweitzering.walletmanager.debts.create.NewDebtActivity
+import com.schweitzering.walletmanager.debts.create.NewDebtViewModel
 import com.schweitzering.walletmanager.fixedExpenses.list.FixedExpensesViewModel
 import com.schweitzering.walletmanager.fixedExpenses.generator.create.NewFixedExpenseGeneratorActivity
 import com.schweitzering.walletmanager.fixedExpenses.generator.create.NewFixedExpenseGeneratorViewModel
@@ -29,12 +34,8 @@ val appModule = module{
 
     scope(named<MainActivity>()) {
         factory { BalanceViewModel(get(), get(), get()) }
-        factory {
-            FixedExpensesViewModel(
-                get(),
-                get()
-            )
-        }
+        factory { FixedExpensesViewModel(get(), get()) }
+        factory { DebtsViewModel(get())}
     }
 
     scope(named<NewFixedExpenseGeneratorActivity>()) {
@@ -47,6 +48,10 @@ val appModule = module{
 
     scope(named<FixedExpensesGeneratorsActivity>()) {
         scoped {FixedExpensesGeneratorsViewModel(get())}
+    }
+
+    scope(named<NewDebtActivity>()) {
+        scoped {NewDebtViewModel(get())}
     }
 
     factory {GetPartialBalanceUseCase(get())}
@@ -72,4 +77,8 @@ val appModule = module{
     factory { FixedExpensesWorkerViewModel(get()) }
 
     factory {CreateFixedExpensesForPeriodUseCase(get(), get())}
+
+    factory { GetAllDebtsUseCase(get()) }
+
+    factory { NewDebtUseCase(get()) }
 }

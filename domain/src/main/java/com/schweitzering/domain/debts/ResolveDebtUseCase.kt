@@ -12,12 +12,8 @@ class ResolveDebtUseCase(private val debtsRepository: DebtsRepository,
             isResolved = true
             resolveDate = Timestamp(System.currentTimeMillis())
         }
-        transactionsRepository.add(Transaction(
-            value = debt.value,
-            date = Timestamp(System.currentTimeMillis()),
-            category = debt.category,
-            categoryType = debt.categoryType)
-        )
+        debt.transaction.date = debt.resolveDate
+        transactionsRepository.add(debt.transaction)
         debtsRepository.update(debt)
     }
 }

@@ -10,7 +10,8 @@ import java.sql.Timestamp
 data class TransactionEntity (
     @PrimaryKey(autoGenerate = true) var id: Int = 0,
     var value: Float,
-    var date: Timestamp,
+    var date: Timestamp?,
+    var description: String,
     var category: TransactionCategory,
     var categoryType: String
 )

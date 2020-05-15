@@ -13,25 +13,25 @@ import com.schweitzering.domain.transaction.Transaction
 
 fun Transaction.toTransactionEntity() = TransactionEntity(
     value = value,
-    date = date,
+    date = date, //Won't be null when transaction is created
+    description = description,
     category = category,
     categoryType = categoryType
 )
-fun TransactionEntity.toTransaction() = Transaction(value = value, date = date, category = category, categoryType = categoryType)
+fun TransactionEntity.toTransaction() = Transaction(value = value, date = date, description = description, category = category, categoryType = categoryType)
 
 
 fun CategoryType.toCategoryTypeEntity() = CategoryTypeEntity(category = category, type = type)
 fun CategoryTypeEntity.toCategoryType() = CategoryType(category = category, type = type)
 
 
-fun FixedExpenseEntity.toFixedExpense() = FixedExpense(id, value, category, categoryType, isAlreadyPaid, creationDate, paymentDate)
+fun FixedExpenseEntity.toFixedExpense() = FixedExpense(id, expense, isAlreadyPaid, creationDate, paymentDate)
 
-fun FixedExpense.toFixedExpenseEntity() = FixedExpenseEntity(id = id, value = value, category = category, categoryType = categoryType,
-     isAlreadyPaid = isAlreadyPaid, creationDate = creationDate, paymentDate = paymentDate)
+fun FixedExpense.toFixedExpenseEntity() = FixedExpenseEntity(id, expense, isAlreadyPaid, creationDate, paymentDate)
 
 
-fun FixedExpenseGeneratorEntity.toFixedExpenseGenerator() = FixedExpenseGenerator(id, value, categoryType, creationDate, schedule)
-fun FixedExpenseGenerator.toFixedExpenseGeneratorEntity() = FixedExpenseGeneratorEntity(id ?: 0, value, categoryType, creationDate, schedule)
+fun FixedExpenseGeneratorEntity.toFixedExpenseGenerator() = FixedExpenseGenerator(id, expense, creationDate, schedule)
+fun FixedExpenseGenerator.toFixedExpenseGeneratorEntity() = FixedExpenseGeneratorEntity(id ?: 0, expense, creationDate, schedule)
 
-fun Debt.toDebtEntity() = DebtEntity(id, value, category, categoryType, creationDate, isResolved, resolveDate)
-fun DebtEntity.toDebt() = Debt(id, value, category, categoryType, creationDate, isResolved, resolveDate)
+fun Debt.toDebtEntity() = DebtEntity(id, transaction, creationDate, isResolved, resolveDate)
+fun DebtEntity.toDebt() = Debt(id, transaction, creationDate, isResolved, resolveDate)

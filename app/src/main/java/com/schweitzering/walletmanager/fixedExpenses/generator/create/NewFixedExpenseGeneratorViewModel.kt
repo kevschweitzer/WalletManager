@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.schweitzering.domain.fixedExpenses.generator.NewFixedExpenseGeneratorUseCase
 import com.schweitzering.domain.schedule.Schedule
 import com.schweitzering.domain.schedule.TimePeriod
+import com.schweitzering.domain.transaction.Transaction
 import com.schweitzering.walletmanager.fixedExpenses.generator.FixedExpenseGeneratorProfile
 import com.schweitzering.walletmanager.xsupport.mappers.toFixedExpenseGenerator
 import java.sql.Timestamp
@@ -35,32 +36,28 @@ class NewFixedExpenseGeneratorViewModel(private val newFixedExpenseGeneratorUseC
 
     private fun getWeekFixedExpenseGenerator() =
         FixedExpenseGeneratorProfile(
-            value = 120f,
-            categoryType = "Gym",
+            expense = Transaction(value = 120f, description = "", categoryType = "Gym"),
             creationDate = Timestamp(System.currentTimeMillis()),
-            schedule = Schedule(TimePeriod.WEEK, Timestamp(1587477600000))
+            schedule = Schedule(TimePeriod.WEEK, Timestamp(1589425200000))
         )
 
     private fun getMonthFixedExpenseGenerator() =
         FixedExpenseGeneratorProfile(
-            value = 240f,
-            categoryType = "Clothes",
+            expense = Transaction(value = 2400f, description = "", categoryType = "Clothes"),
             creationDate = Timestamp(System.currentTimeMillis()),
-            schedule = Schedule(TimePeriod.MONTH, Timestamp(1585200600000))
+            schedule = Schedule(TimePeriod.MONTH, Timestamp(1589338800000 ))
         )
 
     private fun getDayFixedExpenseGenerator() =
         FixedExpenseGeneratorProfile(
-            value = 25f,
-            categoryType = "Food",
+            expense = Transaction(value = 25f, description = "", categoryType = "Food"),
             creationDate = Timestamp(System.currentTimeMillis()),
             schedule = Schedule(TimePeriod.DAY, Timestamp(1584045000000))
         )
 
     private fun getCurrentFixedExpenseGenerator() =
         FixedExpenseGeneratorProfile(
-            value = value,
-            categoryType = categoryType,
+            expense = Transaction(value = 120f, description = "", categoryType = categoryType),
             creationDate = Timestamp(System.currentTimeMillis()),
             schedule = Schedule(period, startDate)
         )

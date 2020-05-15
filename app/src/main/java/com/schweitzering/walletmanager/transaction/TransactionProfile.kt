@@ -5,7 +5,8 @@ import java.sql.Timestamp
 
 data class TransactionProfile (
     var value: Float,
-    var date: Timestamp,
+    var date: Timestamp?,
+    var description: String,
     var category: TransactionCategory,
     var categoryType: String
 )

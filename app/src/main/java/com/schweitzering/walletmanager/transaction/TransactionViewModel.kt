@@ -43,7 +43,7 @@ class TransactionViewModel(private val addTransactionUseCase: AddTransactionUseC
 
     private fun getCurrentTransaction(): TransactionProfile? {
         return categories.value?.get(selectedCategoryPosition)?.let {
-            TransactionProfile(value, Timestamp(System.currentTimeMillis()), transactionCategory, it)
+            TransactionProfile(value, Timestamp(System.currentTimeMillis()), description, transactionCategory, it)
         }
     }
 }

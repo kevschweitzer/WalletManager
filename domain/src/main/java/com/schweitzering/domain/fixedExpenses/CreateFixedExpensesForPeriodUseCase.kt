@@ -21,8 +21,7 @@ class CreateFixedExpensesForPeriodUseCase(private val generatorsRepository: Fixe
             it.forEach {
                 if (it.schedule.todayMeetsRequirements()) {
                     val fixedExpense = FixedExpense(
-                        value = it.value,
-                        categoryType = it.categoryType,
+                        expense = it.expense,
                         creationDate = Timestamp(System.currentTimeMillis())
                     )
                     fixedExpensesRepository.addFixedExpense(fixedExpense)

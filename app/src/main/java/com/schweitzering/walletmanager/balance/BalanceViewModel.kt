@@ -2,6 +2,7 @@ package com.schweitzering.walletmanager.balance
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import com.crashlytics.android.Crashlytics
 import com.schweitzering.domain.balance.GetPartialBalanceUseCase
 import com.schweitzering.domain.balance.GetTotalBalanceUseCase
 import com.schweitzering.domain.transaction.GetAllTransactionsUseCase

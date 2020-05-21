@@ -13,10 +13,16 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.fixedExpenses.worker.FixedExpensesWorker
 import com.schweitzering.walletmanager.fixedExpenses.worker.FixedExpensesWorker.Companion.WORKER_ID
+import com.schweitzering.walletmanager.settings.SettingsActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.item_toolbar.view.*
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        const val CURRENT_POSITION = "current_position"
+    }
 
     private var currentViewPagerPosition = 0
 
@@ -24,6 +30,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         periodicWorkerSetup()
+        settingsSetup()
+    }
+
+    private fun settingsSetup() {
+        toolbar.btn_settings.setOnClickListener { startActivity(SettingsActivity.getIntent(this)) }
     }
 
     private fun periodicWorkerSetup() {
@@ -36,13 +47,8 @@ class MainActivity : AppCompatActivity() {
         setViewPager()
     }
 
-    override fun onStop() {
-        super.onStop()
-        Log.e("OnStop","called")
-    }
-
     override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
-        outState?.putInt("current", currentViewPagerPosition)
+        outState?.putInt(CURRENT_POSITION, currentViewPagerPosition)
         super.onSaveInstanceState(outState, outPersistentState)
     }
 
@@ -50,12 +56,10 @@ class MainActivity : AppCompatActivity() {
         savedInstanceState: Bundle?,
         persistentState: PersistableBundle?
     ) {
-        currentViewPagerPosition = savedInstanceState?.get("current") as Int
+        currentViewPagerPosition = savedInstanceState?.get(CURRENT_POSITION) as Int
         view_pager.currentItem = currentViewPagerPosition
         super.onRestoreInstanceState(savedInstanceState, persistentState)
     }
-
-
 
     private fun setViewPager() {
         val adapter = PagesAdapter(this)
@@ -69,5 +73,4 @@ class MainActivity : AppCompatActivity() {
             tab.text = adapter.getTitle(position)
         }.attach()
     }
-
 }

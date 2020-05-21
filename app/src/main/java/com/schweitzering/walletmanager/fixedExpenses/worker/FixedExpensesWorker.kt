@@ -1,7 +1,9 @@
 package com.schweitzering.walletmanager.fixedExpenses.worker
 
 import android.content.Context
+import android.util.Log
 import androidx.work.*
+import com.crashlytics.android.Crashlytics
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -43,7 +45,8 @@ class FixedExpensesWorker(appContext: Context,
 
     //TODO: Add retry policy
     override fun doWork(): Result {
-         val disposable = viewModel.createFixedExpensesForPeriod()
+        Crashlytics.log(Log.DEBUG, "WORKER RUNNING", "Running at ${System.currentTimeMillis()}")
+        val disposable = viewModel.createFixedExpensesForPeriod()
              .subscribeOn(Schedulers.io())
              .subscribe()
         disposables.add(disposable)

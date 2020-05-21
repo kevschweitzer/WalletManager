@@ -45,7 +45,7 @@ class NewFixedExpenseGeneratorViewModel(private val newFixedExpenseGeneratorUseC
         FixedExpenseGeneratorProfile(
             expense = Transaction(value = 2400f, description = "", categoryType = "Clothes"),
             creationDate = Timestamp(System.currentTimeMillis()),
-            schedule = Schedule(TimePeriod.MONTH, Timestamp(1589338800000 ))
+            schedule = Schedule(TimePeriod.MONTH, Timestamp(1590375600000 ))
         )
 
     private fun getDayFixedExpenseGenerator() =

@@ -1,8 +1,11 @@
 package com.schweitzering.walletmanager.settings.categories
 
-import com.schweitzering.domain.categories.GetCategoryTypesUseCase
+import androidx.lifecycle.Transformations
+import com.schweitzering.domain.categories.GetAllCategoriesTypesUseCase
 
-class CategoriesSettingsViewModel(private val getCategoryTypesUseCase: GetCategoryTypesUseCase) {
+class CategoriesSettingsViewModel(private val getAllCategoriesTypesUseCase: GetAllCategoriesTypesUseCase) {
 
-
+    val categories = Transformations.map(getAllCategoriesTypesUseCase.execute()) {
+        it.sortedBy { it.category.name }
+    }
 }

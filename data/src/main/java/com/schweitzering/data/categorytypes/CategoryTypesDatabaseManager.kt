@@ -1,6 +1,8 @@
 package com.schweitzering.data.categorytypes
 
+import androidx.lifecycle.LiveData
 import com.schweitzering.data.xsupport.database.AppDatabase
+import com.schweitzering.domain.categories.CategoryType
 import com.schweitzering.domain.transaction.TransactionCategory
 import kotlinx.coroutines.runBlocking
 
@@ -21,4 +23,6 @@ class CategoryTypesDatabaseManager(private val database: AppDatabase) {
     }
 
     fun getAllByCategory(category: TransactionCategory) = categoryTypesDao.getAllByCategory(category)
+
+    fun getAll() = categoryTypesDao.getAll()
 }

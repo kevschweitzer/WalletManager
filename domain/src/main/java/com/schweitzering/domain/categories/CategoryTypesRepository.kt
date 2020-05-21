@@ -11,4 +11,6 @@ interface CategoryTypesRepository {
 
     fun removeCategoryType(categoryType: CategoryType)
 
+    fun getAll(): LiveData<List<CategoryType>>
+
 }

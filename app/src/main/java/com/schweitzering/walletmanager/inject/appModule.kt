@@ -2,6 +2,7 @@ package com.schweitzering.walletmanager.inject
 
 import com.schweitzering.domain.balance.GetPartialBalanceUseCase
 import com.schweitzering.domain.balance.GetTotalBalanceUseCase
+import com.schweitzering.domain.categories.GetAllCategoriesTypesUseCase
 import com.schweitzering.domain.categories.GetCategoryTypesUseCase
 import com.schweitzering.domain.debts.GetAllDebtsUseCase
 import com.schweitzering.domain.debts.NewDebtUseCase
@@ -24,6 +25,8 @@ import com.schweitzering.walletmanager.fixedExpenses.generator.list.FixedExpense
 import com.schweitzering.walletmanager.fixedExpenses.worker.FixedExpensesWorkerViewModel
 import com.schweitzering.walletmanager.settings.SettingsActivity
 import com.schweitzering.walletmanager.settings.SettingsViewModel
+import com.schweitzering.walletmanager.settings.categories.CategoriesSettingsActivity
+import com.schweitzering.walletmanager.settings.categories.CategoriesSettingsViewModel
 import com.schweitzering.walletmanager.transaction.TransactionActivity
 import com.schweitzering.walletmanager.transaction.TransactionViewModel
 import org.koin.core.qualifier.named
@@ -61,6 +64,10 @@ val appModule = module{
         scoped {NewDebtViewModel(get())}
     }
 
+    scope(named<CategoriesSettingsActivity>()) {
+        scoped { CategoriesSettingsViewModel(get()) }
+    }
+
     factory {GetPartialBalanceUseCase(get())}
 
     factory {GetTotalBalanceUseCase(get())}
@@ -90,4 +97,6 @@ val appModule = module{
     factory { NewDebtUseCase(get()) }
 
     factory { ResolveDebtUseCase(get(), get()) }
+
+    factory { GetAllCategoriesTypesUseCase(get()) }
 }

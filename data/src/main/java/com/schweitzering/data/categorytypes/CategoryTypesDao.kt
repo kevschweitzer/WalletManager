@@ -20,4 +20,8 @@ interface CategoryTypesDao {
     @Query("SELECT * FROM category_types WHERE category == :category")
     fun getAllByCategory(category: TransactionCategory): LiveData<List<CategoryType>>
 
+    @Query("SELECT * FROM category_types")
+    fun getAll(): LiveData<List<CategoryType>>
+
+
 }

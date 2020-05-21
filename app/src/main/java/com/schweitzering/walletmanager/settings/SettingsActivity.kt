@@ -4,9 +4,15 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.databinding.DataBindingUtil
 import com.schweitzering.walletmanager.R
+import com.schweitzering.walletmanager.databinding.ActivitySettingsBinding
+import com.schweitzering.walletmanager.xsupport.utils.DataBindingProtocol
+import org.koin.androidx.scope.currentScope
 
-class SettingsActivity : AppCompatActivity() {
+class SettingsActivity : AppCompatActivity(), DataBindingProtocol {
+
+    private val viewModel: SettingsViewModel by currentScope.inject()
 
     companion object {
         fun getIntent(context: Context) = Intent(context, SettingsActivity::class.java)
@@ -14,6 +20,11 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
+        setDataBinding()
+    }
+
+    override fun setDataBinding() {
+        val binding = DataBindingUtil.setContentView<ActivitySettingsBinding>(this, R.layout.activity_settings)
+        binding.viewModel = viewModel
     }
 }

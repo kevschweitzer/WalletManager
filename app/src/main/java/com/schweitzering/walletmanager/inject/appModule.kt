@@ -22,6 +22,8 @@ import com.schweitzering.walletmanager.fixedExpenses.generator.create.NewFixedEx
 import com.schweitzering.walletmanager.fixedExpenses.generator.list.FixedExpensesGeneratorsActivity
 import com.schweitzering.walletmanager.fixedExpenses.generator.list.FixedExpensesGeneratorsViewModel
 import com.schweitzering.walletmanager.fixedExpenses.worker.FixedExpensesWorkerViewModel
+import com.schweitzering.walletmanager.settings.SettingsActivity
+import com.schweitzering.walletmanager.settings.SettingsViewModel
 import com.schweitzering.walletmanager.transaction.TransactionActivity
 import com.schweitzering.walletmanager.transaction.TransactionViewModel
 import org.koin.core.qualifier.named
@@ -45,6 +47,10 @@ val appModule = module{
                 get()
             )
         }
+    }
+
+    scope(named<SettingsActivity>()) {
+        scoped { SettingsViewModel() }
     }
 
     scope(named<FixedExpensesGeneratorsActivity>()) {

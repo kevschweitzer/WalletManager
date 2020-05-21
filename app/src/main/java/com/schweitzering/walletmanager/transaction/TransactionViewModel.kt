@@ -3,6 +3,7 @@ package com.schweitzering.walletmanager.transaction
 import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.schweitzering.domain.categories.GetCategoryTypesUseCase
 import com.schweitzering.domain.transaction.TransactionCategory
@@ -23,7 +24,10 @@ class TransactionViewModel(private val addTransactionUseCase: AddTransactionUseC
 
     //Exposed LiveData
     var state = MutableLiveData<TransactionState>()
-    val categories: LiveData<List<String>> by lazy { getCategoryTypeUseCase.execute(transactionCategory) }
+    val categories: LiveData<List<String>> by lazy { Transformations.map(getCategoryTypeUseCase.execute(transactionCategory)){
+        it.map { it.type }
+     }
+    }
 
     //UI fields
     var value: Float = 10f

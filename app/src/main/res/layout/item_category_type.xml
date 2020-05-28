@@ -10,15 +10,27 @@
                 type="com.schweitzering.walletmanager.settings.categories.CategoriesSettingsAdapter.CategoryViewHolder" />
     </data>
 
-    <LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{viewHolder.category.type}"
-            android:textSize="14sp"/>
+            android:textSize="14sp"
+            android:paddingVertical="10dp"/>
 
-    </LinearLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:layout_gravity="center"/>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="#000000"/>
+        </LinearLayout>
 </layout>

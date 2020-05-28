@@ -1,17 +1,17 @@
 package com.schweitzering.walletmanager.settings.categories.create
 
 import android.content.Intent
-import android.util.Log
+import com.schweitzering.domain.categories.AddCategoryTypeUseCase
 import com.schweitzering.domain.categories.CategoryType
 import com.schweitzering.domain.transaction.TransactionCategory
 import com.schweitzering.walletmanager.settings.categories.create.NewCategoryActivity.Companion.NEW_CATEGORY_TYPE
 
-class NewCategoryViewModel {
+class NewCategoryViewModel(private val addCategoryTypeUseCase: AddCategoryTypeUseCase) {
 
     val categoryType = CategoryType()
 
     fun onSaveClicked() {
-        Log.e("Category", categoryType.toString())
+        addCategoryTypeUseCase.execute(categoryType)
     }
 
     fun handleIntent(intent: Intent?) {

@@ -12,8 +12,8 @@ class FixedExpensesViewModel(private val getFixedExpensesUseCase: GetFixedExpens
                              private val payFixedExpenseUseCase: PayFixedExpenseUseCase) {
 
     sealed class FlowState {
-        object NewExepenseClicked: FlowState()
-        object ShowGeneratorsClicked: FlowState()
+        object NewExepenseClicked : FlowState()
+        object ShowGeneratorsClicked : FlowState()
     }
 
     //Exposed
@@ -23,8 +23,7 @@ class FixedExpensesViewModel(private val getFixedExpensesUseCase: GetFixedExpens
     }
 
     fun onNewFixedExpenseClicked() {
-        state.value =
-            FlowState.NewExepenseClicked
+        state.value = FlowState.NewExepenseClicked
     }
 
     fun payFixedExpense(fixedExpense: FixedExpenseProfile) {
@@ -32,7 +31,6 @@ class FixedExpensesViewModel(private val getFixedExpensesUseCase: GetFixedExpens
     }
 
     fun onShowGeneratorsClicked() {
-        state.value =
-            FlowState.ShowGeneratorsClicked
+        state.value = FlowState.ShowGeneratorsClicked
     }
 }

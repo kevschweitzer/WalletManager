@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.schweitzering.walletmanager">
+          package="com.schweitzering.walletmanager">
 
     <application
-            android:name=".BaseApplication"
-            android:allowBackup="false"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsRtl="true"
-            android:theme="@style/AppTheme">
-        <activity android:name=".debts.create.NewDebtActivity"></activity>
+        android:name=".BaseApplication"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".settings.categories.create.CRUDCategoryActivity"></activity>
+        <activity android:name=".settings.categories.list.CategoriesSettingsActivity" />
+        <activity android:name=".settings.SettingsActivity" />
+        <activity android:name=".debts.create.NewDebtActivity" />
         <activity android:name=".fixedExpenses.generator.list.FixedExpensesGeneratorsActivity" />
         <activity android:name=".fixedExpenses.generator.create.NewFixedExpenseGeneratorActivity" />
         <activity android:name=".transaction.TransactionActivity" />

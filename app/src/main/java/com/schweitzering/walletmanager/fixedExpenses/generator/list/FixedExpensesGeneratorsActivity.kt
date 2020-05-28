@@ -2,9 +2,8 @@ package com.schweitzering.walletmanager.fixedExpenses.generator.list
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.Observer
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.schweitzering.walletmanager.R
 import io.reactivex.disposables.CompositeDisposable
@@ -14,7 +13,8 @@ import org.koin.androidx.scope.currentScope
 class FixedExpensesGeneratorsActivity : AppCompatActivity() {
 
     companion object {
-        fun getIntent(context: Context) = Intent(context, FixedExpensesGeneratorsActivity::class.java)
+        fun getIntent(context: Context) =
+            Intent(context, FixedExpensesGeneratorsActivity::class.java)
     }
 
     private val viewModel: FixedExpensesGeneratorsViewModel by currentScope.inject()

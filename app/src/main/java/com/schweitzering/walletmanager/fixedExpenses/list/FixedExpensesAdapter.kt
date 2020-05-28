@@ -10,16 +10,14 @@ import com.schweitzering.walletmanager.fixedExpenses.FixedExpenseProfile
 
 
 class FixedExpensesAdapter(private val fixedExpensesList: List<FixedExpenseProfile>,
-                           private val viewModel: FixedExpensesViewModel
-): RecyclerView.Adapter<FixedExpensesAdapter.FixedExpenseViewHolder>() {
+                           private val viewModel: FixedExpensesViewModel) :
+    RecyclerView.Adapter<FixedExpensesAdapter.FixedExpenseViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FixedExpenseViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val itemBinding: ItemFixedExpenseBinding = DataBindingUtil.inflate(inflater, R.layout.item_fixed_expense, parent, false)
-        return FixedExpenseViewHolder(
-            itemBinding,
-            viewModel
-        )
+        val itemBinding: ItemFixedExpenseBinding =
+            DataBindingUtil.inflate(inflater, R.layout.item_fixed_expense, parent, false)
+        return FixedExpenseViewHolder(itemBinding, viewModel)
     }
 
     override fun getItemCount() = fixedExpensesList.size
@@ -31,8 +29,8 @@ class FixedExpensesAdapter(private val fixedExpensesList: List<FixedExpenseProfi
 
 
     class FixedExpenseViewHolder(val binding: ItemFixedExpenseBinding,
-                                 val viewModel: FixedExpensesViewModel
-    ): RecyclerView.ViewHolder(binding.root) {
+                                 val viewModel: FixedExpensesViewModel) :
+        RecyclerView.ViewHolder(binding.root) {
 
         lateinit var fixedExpense: FixedExpenseProfile
 

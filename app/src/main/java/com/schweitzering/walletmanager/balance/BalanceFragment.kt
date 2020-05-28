@@ -20,7 +20,7 @@ import org.koin.androidx.scope.currentScope
  */
 class BalanceFragment : Fragment() {
 
-    private val viewModel: BalanceViewModel by lazy {requireActivity().currentScope.get<BalanceViewModel>()}
+    private val viewModel: BalanceViewModel by lazy { requireActivity().currentScope.get<BalanceViewModel>() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,12 +28,11 @@ class BalanceFragment : Fragment() {
         observeLastTransactions()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val itemBinding: FragmentBalanceBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_balance, container, false)
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        val itemBinding: FragmentBalanceBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_balance, container, false)
         itemBinding.viewModel = viewModel
         itemBinding.lifecycleOwner = this
         return itemBinding.root
@@ -50,11 +49,15 @@ class BalanceFragment : Fragment() {
 
     private fun observeFlowChanges() {
         viewModel.state.observe(this, Observer {
-            when(it) {
-                BalanceViewModel.FlowState.NewIncome -> startActivity(TransactionActivity.getIncomeIntent(requireContext()))
-                BalanceViewModel.FlowState.NewExpense -> startActivity(TransactionActivity.getExpenseIntent(requireContext()))
-                BalanceViewModel.FlowState.NewSaving -> startActivity(TransactionActivity.getSavingIntent(requireContext()))
-                BalanceViewModel.FlowState.NewInvestment -> startActivity(TransactionActivity.getInvestmentIntent(requireContext()))
+            when (it) {
+                BalanceViewModel.FlowState.NewIncome -> startActivity(TransactionActivity.getIncomeIntent(
+                    requireContext()))
+                BalanceViewModel.FlowState.NewExpense -> startActivity(TransactionActivity.getExpenseIntent(
+                    requireContext()))
+                BalanceViewModel.FlowState.NewSaving -> startActivity(TransactionActivity.getSavingIntent(
+                    requireContext()))
+                BalanceViewModel.FlowState.NewInvestment -> startActivity(TransactionActivity.getInvestmentIntent(
+                    requireContext()))
             }
         })
     }

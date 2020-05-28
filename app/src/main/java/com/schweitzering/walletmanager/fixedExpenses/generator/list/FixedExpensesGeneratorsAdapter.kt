@@ -10,16 +10,15 @@ import com.schweitzering.walletmanager.fixedExpenses.generator.FixedExpenseGener
 
 
 class FixedExpensesGeneratorsAdapter(private val fixedExpensesGeneratorsList: List<FixedExpenseGeneratorProfile>,
-                                     private val viewModel: FixedExpensesGeneratorsViewModel
-): RecyclerView.Adapter<FixedExpensesGeneratorsAdapter.FixedExpenseGeneratorViewHolder>() {
+                                     private val viewModel: FixedExpensesGeneratorsViewModel) :
+    RecyclerView.Adapter<FixedExpensesGeneratorsAdapter.FixedExpenseGeneratorViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FixedExpenseGeneratorViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup,
+                                    viewType: Int): FixedExpenseGeneratorViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val itemBinding: ItemFixedExpenseGeneratorBinding = DataBindingUtil.inflate(inflater, R.layout.item_fixed_expense_generator, parent, false)
-        return FixedExpenseGeneratorViewHolder(
-            itemBinding,
-            viewModel
-        )
+        val itemBinding: ItemFixedExpenseGeneratorBinding =
+            DataBindingUtil.inflate(inflater, R.layout.item_fixed_expense_generator, parent, false)
+        return FixedExpenseGeneratorViewHolder(itemBinding, viewModel)
     }
 
     override fun getItemCount() = fixedExpensesGeneratorsList.size
@@ -31,8 +30,8 @@ class FixedExpensesGeneratorsAdapter(private val fixedExpensesGeneratorsList: Li
 
 
     class FixedExpenseGeneratorViewHolder(val binding: ItemFixedExpenseGeneratorBinding,
-                                 val viewModel: FixedExpensesGeneratorsViewModel
-    ): RecyclerView.ViewHolder(binding.root) {
+                                          val viewModel: FixedExpensesGeneratorsViewModel) :
+        RecyclerView.ViewHolder(binding.root) {
 
         lateinit var fixedExpenseGenerator: FixedExpenseGeneratorProfile
 

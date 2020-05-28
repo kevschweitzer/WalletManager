@@ -7,10 +7,11 @@ import com.schweitzering.walletmanager.balance.BalanceFragment
 import com.schweitzering.walletmanager.debts.DebtsFragment
 import com.schweitzering.walletmanager.fixedExpenses.list.FixedExpensesFragment
 
-class PagesAdapter(activity: AppCompatActivity): FragmentStateAdapter(activity) {
+class PagesAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activity) {
 
-    private val pages = listOf(Pair(BalanceFragment(), "Balance"), Pair(FixedExpensesFragment(), "Fixed Expenses"),
-    Pair(DebtsFragment(), "Debts"))
+    private val pages = listOf(Pair(BalanceFragment(), "Balance"),
+        Pair(FixedExpensesFragment(), "Fixed Expenses"),
+        Pair(DebtsFragment(), "Debts"))
 
     override fun getItemCount(): Int {
         return pages.count()

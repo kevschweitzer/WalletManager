@@ -1,33 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
-        <variable
-                name="viewModel"
-                type="com.schweitzering.walletmanager.debts.DebtsViewModel" />
 
         <variable
-                name="viewHolder"
-                type="com.schweitzering.walletmanager.debts.DebtsAdapter.DebtViewHolder" />
-        <import type="com.schweitzering.domain.transaction.TransactionCategory"/>
-        <import type="android.view.View"/>
+            name="viewModel"
+            type="com.schweitzering.walletmanager.debts.DebtsViewModel" />
+
+        <variable
+            name="viewHolder"
+            type="com.schweitzering.walletmanager.debts.DebtsAdapter.DebtViewHolder" />
+
+        <import type="com.schweitzering.domain.transaction.TransactionCategory" />
+
+        <import type="android.view.View" />
     </data>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-    <TextView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{Float.toString(viewHolder.debt.transaction.value)}"/>
+            android:text="@{Float.toString(viewHolder.debt.transaction.value)}" />
 
-    <Button
+        <Button
             android:text="@{(viewHolder.debt.transaction.category == TransactionCategory.EXPENSE) ? `Pay` : `Receive`}"
             android:visibility="@{viewHolder.debt.resolved ? View.GONE : View.VISIBLE}"
             android:onClick="@{() -> viewModel.resolveDebt(viewHolder.debt)}"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
-</LinearLayout>
+    </LinearLayout>
 </layout>

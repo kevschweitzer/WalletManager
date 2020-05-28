@@ -4,23 +4,24 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
-                name="viewModel"
-                type="com.schweitzering.walletmanager.debts.create.NewDebtViewModel" />
+            name="viewModel"
+            type="com.schweitzering.walletmanager.debts.create.NewDebtViewModel" />
     </data>
 
 
-<androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".debts.create.NewDebtActivity">
 
-    <Button
+        <Button
             android:text="Create"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="@{() -> viewModel.onCreateDebtClicked()}"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,22 +1,24 @@
 package com.schweitzering.data.categorytypes
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
+import com.schweitzering.domain.categories.CategoryType
 import com.schweitzering.domain.transaction.TransactionCategory
 
 @Dao
 interface CategoryTypesDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(type: CategoryTypeEntity)
 
     @Delete
     suspend fun delete(type: CategoryTypeEntity)
 
-    @Query("SELECT type FROM category_types WHERE category == :category")
-    fun getAllByCategory(category: TransactionCategory): LiveData<List<String>>
+    @Query("SELECT * FROM category_types WHERE category == :category")
+    fun getAllByCategory(category: TransactionCategory): LiveData<List<CategoryType>>
+
+    @Query("SELECT * FROM category_types")
+    fun getAll(): LiveData<List<CategoryType>>
+
 
 }

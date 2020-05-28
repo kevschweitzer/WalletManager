@@ -2,7 +2,6 @@ package com.schweitzering.walletmanager.balance
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.crashlytics.android.Crashlytics
 import com.schweitzering.domain.balance.GetPartialBalanceUseCase
 import com.schweitzering.domain.balance.GetTotalBalanceUseCase
 import com.schweitzering.domain.transaction.GetAllTransactionsUseCase
@@ -36,11 +35,11 @@ class BalanceViewModel(private val getAllTransactionsUseCase: GetAllTransactions
         state.value = FlowState.NewIncome
     }
 
-    fun onNewSavingClicked() {state.value =
-        FlowState.NewSaving
+    fun onNewSavingClicked() {
+        state.value = FlowState.NewSaving
     }
 
-    fun onNewInvestmentClicked() {state.value =
-        FlowState.NewInvestment
+    fun onNewInvestmentClicked() {
+        state.value = FlowState.NewInvestment
     }
 }

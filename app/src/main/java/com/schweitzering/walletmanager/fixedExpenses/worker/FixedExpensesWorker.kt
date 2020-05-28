@@ -1,7 +1,6 @@
 package com.schweitzering.walletmanager.fixedExpenses.worker
 
 import android.content.Context
-import android.util.Log
 import androidx.work.*
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -14,7 +13,6 @@ import java.util.concurrent.TimeUnit
     Execute worker once a day roughly at 00.00 AM to check if there's a FixedExpense to create
     that have entered a new period
  */
-
 class FixedExpensesWorker(appContext: Context,
                           workerParams: WorkerParameters): Worker(appContext, workerParams), KoinComponent {
 
@@ -23,7 +21,6 @@ class FixedExpensesWorker(appContext: Context,
         fun getWorker(): OneTimeWorkRequest {
             val currentDate = Calendar.getInstance()
             val dueDate = Calendar.getInstance()
-            // Set Execution around 01:00:00 AM
             dueDate.set(Calendar.HOUR_OF_DAY, 1)
             dueDate.set(Calendar.MINUTE, 0)
             dueDate.set(Calendar.SECOND, 0)

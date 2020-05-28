@@ -29,8 +29,8 @@ import com.schweitzering.walletmanager.fixedExpenses.worker.FixedExpensesWorkerV
 import com.schweitzering.walletmanager.main.MainActivity
 import com.schweitzering.walletmanager.settings.SettingsActivity
 import com.schweitzering.walletmanager.settings.SettingsViewModel
-import com.schweitzering.walletmanager.settings.categories.create.NewCategoryActivity
-import com.schweitzering.walletmanager.settings.categories.create.NewCategoryViewModel
+import com.schweitzering.walletmanager.settings.categories.create.CRUDCategoryActivity
+import com.schweitzering.walletmanager.settings.categories.create.CRUDCategoryViewModel
 import com.schweitzering.walletmanager.settings.categories.list.CategoriesSettingsActivity
 import com.schweitzering.walletmanager.settings.categories.list.CategoriesSettingsViewModel
 import com.schweitzering.walletmanager.transaction.TransactionActivity
@@ -74,8 +74,8 @@ val appModule = module {
         }
     }
 
-    scope(named<NewCategoryActivity>()) {
-        scoped { NewCategoryViewModel(get()) }
+    scope(named<CRUDCategoryActivity>()) {
+        scoped { CRUDCategoryViewModel(get()) }
     }
 
     factory { AddCategoryTypeUseCase(get()) }

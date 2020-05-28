@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.ActivityCategoriesSettingsBinding
-import com.schweitzering.walletmanager.settings.categories.create.NewCategoryActivity
+import com.schweitzering.walletmanager.settings.categories.create.CRUDCategoryActivity
 import com.schweitzering.walletmanager.xsupport.utils.DataBindingProtocol
 import kotlinx.android.synthetic.main.activity_categories_settings.*
 import org.koin.androidx.scope.currentScope
@@ -33,9 +33,10 @@ class CategoriesSettingsActivity : AppCompatActivity(), DataBindingProtocol {
         viewModel.state.observe(this, Observer {
             when (it) {
                 is CategoriesSettingsViewModel.State.CreateCategory -> startActivity(
-                    NewCategoryActivity.getIntent(this, it.category))
-                is CategoriesSettingsViewModel.State.EditCategory -> {
-                }
+                    CRUDCategoryActivity.getCreateIntent(this, it.category))
+                is CategoriesSettingsViewModel.State.EditCategory -> startActivity(
+                    CRUDCategoryActivity.getUpdateIntent(this, it.type)
+                )
             }
         })
     }

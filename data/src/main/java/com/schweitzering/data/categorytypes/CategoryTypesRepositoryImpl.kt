@@ -39,16 +39,16 @@ class CategoryTypesRepositoryImpl(private val context: Context,
 
     private fun getPredefinedCategories(category: TransactionCategory) = when(category) {
         TransactionCategory.EXPENSE -> context.resources.getStringArray(R.array.expense_categories).map {
-            CategoryType(TransactionCategory.EXPENSE, it)
+            CategoryType(category = TransactionCategory.EXPENSE, type = it)
         }
         TransactionCategory.INCOME -> context.resources.getStringArray(R.array.income_categories).map {
-            CategoryType(TransactionCategory.INCOME, it)
+            CategoryType(category = TransactionCategory.INCOME, type = it)
         }
         TransactionCategory.INVESTMENT -> context.resources.getStringArray(R.array.investment_categories).map {
-            CategoryType(TransactionCategory.INVESTMENT, it)
+            CategoryType(category = TransactionCategory.INVESTMENT, type = it)
         }
         TransactionCategory.SAVING -> context.resources.getStringArray(R.array.saving_categories).map {
-            CategoryType(TransactionCategory.SAVING, it)
+            CategoryType(category = TransactionCategory.SAVING, type = it)
         }
     }
 

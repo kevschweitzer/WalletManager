@@ -1,17 +1,14 @@
 package com.schweitzering.data.categorytypes
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.schweitzering.domain.categories.CategoryType
 import com.schweitzering.domain.transaction.TransactionCategory
 
 @Dao
 interface CategoryTypesDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(type: CategoryTypeEntity)
 
     @Delete

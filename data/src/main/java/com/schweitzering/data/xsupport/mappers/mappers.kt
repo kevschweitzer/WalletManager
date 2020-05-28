@@ -21,8 +21,8 @@ fun Transaction.toTransactionEntity() = TransactionEntity(
 fun TransactionEntity.toTransaction() = Transaction(value = value, date = date, description = description, category = category, categoryType = categoryType)
 
 
-fun CategoryType.toCategoryTypeEntity() = CategoryTypeEntity(category = category, type = type)
-fun CategoryTypeEntity.toCategoryType() = CategoryType(category = category, type = type)
+fun CategoryType.toCategoryTypeEntity() = CategoryTypeEntity(id = id, category = category, type = type)
+fun CategoryTypeEntity.toCategoryType() = CategoryType(id = id, category = category, type = type)
 
 
 fun FixedExpenseEntity.toFixedExpense() = FixedExpense(id, expense, isAlreadyPaid, creationDate, paymentDate)

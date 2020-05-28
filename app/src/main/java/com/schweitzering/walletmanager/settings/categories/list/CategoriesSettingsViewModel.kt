@@ -10,7 +10,7 @@ class CategoriesSettingsViewModel(private val getAllCategoriesTypesUseCase: GetA
 
     sealed class State {
         class CreateCategory(val category: TransactionCategory) : State()
-        class EditCategory(type: CategoryType) : State()
+        class EditCategory(val type: CategoryType) : State()
     }
 
     val categories = Transformations.map(getAllCategoriesTypesUseCase.execute()) {

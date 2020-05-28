@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.schweitzering.walletmanager.settings.categories.create.NewCategoryViewModel" />
+            type="com.schweitzering.walletmanager.settings.categories.create.CRUDCategoryViewModel" />
     </data>
 
     <LinearLayout

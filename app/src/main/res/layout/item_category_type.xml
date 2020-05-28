@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-    <data>
-        <variable
-                name="viewModel"
-                type="com.schweitzering.walletmanager.settings.categories.CategoriesSettingsViewModel" />
+<data>
+    <variable
+            name="viewModel"
+            type="com.schweitzering.walletmanager.settings.categories.CategoriesSettingsViewModel" />
 
-        <variable
-                name="viewHolder"
-                type="com.schweitzering.walletmanager.settings.categories.CategoriesSettingsAdapter.CategoryViewHolder" />
-    </data>
+    <variable
+            name="viewHolder"
+            type="com.schweitzering.walletmanager.settings.categories.CategoriesSettingsAdapter.CategoryViewHolder" />
+</data>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{viewHolder.category.type}"
-            android:textSize="14sp"
-            android:paddingVertical="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewHolder.category.type}"
+                android:textSize="14sp"
+                android:paddingVertical="10dp"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Edit"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:onClick="@{() -> viewModel.onEditCategoryClicked(viewHolder.category)}"/>
 
             <View
                 android:layout_width="wrap_content"

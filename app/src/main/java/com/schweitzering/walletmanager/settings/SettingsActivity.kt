@@ -2,8 +2,8 @@ package com.schweitzering.walletmanager.settings
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.schweitzering.walletmanager.R
@@ -33,7 +33,8 @@ class SettingsActivity : AppCompatActivity(), DataBindingProtocol {
     }
 
     override fun setDataBinding() {
-        val binding = DataBindingUtil.setContentView<ActivitySettingsBinding>(this, R.layout.activity_settings)
+        val binding = DataBindingUtil.setContentView<ActivitySettingsBinding>(this,
+            R.layout.activity_settings)
         binding.viewModel = viewModel
     }
 }

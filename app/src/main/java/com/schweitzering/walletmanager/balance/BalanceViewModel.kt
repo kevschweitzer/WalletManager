@@ -13,10 +13,10 @@ class BalanceViewModel(private val getAllTransactionsUseCase: GetAllTransactions
                        private val getTotalBalanceUseCase: GetTotalBalanceUseCase) {
 
     sealed class FlowState {
-        object NewExpense: FlowState()
-        object NewIncome: FlowState()
-        object NewSaving: FlowState()
-        object NewInvestment: FlowState()
+        object NewExpense : FlowState()
+        object NewIncome : FlowState()
+        object NewSaving : FlowState()
+        object NewInvestment : FlowState()
     }
 
     //Exposed data

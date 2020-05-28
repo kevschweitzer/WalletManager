@@ -1,56 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-    
+
     <data>
-        <variable
-                name="viewModel"
-                type="com.schweitzering.walletmanager.balance.BalanceViewModel" />
 
         <variable
-                name="viewHolder"
-                type="com.schweitzering.walletmanager.balance.TransactionsAdapter.TransactionsViewHolder" />
+            name="viewModel"
+            type="com.schweitzering.walletmanager.balance.BalanceViewModel" />
+
+        <variable
+            name="viewHolder"
+            type="com.schweitzering.walletmanager.balance.TransactionsAdapter.TransactionsViewHolder" />
     </data>
-    
-<LinearLayout
-        android:orientation="vertical" android:layout_width="match_parent"
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <TextView
+        <TextView
             android:id="@+id/value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000000"
-            android:text="@{Float.toString(viewHolder.transaction.value)}"/>
+            android:text="@{Float.toString(viewHolder.transaction.value)}" />
 
-    <TextView
+        <TextView
             android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{viewHolder.transaction.date.toString()}"/>
+            android:text="@{viewHolder.transaction.date.toString()}" />
 
-    <TextView
+        <TextView
             android:id="@+id/category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{viewHolder.transaction.category.name()}"/>
+            android:text="@{viewHolder.transaction.category.name()}" />
 
-    <TextView
+        <TextView
             android:id="@+id/categoryType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{viewHolder.transaction.categoryType}"/>
+            android:text="@{viewHolder.transaction.categoryType}" />
 
-    <TextView
+        <TextView
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{viewHolder.transaction.description}"/>
+            android:text="@{viewHolder.transaction.description}" />
 
-    <View
+        <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:background="#000000"/>
-</LinearLayout>
+            android:background="#000000" />
+    </LinearLayout>
 
 </layout>

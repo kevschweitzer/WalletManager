@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
-                name="viewModel"
-                type="com.schweitzering.walletmanager.balance.BalanceViewModel" />
+            name="viewModel"
+            type="com.schweitzering.walletmanager.balance.BalanceViewModel" />
     </data>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-       android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".main.MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/balance_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,7 +23,8 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-        <TextView
+
+            <TextView
                 android:id="@+id/text_partial_balance"
                 style="@style/BalanceText"
                 android:layout_width="wrap_content"
@@ -31,9 +32,9 @@
                 android:text="@{Float.toString(viewModel.partialBalance)}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+            <TextView
                 android:id="@+id/text_total_balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -42,9 +43,9 @@
                 android:text="@{Float.toString(viewModel.totalBalance)}"
                 app:layout_constraintTop_toBottomOf="@id/text_partial_balance"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"/>
+                app:layout_constraintRight_toRightOf="parent" />
 
-        <Button
+            <Button
                 android:id="@+id/button_new_expense"
                 style="@style/TransactionButton"
                 android:layout_width="wrap_content"
@@ -56,7 +57,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_total_balance" />
 
-        <Button
+            <Button
                 android:id="@+id/button_new_income"
                 style="@style/TransactionButton"
                 android:text="Income"
@@ -65,9 +66,9 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toStartOf="@id/button_new_saving"
                 app:layout_constraintStart_toEndOf="@id/button_new_expense"
-                app:layout_constraintTop_toBottomOf="@id/text_total_balance"/>
+                app:layout_constraintTop_toBottomOf="@id/text_total_balance" />
 
-        <Button
+            <Button
                 android:id="@+id/button_new_saving"
                 style="@style/TransactionButton"
                 android:text="Saving"
@@ -79,7 +80,7 @@
                 app:layout_constraintStart_toEndOf="@id/button_new_income"
                 app:layout_constraintTop_toBottomOf="@id/text_total_balance" />
 
-        <Button
+            <Button
                 android:id="@+id/button_new_investment"
                 style="@style/TransactionButton"
                 android:text="investment"
@@ -91,9 +92,9 @@
                 app:layout_constraintStart_toEndOf="@id/button_new_saving"
                 app:layout_constraintTop_toBottomOf="@id/text_total_balance" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/transaction_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -106,6 +107,6 @@
             app:layout_constraintStart_toStartOf="parent">
 
 
-    </androidx.recyclerview.widget.RecyclerView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -12,12 +12,13 @@ import java.sql.Timestamp
 class NewFixedExpenseGeneratorViewModel(private val newFixedExpenseGeneratorUseCase: NewFixedExpenseGeneratorUseCase) {
 
     sealed class State {
-        object FixedExpenseCreationSuccess: State()
+        object FixedExpenseCreationSuccess : State()
     }
 
     companion object {
         const val ONE_DAY_IN_MILLIS = 86400000
     }
+
     var value: Float = 120f
     var categoryType: String = "Gym"
     var period = TimePeriod.WEEK
@@ -30,35 +31,34 @@ class NewFixedExpenseGeneratorViewModel(private val newFixedExpenseGeneratorUseC
         newFixedExpenseGeneratorUseCase.execute(getDayFixedExpenseGenerator().toFixedExpenseGenerator())
         newFixedExpenseGeneratorUseCase.execute(getMonthFixedExpenseGenerator().toFixedExpenseGenerator())
         newFixedExpenseGeneratorUseCase.execute(getWeekFixedExpenseGenerator().toFixedExpenseGenerator())
-        state.value =
-            State.FixedExpenseCreationSuccess
+        state.value = State.FixedExpenseCreationSuccess
     }
 
-    private fun getWeekFixedExpenseGenerator() =
-        FixedExpenseGeneratorProfile(
-            expense = Transaction(value = 120f, description = "", categoryType = "Gym"),
-            creationDate = Timestamp(System.currentTimeMillis()),
-            schedule = Schedule(TimePeriod.WEEK, Timestamp(1589425200000))
-        )
+    private fun getWeekFixedExpenseGenerator() = FixedExpenseGeneratorProfile(expense = Transaction(
+        value = 120f,
+        description = "",
+        categoryType = "Gym"),
+        creationDate = Timestamp(System.currentTimeMillis()),
+        schedule = Schedule(TimePeriod.WEEK, Timestamp(1589425200000)))
 
     private fun getMonthFixedExpenseGenerator() =
-        FixedExpenseGeneratorProfile(
-            expense = Transaction(value = 2400f, description = "", categoryType = "Clothes"),
+        FixedExpenseGeneratorProfile(expense = Transaction(value = 2400f,
+            description = "",
+            categoryType = "Clothes"),
             creationDate = Timestamp(System.currentTimeMillis()),
-            schedule = Schedule(TimePeriod.MONTH, Timestamp(1590375600000 ))
-        )
+            schedule = Schedule(TimePeriod.MONTH, Timestamp(1590375600000)))
 
-    private fun getDayFixedExpenseGenerator() =
-        FixedExpenseGeneratorProfile(
-            expense = Transaction(value = 25f, description = "", categoryType = "Food"),
-            creationDate = Timestamp(System.currentTimeMillis()),
-            schedule = Schedule(TimePeriod.DAY, Timestamp(1584045000000))
-        )
+    private fun getDayFixedExpenseGenerator() = FixedExpenseGeneratorProfile(expense = Transaction(
+        value = 25f,
+        description = "",
+        categoryType = "Food"),
+        creationDate = Timestamp(System.currentTimeMillis()),
+        schedule = Schedule(TimePeriod.DAY, Timestamp(1584045000000)))
 
     private fun getCurrentFixedExpenseGenerator() =
-        FixedExpenseGeneratorProfile(
-            expense = Transaction(value = 120f, description = "", categoryType = categoryType),
+        FixedExpenseGeneratorProfile(expense = Transaction(value = 120f,
+            description = "",
+            categoryType = categoryType),
             creationDate = Timestamp(System.currentTimeMillis()),
-            schedule = Schedule(period, startDate)
-        )
+            schedule = Schedule(period, startDate))
 }

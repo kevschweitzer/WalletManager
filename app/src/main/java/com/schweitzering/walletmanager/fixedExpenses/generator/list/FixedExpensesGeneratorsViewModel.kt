@@ -9,6 +9,5 @@ class FixedExpensesGeneratorsViewModel(private val getAllFixedExpensesGenerators
 
     val fixedExpenseGeneratos = getAllFixedExpensesGeneratorsUseCase.execute().map {
         it.map { it.toFixedExpenseGeneratorProfile() }
-    }.subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
+    }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 }

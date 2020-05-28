@@ -9,8 +9,8 @@ import com.schweitzering.domain.transaction.TransactionCategory
 class CategoriesSettingsViewModel(private val getAllCategoriesTypesUseCase: GetAllCategoriesTypesUseCase) {
 
     sealed class State {
-        class CreateCategory(val category: TransactionCategory): State()
-        class EditCategory(type: CategoryType): State()
+        class CreateCategory(val category: TransactionCategory) : State()
+        class EditCategory(type: CategoryType) : State()
     }
 
     val categories = Transformations.map(getAllCategoriesTypesUseCase.execute()) {
@@ -22,13 +22,15 @@ class CategoriesSettingsViewModel(private val getAllCategoriesTypesUseCase: GetA
         state.value = State.CreateCategory(TransactionCategory.INCOME)
     }
 
-    fun onCreateExpenseClicked(){
+    fun onCreateExpenseClicked() {
         state.value = State.CreateCategory(TransactionCategory.EXPENSE)
     }
-    fun onCreateSavingClicked(){
+
+    fun onCreateSavingClicked() {
         state.value = State.CreateCategory(TransactionCategory.SAVING)
     }
-    fun onCreateInvestmentClicked(){
+
+    fun onCreateInvestmentClicked() {
         state.value = State.CreateCategory(TransactionCategory.INVESTMENT)
     }
 

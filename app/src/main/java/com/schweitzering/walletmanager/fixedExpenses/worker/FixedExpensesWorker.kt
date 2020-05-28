@@ -13,8 +13,8 @@ import java.util.concurrent.TimeUnit
     Execute worker once a day roughly at 00.00 AM to check if there's a FixedExpense to create
     that have entered a new period
  */
-class FixedExpensesWorker(appContext: Context,
-                          workerParams: WorkerParameters): Worker(appContext, workerParams), KoinComponent {
+class FixedExpensesWorker(appContext: Context, workerParams: WorkerParameters) :
+    Worker(appContext, workerParams), KoinComponent {
 
     companion object {
         const val WORKER_ID = "fixed_exp_worker"
@@ -28,9 +28,8 @@ class FixedExpensesWorker(appContext: Context,
                 dueDate.add(Calendar.HOUR_OF_DAY, 24)
             }
             val timeDiff = dueDate.timeInMillis - currentDate.timeInMillis
-            return OneTimeWorkRequestBuilder<FixedExpensesWorker>()
-                .setInitialDelay(timeDiff, TimeUnit.MILLISECONDS)
-                .build()
+            return OneTimeWorkRequestBuilder<FixedExpensesWorker>().setInitialDelay(timeDiff,
+                    TimeUnit.MILLISECONDS).build()
         }
     }
 
@@ -39,13 +38,13 @@ class FixedExpensesWorker(appContext: Context,
 
     //TODO: Add retry policy
     override fun doWork(): Result {
-        val disposable = viewModel.createFixedExpensesForPeriod()
-             .subscribeOn(Schedulers.io())
-             .subscribe()
+        val disposable =
+            viewModel.createFixedExpensesForPeriod().subscribeOn(Schedulers.io()).subscribe()
         disposables.add(disposable)
 
         //create again for next day
-        WorkManager.getInstance(applicationContext).enqueueUniqueWork(WORKER_ID, ExistingWorkPolicy.KEEP, getWorker())
+        WorkManager.getInstance(applicationContext)
+            .enqueueUniqueWork(WORKER_ID, ExistingWorkPolicy.KEEP, getWorker())
 
         return Result.success()
     }

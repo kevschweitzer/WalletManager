@@ -14,9 +14,9 @@ import com.schweitzering.walletmanager.debts.create.NewDebtActivity
 import kotlinx.android.synthetic.main.fragment_debts.*
 import org.koin.androidx.scope.currentScope
 
-class DebtsFragment: Fragment() {
+class DebtsFragment : Fragment() {
 
-    private val viewModel: DebtsViewModel by lazy {requireActivity().currentScope.get<DebtsViewModel>()}
+    private val viewModel: DebtsViewModel by lazy { requireActivity().currentScope.get<DebtsViewModel>() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,12 +24,11 @@ class DebtsFragment: Fragment() {
         observeFlowState()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val itemBinding: FragmentDebtsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_debts, container, false)
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        val itemBinding: FragmentDebtsBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_debts, container, false)
         itemBinding.viewModel = viewModel
         itemBinding.lifecycleOwner = this
         return itemBinding.root
@@ -37,8 +36,9 @@ class DebtsFragment: Fragment() {
 
     private fun observeFlowState() {
         viewModel.state.observe(this, Observer {
-            when(it) {
-                is DebtsViewModel.FlowState.NewDebtClicked -> startActivity(NewDebtActivity.getIntent(requireContext()))
+            when (it) {
+                is DebtsViewModel.FlowState.NewDebtClicked -> startActivity(NewDebtActivity.getIntent(
+                    requireContext()))
             }
         })
     }
@@ -46,7 +46,7 @@ class DebtsFragment: Fragment() {
     private fun setDebtsList() {
         viewModel.debts.observe(this, Observer {
             list_debts.apply {
-                adapter = DebtsAdapter(it,viewModel)
+                adapter = DebtsAdapter(it, viewModel)
                 layoutManager = LinearLayoutManager(requireContext())
             }
         })

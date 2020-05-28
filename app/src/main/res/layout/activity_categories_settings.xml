@@ -5,14 +5,16 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
-                name="viewModel"
-                type="com.schweitzering.walletmanager.settings.categories.list.CategoriesSettingsViewModel" />
+            name="viewModel"
+            type="com.schweitzering.walletmanager.settings.categories.list.CategoriesSettingsViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".settings.categories.list.CategoriesSettingsActivity">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".settings.categories.list.CategoriesSettingsActivity">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_categories"
@@ -35,28 +37,28 @@
                 android:layout_weight="0.25"
                 android:layout_height="wrap_content"
                 android:text="Expense"
-                android:onClick="@{() -> viewModel.onCreateExpenseClicked()}"/>
+                android:onClick="@{() -> viewModel.onCreateExpenseClicked()}" />
 
             <Button
                 android:layout_width="0dp"
                 android:layout_weight="0.25"
                 android:layout_height="wrap_content"
                 android:text="Income"
-                android:onClick="@{() -> viewModel.onCreateIncomeClicked()}"/>
+                android:onClick="@{() -> viewModel.onCreateIncomeClicked()}" />
 
             <Button
                 android:layout_width="0dp"
                 android:layout_weight="0.25"
                 android:layout_height="wrap_content"
                 android:text="Saving"
-                android:onClick="@{() -> viewModel.onCreateSavingClicked()}"/>
+                android:onClick="@{() -> viewModel.onCreateSavingClicked()}" />
 
             <Button
                 android:layout_width="0dp"
                 android:layout_weight="0.25"
                 android:layout_height="wrap_content"
                 android:text="Invest"
-                android:onClick="@{() -> viewModel.onCreateInvestmentClicked()}"/>
+                android:onClick="@{() -> viewModel.onCreateInvestmentClicked()}" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

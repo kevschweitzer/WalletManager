@@ -38,7 +38,7 @@ import com.schweitzering.walletmanager.transaction.TransactionViewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
-val appModule = module{
+val appModule = module {
 
     scope(named<TransactionActivity>()) {
         scoped { TransactionViewModel(get(), get()) }
@@ -47,14 +47,12 @@ val appModule = module{
     scope(named<MainActivity>()) {
         factory { BalanceViewModel(get(), get(), get()) }
         factory { FixedExpensesViewModel(get(), get()) }
-        factory { DebtsViewModel(get(), get())}
+        factory { DebtsViewModel(get(), get()) }
     }
 
     scope(named<NewFixedExpenseGeneratorActivity>()) {
         scoped {
-            NewFixedExpenseGeneratorViewModel(
-                get()
-            )
+            NewFixedExpenseGeneratorViewModel(get())
         }
     }
 
@@ -63,18 +61,16 @@ val appModule = module{
     }
 
     scope(named<FixedExpensesGeneratorsActivity>()) {
-        scoped {FixedExpensesGeneratorsViewModel(get())}
+        scoped { FixedExpensesGeneratorsViewModel(get()) }
     }
 
     scope(named<NewDebtActivity>()) {
-        scoped {NewDebtViewModel(get())}
+        scoped { NewDebtViewModel(get()) }
     }
 
     scope(named<CategoriesSettingsActivity>()) {
         scoped {
-            CategoriesSettingsViewModel(
-                get()
-            )
+            CategoriesSettingsViewModel(get())
         }
     }
 
@@ -82,19 +78,19 @@ val appModule = module{
         scoped { NewCategoryViewModel(get()) }
     }
 
-    factory {AddCategoryTypeUseCase(get())}
+    factory { AddCategoryTypeUseCase(get()) }
 
-    factory {GetPartialBalanceUseCase(get())}
+    factory { GetPartialBalanceUseCase(get()) }
 
-    factory {GetTotalBalanceUseCase(get())}
+    factory { GetTotalBalanceUseCase(get()) }
 
-    factory {GetCategoryTypesUseCase(get())}
+    factory { GetCategoryTypesUseCase(get()) }
 
-    factory {AddTransactionUseCase(get())}
+    factory { AddTransactionUseCase(get()) }
 
-    factory {GetAllTransactionsUseCase(get())}
+    factory { GetAllTransactionsUseCase(get()) }
 
-    factory {NewFixedExpenseUseCase(get())}
+    factory { NewFixedExpenseUseCase(get()) }
 
     factory { GetFixedExpensesUseCase(get()) }
 
@@ -106,7 +102,7 @@ val appModule = module{
 
     factory { FixedExpensesWorkerViewModel(get()) }
 
-    factory {CreateFixedExpensesForPeriodUseCase(get(), get())}
+    factory { CreateFixedExpensesForPeriodUseCase(get(), get()) }
 
     factory { GetAllDebtsUseCase(get()) }
 

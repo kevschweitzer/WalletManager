@@ -2,8 +2,8 @@ package com.schweitzering.walletmanager.settings.categories.list
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,10 +31,11 @@ class CategoriesSettingsActivity : AppCompatActivity(), DataBindingProtocol {
 
     private fun observeState() {
         viewModel.state.observe(this, Observer {
-            when(it) {
-                is CategoriesSettingsViewModel.State.CreateCategory ->
-                    startActivity(NewCategoryActivity.getIntent(this, it.category))
-                is CategoriesSettingsViewModel.State.EditCategory -> {}
+            when (it) {
+                is CategoriesSettingsViewModel.State.CreateCategory -> startActivity(
+                    NewCategoryActivity.getIntent(this, it.category))
+                is CategoriesSettingsViewModel.State.EditCategory -> {
+                }
             }
         })
     }
@@ -42,18 +43,15 @@ class CategoriesSettingsActivity : AppCompatActivity(), DataBindingProtocol {
     private fun observeCategories() {
         viewModel.categories.observe(this, Observer {
             with(list_categories) {
-                adapter =
-                    CategoriesSettingsAdapter(
-                        it,
-                        viewModel
-                    )
+                adapter = CategoriesSettingsAdapter(it, viewModel)
                 layoutManager = LinearLayoutManager(this@CategoriesSettingsActivity)
             }
         })
     }
 
     override fun setDataBinding() {
-        val binding = DataBindingUtil.setContentView<ActivityCategoriesSettingsBinding>(this, R.layout.activity_categories_settings)
+        val binding = DataBindingUtil.setContentView<ActivityCategoriesSettingsBinding>(this,
+            R.layout.activity_categories_settings)
         binding.viewModel = viewModel
     }
 }

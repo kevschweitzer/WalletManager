@@ -8,10 +8,10 @@ import com.schweitzering.walletmanager.xsupport.mappers.toDebt
 import com.schweitzering.walletmanager.xsupport.mappers.toDebtProfile
 
 class DebtsViewModel(private val getAllDebtsUseCase: GetAllDebtsUseCase,
-                    private val resolveDebtUseCase: ResolveDebtUseCase) {
+                     private val resolveDebtUseCase: ResolveDebtUseCase) {
 
     sealed class FlowState {
-        object NewDebtClicked: FlowState()
+        object NewDebtClicked : FlowState()
     }
 
     val debts = Transformations.map(getAllDebtsUseCase.execute()) {

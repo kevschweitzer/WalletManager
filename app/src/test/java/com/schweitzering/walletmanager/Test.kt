@@ -9,7 +9,9 @@ import java.util.*
 
 fun main() {
     println(Date(Timestamp(System.currentTimeMillis()).time))
-    val localDate = Date(Timestamp(System.currentTimeMillis()).time).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+    val localDate =
+        Date(Timestamp(System.currentTimeMillis()).time).toInstant().atZone(ZoneId.systemDefault())
+            .toLocalDate()
     print(localDate.toString())
 }
 

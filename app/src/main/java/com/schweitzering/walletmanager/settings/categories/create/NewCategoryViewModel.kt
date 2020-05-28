@@ -15,6 +15,7 @@ class NewCategoryViewModel(private val addCategoryTypeUseCase: AddCategoryTypeUs
     }
 
     fun handleIntent(intent: Intent?) {
-        categoryType.category = intent?.getSerializableExtra(NEW_CATEGORY_TYPE) as TransactionCategory
+        categoryType.category =
+            intent?.getSerializableExtra(NEW_CATEGORY_TYPE) as TransactionCategory
     }
 }

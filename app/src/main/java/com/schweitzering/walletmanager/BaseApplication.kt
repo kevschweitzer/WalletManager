@@ -6,7 +6,7 @@ import com.schweitzering.walletmanager.inject.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
-class BaseApplication: Application() {
+class BaseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()

@@ -2,12 +2,9 @@ package com.schweitzering.walletmanager.main
 
 import android.os.Bundle
 import android.os.PersistableBundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import androidx.work.ExistingWorkPolicy
-import androidx.work.PeriodicWorkRequest
-import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.google.android.material.tabs.TabLayoutMediator
 import com.schweitzering.walletmanager.R
@@ -16,7 +13,6 @@ import com.schweitzering.walletmanager.fixedExpenses.worker.FixedExpensesWorker.
 import com.schweitzering.walletmanager.settings.SettingsActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.item_toolbar.view.*
-import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,10 +48,8 @@ class MainActivity : AppCompatActivity() {
         super.onSaveInstanceState(outState, outPersistentState)
     }
 
-    override fun onRestoreInstanceState(
-        savedInstanceState: Bundle?,
-        persistentState: PersistableBundle?
-    ) {
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?,
+                                        persistentState: PersistableBundle?) {
         currentViewPagerPosition = savedInstanceState?.get(CURRENT_POSITION) as Int
         view_pager.currentItem = currentViewPagerPosition
         super.onRestoreInstanceState(savedInstanceState, persistentState)
@@ -64,7 +58,7 @@ class MainActivity : AppCompatActivity() {
     private fun setViewPager() {
         val adapter = PagesAdapter(this)
         view_pager.adapter = adapter
-        view_pager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
+        view_pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 currentViewPagerPosition = position
             }

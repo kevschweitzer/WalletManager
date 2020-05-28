@@ -28,8 +28,10 @@ import com.schweitzering.walletmanager.fixedExpenses.worker.FixedExpensesWorkerV
 import com.schweitzering.walletmanager.main.MainActivity
 import com.schweitzering.walletmanager.settings.SettingsActivity
 import com.schweitzering.walletmanager.settings.SettingsViewModel
-import com.schweitzering.walletmanager.settings.categories.CategoriesSettingsActivity
-import com.schweitzering.walletmanager.settings.categories.CategoriesSettingsViewModel
+import com.schweitzering.walletmanager.settings.categories.create.NewCategoryActivity
+import com.schweitzering.walletmanager.settings.categories.create.NewCategoryViewModel
+import com.schweitzering.walletmanager.settings.categories.list.CategoriesSettingsActivity
+import com.schweitzering.walletmanager.settings.categories.list.CategoriesSettingsViewModel
 import com.schweitzering.walletmanager.transaction.TransactionActivity
 import com.schweitzering.walletmanager.transaction.TransactionViewModel
 import org.koin.core.qualifier.named
@@ -68,7 +70,15 @@ val appModule = module{
     }
 
     scope(named<CategoriesSettingsActivity>()) {
-        scoped { CategoriesSettingsViewModel(get()) }
+        scoped {
+            CategoriesSettingsViewModel(
+                get()
+            )
+        }
+    }
+
+    scope(named<NewCategoryActivity>()) {
+        scoped { NewCategoryViewModel() }
     }
 
     factory {GetPartialBalanceUseCase(get())}

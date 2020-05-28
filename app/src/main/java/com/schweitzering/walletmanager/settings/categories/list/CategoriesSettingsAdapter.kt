@@ -1,4 +1,4 @@
-package com.schweitzering.walletmanager.settings.categories
+package com.schweitzering.walletmanager.settings.categories.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,9 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.schweitzering.domain.categories.CategoryType
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.ItemCategoryTypeBinding
-import com.schweitzering.walletmanager.databinding.ItemTransactionBinding
-import com.schweitzering.walletmanager.settings.SettingsViewModel
-import com.schweitzering.walletmanager.transaction.TransactionProfile
 
 
 class CategoriesSettingsAdapter(private val categoriesList: List<CategoryType>,
@@ -32,7 +29,8 @@ class CategoriesSettingsAdapter(private val categoriesList: List<CategoryType>,
     }
 
     class CategoryViewHolder(val binding: ItemCategoryTypeBinding,
-                             val viewModel: CategoriesSettingsViewModel): RecyclerView.ViewHolder(binding.root) {
+                             val viewModel: CategoriesSettingsViewModel
+    ): RecyclerView.ViewHolder(binding.root) {
 
         lateinit var category: CategoryType
 

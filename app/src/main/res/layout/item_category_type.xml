@@ -3,11 +3,11 @@
 <data>
     <variable
             name="viewModel"
-            type="com.schweitzering.walletmanager.settings.categories.CategoriesSettingsViewModel" />
+            type="com.schweitzering.walletmanager.settings.categories.list.CategoriesSettingsViewModel" />
 
     <variable
             name="viewHolder"
-            type="com.schweitzering.walletmanager.settings.categories.CategoriesSettingsAdapter.CategoryViewHolder" />
+            type="com.schweitzering.walletmanager.settings.categories.list.CategoriesSettingsAdapter.CategoryViewHolder" />
 </data>
 
         <LinearLayout

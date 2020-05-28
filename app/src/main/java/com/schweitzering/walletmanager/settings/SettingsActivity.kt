@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.ActivitySettingsBinding
-import com.schweitzering.walletmanager.settings.categories.CategoriesSettingsActivity
+import com.schweitzering.walletmanager.settings.categories.list.CategoriesSettingsActivity
 import com.schweitzering.walletmanager.xsupport.utils.DataBindingProtocol
 import org.koin.androidx.scope.currentScope
 

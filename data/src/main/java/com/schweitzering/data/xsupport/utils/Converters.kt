@@ -14,17 +14,11 @@ class Converters {
     @TypeConverter
     fun toTimestamp(value: Long?) = value?.let{Timestamp(it)}
 
-   /* @TypeConverter
+    @TypeConverter
     fun fromTransactionType(type: TransactionType) = type.name
 
     @TypeConverter
     fun toTransactionType(name: String) = TransactionType.valueOf(name)
-
-    @TypeConverter
-    fun fromTransactionCategory(category: TransactionCategory) {}
-
-    @TypeConverter
-    fun toTransactionCategory(id: Int) {}*/
 
     @TypeConverter
     fun fromPeriod(period: TimePeriod) = period.name

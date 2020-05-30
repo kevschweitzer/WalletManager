@@ -7,4 +7,4 @@ data class TransactionProfile(var value: Float,
                               var date: Timestamp?,
                               var description: String,
                               var type: TransactionType,
-                              var categoryType: String)
+                              var categoryId: Int)

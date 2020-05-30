@@ -25,7 +25,7 @@ class CRUDCategoryActivity : AppCompatActivity(), DataBindingProtocol {
 
         fun getCreateIntent(context: Context, transaction: TransactionType): Intent {
             val intent = Intent(context, CRUDCategoryActivity::class.java)
-            val category = TransactionCategory(category = transaction, type = "")
+            val category = TransactionCategory(type = transaction, name = "")
             intent.putExtra(CATEGORY_TYPE, category)
             return intent
         }

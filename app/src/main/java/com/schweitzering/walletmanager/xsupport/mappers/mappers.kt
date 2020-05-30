@@ -9,17 +9,18 @@ import com.schweitzering.walletmanager.fixedExpenses.FixedExpenseProfile
 import com.schweitzering.walletmanager.fixedExpenses.generator.FixedExpenseGeneratorProfile
 import com.schweitzering.walletmanager.transaction.TransactionProfile
 
-fun TransactionProfile.toTransaction() = Transaction(value = value,
+fun TransactionProfile.toTransaction() = Transaction(
+    value = value,
     date = date,
     description = description,
-    transactionCategory = type,
-    categoryType = categoryType)
+    type = type,
+    categoryId = categoryId)
 
 fun Transaction.toTransactionProfile() = TransactionProfile(value = value,
     date = date,
     description = description,
-    type = transactionCategory,
-    categoryType = categoryType)
+    type = type,
+    categoryId = categoryId)
 
 fun FixedExpenseProfile.toFixedExpense() =
     FixedExpense(id, expense, isAlreadyPaid, creationDate, paymentDate)

@@ -27,7 +27,7 @@
             android:text="@{Float.toString(viewHolder.debt.transaction.value)}" />
 
         <Button
-            android:text="@{(viewHolder.debt.transaction.transactionCategory == TransactionCategory.EXPENSE) ? `Pay` : `Receive`}"
+            android:text="@{(viewHolder.debt.transaction.type == TransactionType.EXPENSE) ? `Pay` : `Receive`}"
             android:visibility="@{viewHolder.debt.resolved ? View.GONE : View.VISIBLE}"
             android:onClick="@{() -> viewModel.resolveDebt(viewHolder.debt)}"
             android:layout_width="wrap_content"

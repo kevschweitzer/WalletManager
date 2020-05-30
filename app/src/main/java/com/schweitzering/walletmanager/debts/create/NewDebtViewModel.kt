@@ -22,7 +22,8 @@ class NewDebtViewModel(private val newDebtUseCase: NewDebtUseCase) {
             value = 40f,
             description = "",
             type = TransactionType.INCOME,
-            category = TransactionCategory()),
+            categoryId = 0
+        ),
             creationDate = Timestamp(System.currentTimeMillis())).toDebt())
         state.value = FlowState.SuccessCreation
     }

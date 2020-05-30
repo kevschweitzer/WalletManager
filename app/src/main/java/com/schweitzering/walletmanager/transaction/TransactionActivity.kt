@@ -81,7 +81,7 @@ class TransactionActivity : AppCompatActivity(), DataBindingProtocol {
     }
 
     private fun observeCategories() {
-        viewModel.categories.observe(this, Observer { addItemsToSpinner(it) })
+        viewModel.categories.observe(this, Observer { addItemsToSpinner(it.map { it.name }) })
     }
 
     override fun setDataBinding() {

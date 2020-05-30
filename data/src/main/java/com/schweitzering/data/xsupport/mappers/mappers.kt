@@ -16,9 +16,9 @@ fun Transaction.toTransactionEntity() = TransactionEntity(
     date = date, //Won't be null when transaction is created
     description = description,
     type = type,
-    category = category
+    categoryId = categoryId
 )
-fun TransactionEntity.toTransaction() = Transaction(value = value, date = date, description = description, type = type, category = category)
+fun TransactionEntity.toTransaction() = Transaction(value = value, date = date, description = description, type = type, categoryId = categoryId)
 
 
 fun TransactionCategory.toTransactionCategoryEntity() = TransactionCategoryEntity(id = id, type = type, name = name)

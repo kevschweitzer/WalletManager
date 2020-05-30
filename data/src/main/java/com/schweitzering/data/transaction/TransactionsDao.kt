@@ -15,8 +15,8 @@ interface TransactionsDao {
     @Delete
     suspend fun delete(entity: TransactionEntity)
 
-    @Query("SELECT * FROM transactions WHERE category == :category")
-    fun getByCategory(category: String): LiveData<List<TransactionEntity>>
+    @Query("SELECT * FROM transactions WHERE categoryId == :categoryId")
+    fun getByCategory(categoryId: Int): LiveData<List<TransactionEntity>>
 
     @Query("SELECT * FROM transactions WHERE type == :type")
     fun getByType(type: String): LiveData<List<TransactionEntity>>

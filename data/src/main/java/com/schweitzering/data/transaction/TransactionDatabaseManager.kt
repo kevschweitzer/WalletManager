@@ -2,11 +2,11 @@ package com.schweitzering.data.transaction
 
 import com.schweitzering.data.xsupport.database.AppDatabase
 import com.schweitzering.data.xsupport.utils.Converters
-import com.schweitzering.domain.transaction.TransactionCategory
+import com.schweitzering.domain.categories.TransactionCategory
+import com.schweitzering.domain.transaction.TransactionType
 import kotlinx.coroutines.runBlocking
 import java.sql.Timestamp
 import java.time.LocalDate
-
 
 class TransactionDatabaseManager(private val database: AppDatabase) {
 
@@ -27,9 +27,9 @@ class TransactionDatabaseManager(private val database: AppDatabase) {
         }
     }
 
-    fun getByCategory(category: TransactionCategory) = transactionsDao.getByCategory(converters.fromTransactionCategory(category))
+    /*fun getByCategory(category: TransactionCategory) = transactionsDao.getByCategory(converters.fromTransactionCategory(category))
 
-    fun getByCategoryType(type: String) = transactionsDao.getByCategoryType(type)
+    fun getByType(type: TransactionType) = transactionsDao.getByType(converters.fromTransactionType(type))*/
 
     fun getBetween(initialDate: LocalDate, finalDate: LocalDate) =
         transactionsDao.getBetween(converters.fromTimestamp(Timestamp.valueOf(initialDate.startOfDay())),

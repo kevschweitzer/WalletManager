@@ -18,8 +18,8 @@ interface TransactionsDao {
     @Query("SELECT * FROM transactions WHERE category == :category")
     fun getByCategory(category: String): LiveData<List<TransactionEntity>>
 
-    @Query("SELECT * FROM transactions WHERE categoryType == :type")
-    fun getByCategoryType(type: String): LiveData<List<TransactionEntity>>
+    @Query("SELECT * FROM transactions WHERE type == :type")
+    fun getByType(type: String): LiveData<List<TransactionEntity>>
 
     @Query("SELECT * FROM transactions WHERE date BETWEEN :initialDate AND :finalDate")
     fun getBetween(initialDate: Long?, finalDate: Long?): LiveData<List<TransactionEntity>>

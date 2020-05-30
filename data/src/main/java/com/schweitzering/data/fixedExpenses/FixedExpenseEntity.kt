@@ -5,7 +5,6 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.schweitzering.domain.transaction.Transaction
-import com.schweitzering.domain.transaction.TransactionCategory
 import java.sql.Timestamp
 
 @Entity(tableName = "fixed_expenses")

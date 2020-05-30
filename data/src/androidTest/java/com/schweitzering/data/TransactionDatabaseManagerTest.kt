@@ -13,7 +13,7 @@ import com.schweitzering.data.Constants.Companion.SALARY_TYPE
 import com.schweitzering.data.xsupport.database.AppDatabase
 import com.schweitzering.data.transaction.TransactionDatabaseManager
 import com.schweitzering.data.transaction.TransactionEntity
-import com.schweitzering.domain.transaction.TransactionCategory
+import com.schweitzering.domain.transaction.TransactionType
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -22,7 +22,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import java.sql.Timestamp
 import java.time.LocalDate
-import java.util.*
 
 @RunWith(AndroidJUnit4ClassRunner::class)
 class TransactionsDaoTest {
@@ -36,28 +35,28 @@ class TransactionsDaoTest {
         id = 1,
         value = 200f,
         date = Timestamp(System.currentTimeMillis() - 10 * ONE_DAY_IN_MILLIS),
-        category = TransactionCategory.INCOME,
+        type = TransactionType.INCOME,
         categoryType = SALARY_TYPE
     )
     private val entity2 = TransactionEntity(
         id = 2,
         value = 10.5f,
         date = Timestamp(System.currentTimeMillis() - 5 * ONE_DAY_IN_MILLIS),
-        category = TransactionCategory.EXPENSE,
+        type = TransactionType.EXPENSE,
         categoryType = FOOD_TYPE
     )
     private val entity3 = TransactionEntity(
         id = 3,
         value = 92.3f,
         date = Timestamp(System.currentTimeMillis() - 2 * ONE_DAY_IN_MILLIS),
-        category = TransactionCategory.EXPENSE,
+        type = TransactionType.EXPENSE,
         categoryType = CLOTHES_TYPE
     )
     private val entity4 = TransactionEntity(
         id = 4,
         value = 92.3f,
         date = Timestamp(System.currentTimeMillis()),
-        category = TransactionCategory.EXPENSE,
+        type = TransactionType.EXPENSE,
         categoryType = CLOTHES_TYPE
     )
 
@@ -102,7 +101,7 @@ class TransactionsDaoTest {
         databaseManager.insert(entity2)
         databaseManager.insert(entity3)
 
-        databaseManager.getByCategory(TransactionCategory.EXPENSE).observeOnce {
+        databaseManager.getByCategory(TransactionType.EXPENSE).observeOnce {
            assertEquals(it, listOf(entity2, entity3))
         }
     }

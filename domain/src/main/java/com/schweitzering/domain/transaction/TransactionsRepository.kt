@@ -14,7 +14,7 @@ interface TransactionsRepository {
 
     fun getBetween(initialDate: LocalDate, finalDate: LocalDate): LiveData<List<Transaction>>
 
-    fun getByType(type: TransactionType): LiveData<List<Transaction>>
+    //fun getByType(type: TransactionType): LiveData<List<Transaction>>
 
-    fun getByCategory(category: TransactionCategory): LiveData<List<Transaction>>
+    //fun getByCategory(category: TransactionCategory): LiveData<List<Transaction>>
 }

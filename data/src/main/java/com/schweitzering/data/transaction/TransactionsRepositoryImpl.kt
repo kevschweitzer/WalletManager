@@ -5,7 +5,7 @@ import androidx.lifecycle.Transformations
 import com.schweitzering.data.xsupport.mappers.toTransaction
 import com.schweitzering.data.xsupport.mappers.toTransactionEntity
 import com.schweitzering.domain.transaction.Transaction
-import com.schweitzering.domain.transaction.TransactionCategory
+import com.schweitzering.domain.transaction.TransactionType
 import com.schweitzering.domain.transaction.TransactionsRepository
 import java.time.LocalDate
 
@@ -31,8 +31,8 @@ class TransactionsRepositoryImpl(private val databaseManager: TransactionDatabas
         }
     }
 
-    override fun getByCategory(category: TransactionCategory): LiveData<List<Transaction>> {
-        return Transformations.map(databaseManager.getByCategory(category)) { list ->
+    /*override fun getByCategory(type: TransactionType): LiveData<List<Transaction>> {
+        return Transformations.map(databaseManager.getByCategory(type)) { list ->
             list.map { it.toTransaction() }
         }
     }
@@ -41,5 +41,5 @@ class TransactionsRepositoryImpl(private val databaseManager: TransactionDatabas
         return Transformations.map(databaseManager.getByCategoryType(type)) { list ->
             list.map { it.toTransaction() }
         }
-    }
+    }*/
 }

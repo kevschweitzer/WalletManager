@@ -8,7 +8,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.schweitzering.data.fixedExpenses.FixedExpenseEntity
 import com.schweitzering.data.fixedExpenses.FixedExpensesDatabaseManager
 import com.schweitzering.data.xsupport.database.AppDatabase
-import com.schweitzering.domain.transaction.TransactionCategory
+import com.schweitzering.domain.transaction.TransactionType
 import junit.framework.Assert.assertEquals
 import org.junit.After
 import org.junit.Before
@@ -29,7 +29,7 @@ class FixedExpensesTest {
     val entity1 = FixedExpenseEntity(
         id = 1,
         value = 300f,
-        category = TransactionCategory.EXPENSE, //Each Transaction has a category
+        category = TransactionType.EXPENSE, //Each Transaction has a category
         categoryType = Constants.FOOD_TYPE,
         creationDate = Timestamp(System.currentTimeMillis())
     )
@@ -37,7 +37,7 @@ class FixedExpensesTest {
     val entity2 = FixedExpenseEntity(
         id = 2,
         value = 150f,
-        category = TransactionCategory.EXPENSE, //Each Transaction has a category
+        category = TransactionType.EXPENSE, //Each Transaction has a category
         categoryType = Constants.CLOTHES_TYPE,
         creationDate = Timestamp(System.currentTimeMillis())
     )

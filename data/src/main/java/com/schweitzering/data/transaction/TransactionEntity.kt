@@ -2,7 +2,8 @@ package com.schweitzering.data.transaction
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.schweitzering.domain.transaction.TransactionCategory
+import com.schweitzering.domain.categories.TransactionCategory
+import com.schweitzering.domain.transaction.TransactionType
 import java.sql.Timestamp
 
 
@@ -12,6 +13,6 @@ data class TransactionEntity (
     var value: Float,
     var date: Timestamp?,
     var description: String,
-    var category: TransactionCategory,
-    var categoryType: String
+    var type: TransactionType,
+    var category: TransactionCategory
 )

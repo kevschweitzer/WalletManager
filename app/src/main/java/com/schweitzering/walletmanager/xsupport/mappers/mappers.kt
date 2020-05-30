@@ -12,13 +12,13 @@ import com.schweitzering.walletmanager.transaction.TransactionProfile
 fun TransactionProfile.toTransaction() = Transaction(value = value,
     date = date,
     description = description,
-    category = category,
+    transactionCategory = type,
     categoryType = categoryType)
 
 fun Transaction.toTransactionProfile() = TransactionProfile(value = value,
     date = date,
     description = description,
-    category = category,
+    type = transactionCategory,
     categoryType = categoryType)
 
 fun FixedExpenseProfile.toFixedExpense() =

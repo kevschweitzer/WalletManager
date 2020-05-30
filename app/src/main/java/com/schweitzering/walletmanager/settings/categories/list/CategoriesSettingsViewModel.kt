@@ -2,39 +2,39 @@ package com.schweitzering.walletmanager.settings.categories.list
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.schweitzering.domain.categories.CategoryType
-import com.schweitzering.domain.categories.GetAllCategoriesTypesUseCase
-import com.schweitzering.domain.transaction.TransactionCategory
+import com.schweitzering.domain.categories.TransactionCategory
+import com.schweitzering.domain.categories.GetAllTransactionCategoriesUseCase
+import com.schweitzering.domain.transaction.TransactionType
 
-class CategoriesSettingsViewModel(private val getAllCategoriesTypesUseCase: GetAllCategoriesTypesUseCase) {
+class CategoriesSettingsViewModel(private val getAllTransactionCategoriesUseCase: GetAllTransactionCategoriesUseCase) {
 
     sealed class State {
-        class CreateCategory(val category: TransactionCategory) : State()
-        class EditCategory(val type: CategoryType) : State()
+        class CreateCategory(val type: TransactionType) : State()
+        class EditCategory(val transaction: TransactionCategory) : State()
     }
 
-    val categories = Transformations.map(getAllCategoriesTypesUseCase.execute()) {
-        it.sortedBy { it.category.name }
+    val categories = Transformations.map(getAllTransactionCategoriesUseCase.execute()) {
+        it.sortedBy { it.name }
     }
     val state = MutableLiveData<State>()
 
     fun onCreateIncomeClicked() {
-        state.value = State.CreateCategory(TransactionCategory.INCOME)
+        state.value = State.CreateCategory(TransactionType.INCOME)
     }
 
     fun onCreateExpenseClicked() {
-        state.value = State.CreateCategory(TransactionCategory.EXPENSE)
+        state.value = State.CreateCategory(TransactionType.EXPENSE)
     }
 
     fun onCreateSavingClicked() {
-        state.value = State.CreateCategory(TransactionCategory.SAVING)
+        state.value = State.CreateCategory(TransactionType.SAVING)
     }
 
     fun onCreateInvestmentClicked() {
-        state.value = State.CreateCategory(TransactionCategory.INVESTMENT)
+        state.value = State.CreateCategory(TransactionType.INVESTMENT)
     }
 
-    fun onEditCategoryClicked(category: CategoryType) {
-        state.value = State.EditCategory(category)
+    fun onEditCategoryClicked(transactionCategory: TransactionCategory) {
+        state.value = State.EditCategory(transactionCategory)
     }
 }

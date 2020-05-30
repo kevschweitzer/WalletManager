@@ -11,7 +11,7 @@
             name="viewHolder"
             type="com.schweitzering.walletmanager.debts.DebtsAdapter.DebtViewHolder" />
 
-        <import type="com.schweitzering.domain.transaction.TransactionCategory" />
+        <import type="com.schweitzering.domain.transaction.TransactionType" />
 
         <import type="android.view.View" />
     </data>
@@ -27,7 +27,7 @@
             android:text="@{Float.toString(viewHolder.debt.transaction.value)}" />
 
         <Button
-            android:text="@{(viewHolder.debt.transaction.category == TransactionCategory.EXPENSE) ? `Pay` : `Receive`}"
+            android:text="@{(viewHolder.debt.transaction.transactionCategory == TransactionCategory.EXPENSE) ? `Pay` : `Receive`}"
             android:visibility="@{viewHolder.debt.resolved ? View.GONE : View.VISIBLE}"
             android:onClick="@{() -> viewModel.resolveDebt(viewHolder.debt)}"
             android:layout_width="wrap_content"

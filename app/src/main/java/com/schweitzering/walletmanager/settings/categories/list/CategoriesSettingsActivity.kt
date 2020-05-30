@@ -33,9 +33,9 @@ class CategoriesSettingsActivity : AppCompatActivity(), DataBindingProtocol {
         viewModel.state.observe(this, Observer {
             when (it) {
                 is CategoriesSettingsViewModel.State.CreateCategory -> startActivity(
-                    CRUDCategoryActivity.getCreateIntent(this, it.category))
+                    CRUDCategoryActivity.getCreateIntent(this, it.type))
                 is CategoriesSettingsViewModel.State.EditCategory -> startActivity(
-                    CRUDCategoryActivity.getUpdateIntent(this, it.type)
+                    CRUDCategoryActivity.getUpdateIntent(this, it.transaction)
                 )
             }
         })

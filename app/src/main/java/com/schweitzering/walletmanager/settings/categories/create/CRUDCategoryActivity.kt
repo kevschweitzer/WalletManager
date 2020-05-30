@@ -5,8 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.schweitzering.domain.categories.CategoryType
-import com.schweitzering.domain.transaction.TransactionCategory
+import com.schweitzering.domain.categories.TransactionCategory
+import com.schweitzering.domain.transaction.TransactionType
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.ActivityNewCategoryBinding
 import com.schweitzering.walletmanager.xsupport.utils.DataBindingProtocol
@@ -17,15 +17,15 @@ class CRUDCategoryActivity : AppCompatActivity(), DataBindingProtocol {
     companion object {
         const val CATEGORY_TYPE = "transaction_category"
 
-        fun getUpdateIntent(context: Context, category: CategoryType): Intent {
+        fun getUpdateIntent(context: Context, transactionCategory: TransactionCategory): Intent {
             val intent = Intent(context, CRUDCategoryActivity::class.java)
-            intent.putExtra(CATEGORY_TYPE, category)
+            intent.putExtra(CATEGORY_TYPE, transactionCategory)
             return intent
         }
 
-        fun getCreateIntent(context: Context, transaction: TransactionCategory): Intent {
+        fun getCreateIntent(context: Context, transaction: TransactionType): Intent {
             val intent = Intent(context, CRUDCategoryActivity::class.java)
-            val category = CategoryType(category = transaction, type = "")
+            val category = TransactionCategory(category = transaction, type = "")
             intent.putExtra(CATEGORY_TYPE, category)
             return intent
         }

@@ -9,7 +9,7 @@ import com.schweitzering.domain.transaction.TransactionType
 interface TransactionCategoryDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(category: TransactionCategoryEntity)
+    suspend fun insert(vararg category: TransactionCategoryEntity)
 
     @Delete
     suspend fun delete(category: TransactionCategoryEntity)

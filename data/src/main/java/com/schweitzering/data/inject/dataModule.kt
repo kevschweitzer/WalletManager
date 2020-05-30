@@ -1,6 +1,5 @@
 package com.schweitzering.data.inject
 
-import androidx.room.Room
 import com.schweitzering.data.categories.TransactionCategoryDatabaseManager
 import com.schweitzering.data.categories.TransactionCategoryRepositoryImpl
 import com.schweitzering.data.debts.DebtsDatabaseManager
@@ -9,9 +8,9 @@ import com.schweitzering.data.fixedExpenses.FixedExpensesDatabaseManager
 import com.schweitzering.data.fixedExpenses.FixedExpensesRepositoryImpl
 import com.schweitzering.data.fixedExpenses.generator.FixedExpensesGeneratorDatabaseManager
 import com.schweitzering.data.fixedExpenses.generator.FixedExpensesGeneratorRepositoryImpl
-import com.schweitzering.data.xsupport.database.AppDatabase
 import com.schweitzering.data.transaction.TransactionDatabaseManager
 import com.schweitzering.data.transaction.TransactionsRepositoryImpl
+import com.schweitzering.data.xsupport.database.AppDatabase
 import com.schweitzering.domain.categories.TransactionCategoryRepository
 import com.schweitzering.domain.debts.DebtsRepository
 import com.schweitzering.domain.fixedExpenses.FixedExpensesRepository
@@ -22,12 +21,7 @@ import org.koin.dsl.module
 
 val dataModule = module {
 
-    single {
-        Room.databaseBuilder(
-            androidContext(),
-            AppDatabase::class.java, "wallet-database"
-        ).build()
-    }
+    single { AppDatabase.getInstance(androidContext()) }
 
     factory<TransactionCategoryRepository> {TransactionCategoryRepositoryImpl(androidContext(), get())}
 

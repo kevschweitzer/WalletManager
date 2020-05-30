@@ -21,7 +21,6 @@ import com.schweitzering.data.transaction.TransactionsDao
 import com.schweitzering.data.xsupport.utils.Converters
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 @Database(entities = [BalanceEntity::class, TransactionEntity::class, TransactionCategoryEntity::class, FixedExpenseEntity::class, FixedExpenseGeneratorEntity::class, DebtEntity::class],
     version = 1)
@@ -46,11 +45,9 @@ abstract class AppDatabase : RoomDatabase() {
 
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(context, AppDatabase::class.java, "wallet-manager")
-                // prepopulate the database after onCreate was called
                 .addCallback(object : Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         super.onCreate(db)
-                        // insert the data on the IO Thread
                         GlobalScope.launch {
                             TransactionCategoryEntity.getPredefinedCategories().forEach {
                                 getInstance(context).transactionCategoriesDao().insert(it)

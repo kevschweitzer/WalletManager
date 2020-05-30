@@ -1,6 +1,5 @@
 package com.schweitzering.domain.fixedExpenses
 
-import com.schweitzering.domain.transaction.Transaction
 import com.schweitzering.domain.transaction.TransactionsRepository
 import java.sql.Timestamp
 

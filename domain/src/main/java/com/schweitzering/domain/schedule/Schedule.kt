@@ -1,6 +1,5 @@
 package com.schweitzering.domain.schedule
 
-import android.util.Log
 import java.sql.Timestamp
 import java.util.*
 

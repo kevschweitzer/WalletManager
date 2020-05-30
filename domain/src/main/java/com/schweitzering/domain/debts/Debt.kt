@@ -1,7 +1,6 @@
 package com.schweitzering.domain.debts
 
 import com.schweitzering.domain.transaction.Transaction
-import com.schweitzering.domain.transaction.TransactionCategory
 import java.sql.Timestamp
 
 data class Debt(

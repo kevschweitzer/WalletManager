@@ -1,23 +1,20 @@
 package com.schweitzering.domain.balance
 
-import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.schweitzering.domain.transaction.TransactionCategory
+import com.schweitzering.domain.transaction.TransactionType
 import com.schweitzering.domain.transaction.TransactionsRepository
 
-
-/*
-    Total balance represents all the transactions balance, including saving and investments
- */
+//Total balance represents all the transactions balance, including saving and investments
 class GetTotalBalanceUseCase(private val transactionsRepository: TransactionsRepository) {
 
-    fun execute() = Transformations.map(transactionsRepository.getAll()) {
+    fun execute(): LiveData<Float> = Transformations.map(transactionsRepository.getAll()) {
         var balance = 0f
-        it.forEach {
-            when(it.category) {
-                TransactionCategory.INCOME-> balance += it.value
-                TransactionCategory.EXPENSE -> balance -= it.value
-                else -> Unit //Do nothing
+        it.forEach {transaction ->
+            when(transaction.type) {
+                TransactionType.INCOME-> balance += transaction.value
+                TransactionType.EXPENSE -> balance -= transaction.value
+                else -> Unit
             }
         }
         balance

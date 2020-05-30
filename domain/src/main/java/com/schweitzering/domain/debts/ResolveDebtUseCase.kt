@@ -1,6 +1,5 @@
 package com.schweitzering.domain.debts
 
-import com.schweitzering.domain.transaction.Transaction
 import com.schweitzering.domain.transaction.TransactionsRepository
 import java.sql.Timestamp
 

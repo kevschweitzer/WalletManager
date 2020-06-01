@@ -5,10 +5,10 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
-import com.schweitzering.data.categorytypes.CategoryTypeEntity
-import com.schweitzering.data.categorytypes.CategoryTypesDatabaseManager
+import com.schweitzering.data.categories.TransactionCategoryEntity
+import com.schweitzering.data.categories.TransactionCategoryDatabaseManager
 import com.schweitzering.data.xsupport.database.AppDatabase
-import com.schweitzering.domain.transaction.TransactionCategory
+import com.schweitzering.domain.transaction.TransactionType
 import junit.framework.Assert.assertEquals
 import org.junit.After
 import org.junit.Before
@@ -17,9 +17,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4ClassRunner::class)
-class CategoryTypesDatabaseManagerTest {
+class TransactionTransactionCategoryDatabaseManagerTest {
 
-    private lateinit var databaseManager: CategoryTypesDatabaseManager
+    private lateinit var databaseManagerTransaction: TransactionCategoryDatabaseManager
 
     private lateinit var appDatabase: AppDatabase
 
@@ -27,21 +27,21 @@ class CategoryTypesDatabaseManagerTest {
 
     private val baseExpenseCategories: MutableList<String> by lazy { context.resources.getStringArray(R.array.expense_categories).toMutableList() }
 
-    val entity1 = CategoryTypeEntity(
+    val entity1 = TransactionCategoryEntity(
         id = 1,
-        category = TransactionCategory.EXPENSE,
+        category = TransactionType.EXPENSE,
         type = "cinema"
     )
 
-    val entity2 = CategoryTypeEntity(
+    val entity2 = TransactionCategoryEntity(
         id = 2,
-        category = TransactionCategory.EXPENSE,
+        category = TransactionType.EXPENSE,
         type = "gym"
     )
 
-    val entity3 = CategoryTypeEntity(
+    val entity3 = TransactionCategoryEntity(
         id = 3,
-        category = TransactionCategory.INCOME,
+        category = TransactionType.INCOME,
         type = "sale"
     )
 
@@ -54,7 +54,7 @@ class CategoryTypesDatabaseManagerTest {
         appDatabase = Room.inMemoryDatabaseBuilder(
             InstrumentationRegistry.getInstrumentation().targetContext,
             AppDatabase::class.java).build()
-        databaseManager = CategoryTypesDatabaseManager(appDatabase)
+        databaseManagerTransaction = TransactionCategoryDatabaseManager(appDatabase)
     }
 
     @After
@@ -63,35 +63,35 @@ class CategoryTypesDatabaseManagerTest {
     }
 
     @Test fun addCategoryTypeTest() {
-        databaseManager.add(entity1)
-        databaseManager.getAllByCategory(TransactionCategory.EXPENSE).observeOnce {
+        databaseManagerTransaction.add(entity1)
+        databaseManagerTransaction.getAllByCategory(TransactionType.EXPENSE).observeOnce {
             assertEquals(it, listOf(entity1.type))
         }
     }
 
     @Test fun addTwoCategoryTypeTest() {
-        databaseManager.add(entity1)
-        databaseManager.add(entity2)
-        databaseManager.getAllByCategory(TransactionCategory.EXPENSE).observeOnce {
+        databaseManagerTransaction.add(entity1)
+        databaseManagerTransaction.add(entity2)
+        databaseManagerTransaction.getAllByCategory(TransactionType.EXPENSE).observeOnce {
             assertEquals(it, listOf(entity1.type, entity2.type))
         }
     }
 
     @Test fun getAllByCategoryTypeTest() {
-        databaseManager.add(entity1)
-        databaseManager.add(entity2)
-        databaseManager.add(entity3)
+        databaseManagerTransaction.add(entity1)
+        databaseManagerTransaction.add(entity2)
+        databaseManagerTransaction.add(entity3)
 
-        databaseManager.getAllByCategory(TransactionCategory.EXPENSE).observeOnce {
+        databaseManagerTransaction.getAllByCategory(TransactionType.EXPENSE).observeOnce {
             assertEquals(it, listOf(entity1.type, entity2.type))
         }
     }
 
     @Test fun deleteCategoryTypeTest() {
-        databaseManager.add(entity1)
-        databaseManager.remove(entity1)
+        databaseManagerTransaction.add(entity1)
+        databaseManagerTransaction.remove(entity1)
 
-        databaseManager.getAllByCategory(TransactionCategory.EXPENSE).observeOnce {
+        databaseManagerTransaction.getAllByCategory(TransactionType.EXPENSE).observeOnce {
             assertEquals(it, listOf<String>())
         }
     }

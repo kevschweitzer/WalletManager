@@ -1,6 +1,7 @@
 package com.schweitzering.domain.transaction
 
 import androidx.lifecycle.LiveData
+import com.schweitzering.domain.categories.TransactionCategory
 import java.time.LocalDate
 
 interface TransactionsRepository {
@@ -13,7 +14,7 @@ interface TransactionsRepository {
 
     fun getBetween(initialDate: LocalDate, finalDate: LocalDate): LiveData<List<Transaction>>
 
-    fun getByCategory(category: TransactionCategory): LiveData<List<Transaction>>
+    //fun getByType(type: TransactionType): LiveData<List<Transaction>>
 
-    fun getByCategoryType(type: String): LiveData<List<Transaction>>
+    //fun getByCategory(category: TransactionCategory): LiveData<List<Transaction>>
 }

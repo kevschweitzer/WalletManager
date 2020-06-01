@@ -1,13 +1,9 @@
 package com.schweitzering.domain.fixedExpenses
 
-import androidx.lifecycle.Transformations
 import com.schweitzering.domain.fixedExpenses.generator.FixedExpenseGenerator
 import com.schweitzering.domain.fixedExpenses.generator.FixedExpensesGeneratorRepository
-import com.schweitzering.domain.schedule.TimePeriod
-import com.schweitzering.domain.transaction.TransactionCategory
 import io.reactivex.Maybe
 import java.sql.Timestamp
-import java.util.*
 
 /*
 * Check Fixed Expenses generators period and create a FixedExpense for the current period if necessary.

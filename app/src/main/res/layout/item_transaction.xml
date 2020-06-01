@@ -35,13 +35,13 @@
             android:id="@+id/category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{viewHolder.transaction.category.name()}" />
+            android:text="@{viewHolder.transaction.type.name()}" />
 
         <TextView
             android:id="@+id/categoryType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{viewHolder.transaction.categoryType}" />
+            android:text="@{viewHolder.transaction.category.name}" />
 
         <TextView
             android:id="@+id/description"

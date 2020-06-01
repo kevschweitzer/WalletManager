@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import com.schweitzering.domain.transaction.TransactionCategory
+import com.schweitzering.domain.transaction.TransactionType
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.ActivityTransactionBinding
 import com.schweitzering.walletmanager.xsupport.utils.Constants.Companion.TRANSACTION_CATEGORY
@@ -24,25 +24,25 @@ class TransactionActivity : AppCompatActivity(), DataBindingProtocol {
     companion object {
         fun getExpenseIntent(context: Context): Intent {
             val intent = Intent(context, TransactionActivity::class.java)
-            intent.putExtra(TRANSACTION_CATEGORY, TransactionCategory.EXPENSE)
+            intent.putExtra(TRANSACTION_CATEGORY, TransactionType.EXPENSE)
             return intent
         }
 
         fun getIncomeIntent(context: Context): Intent {
             val intent = Intent(context, TransactionActivity::class.java)
-            intent.putExtra(TRANSACTION_CATEGORY, TransactionCategory.INCOME)
+            intent.putExtra(TRANSACTION_CATEGORY, TransactionType.INCOME)
             return intent
         }
 
         fun getSavingIntent(context: Context): Intent {
             val intent = Intent(context, TransactionActivity::class.java)
-            intent.putExtra(TRANSACTION_CATEGORY, TransactionCategory.SAVING)
+            intent.putExtra(TRANSACTION_CATEGORY, TransactionType.SAVING)
             return intent
         }
 
         fun getInvestmentIntent(context: Context): Intent {
             val intent = Intent(context, TransactionActivity::class.java)
-            intent.putExtra(TRANSACTION_CATEGORY, TransactionCategory.INVESTMENT)
+            intent.putExtra(TRANSACTION_CATEGORY, TransactionType.INVESTMENT)
             return intent
         }
     }
@@ -81,7 +81,7 @@ class TransactionActivity : AppCompatActivity(), DataBindingProtocol {
     }
 
     private fun observeCategories() {
-        viewModel.categories.observe(this, Observer { addItemsToSpinner(it) })
+        viewModel.categories.observe(this, Observer { addItemsToSpinner(it.map { it.name }) })
     }
 
     override fun setDataBinding() {

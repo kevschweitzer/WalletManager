@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.schweitzering.domain.categories.CategoryType
+import com.schweitzering.domain.categories.TransactionCategory
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.ItemCategoryTypeBinding
 
 
-class CategoriesSettingsAdapter(private val categoriesList: List<CategoryType>,
+class CategoriesSettingsAdapter(private val categoriesList: List<TransactionCategory>,
                                 private val viewModel: CategoriesSettingsViewModel) :
     RecyclerView.Adapter<CategoriesSettingsAdapter.CategoryViewHolder>() {
 
@@ -30,12 +30,12 @@ class CategoriesSettingsAdapter(private val categoriesList: List<CategoryType>,
                              val viewModel: CategoriesSettingsViewModel) :
         RecyclerView.ViewHolder(binding.root) {
 
-        lateinit var category: CategoryType
+        lateinit var transactionCategory: TransactionCategory
 
-        fun bind(category: CategoryType) {
+        fun bind(transactionCategory: TransactionCategory) {
             binding.viewModel = viewModel
             binding.viewHolder = this
-            this.category = category
+            this.transactionCategory = transactionCategory
         }
     }
 }

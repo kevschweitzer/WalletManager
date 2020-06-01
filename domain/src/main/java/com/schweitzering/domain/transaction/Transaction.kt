@@ -1,5 +1,6 @@
 package com.schweitzering.domain.transaction
 
+import com.schweitzering.domain.categories.TransactionCategory
 import java.sql.Timestamp
 
 data class Transaction(
@@ -7,10 +8,10 @@ data class Transaction(
     var value: Float,
     var date: Timestamp? = null,
     var description: String,
-    var category: TransactionCategory = TransactionCategory.EXPENSE, //Each Transaction has a category
-    var categoryType: String //Each category has an associated type. For example Expense can be food, house, clothes, etc.
+    var type: TransactionType = TransactionType.EXPENSE,
+    var category: TransactionCategory
 )
 
-enum class TransactionCategory {
+enum class TransactionType {
     INCOME, EXPENSE, SAVING, INVESTMENT
 }

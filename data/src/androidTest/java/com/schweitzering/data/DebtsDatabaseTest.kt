@@ -10,7 +10,7 @@ import com.schweitzering.data.Constants.Companion.FOOD_TYPE
 import com.schweitzering.data.debts.DebtEntity
 import com.schweitzering.data.debts.DebtsDatabaseManager
 import com.schweitzering.data.xsupport.database.AppDatabase
-import com.schweitzering.domain.transaction.TransactionCategory
+import com.schweitzering.domain.transaction.TransactionType
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -31,7 +31,7 @@ class DebtsDatabaseTest {
     private val entity1 = DebtEntity(
         id = 1,
         value = 500f,
-        category = TransactionCategory.EXPENSE,
+        category = TransactionType.EXPENSE,
         categoryType = FOOD_TYPE,
         creationDate = Timestamp(System.currentTimeMillis())
     )
@@ -39,7 +39,7 @@ class DebtsDatabaseTest {
     private val entity2 = DebtEntity(
         id = 2,
         value = 50f,
-        category = TransactionCategory.INCOME,
+        category = TransactionType.INCOME,
         categoryType = CLOTHES_TYPE,
         creationDate = Timestamp(System.currentTimeMillis())
     )

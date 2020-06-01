@@ -2,9 +2,9 @@ package com.schweitzering.walletmanager.inject
 
 import com.schweitzering.domain.balance.GetPartialBalanceUseCase
 import com.schweitzering.domain.balance.GetTotalBalanceUseCase
-import com.schweitzering.domain.categories.AddCategoryTypeUseCase
-import com.schweitzering.domain.categories.GetAllCategoriesTypesUseCase
-import com.schweitzering.domain.categories.GetCategoryTypesUseCase
+import com.schweitzering.domain.categories.AddTransactionCategoryUseCase
+import com.schweitzering.domain.categories.GetAllTransactionCategoriesUseCase
+import com.schweitzering.domain.categories.GetTransactionCategoriesForTypeUseCase
 import com.schweitzering.domain.debts.GetAllDebtsUseCase
 import com.schweitzering.domain.debts.NewDebtUseCase
 import com.schweitzering.domain.debts.ResolveDebtUseCase
@@ -78,13 +78,13 @@ val appModule = module {
         scoped { CRUDCategoryViewModel(get()) }
     }
 
-    factory { AddCategoryTypeUseCase(get()) }
+    factory { AddTransactionCategoryUseCase(get()) }
 
     factory { GetPartialBalanceUseCase(get()) }
 
     factory { GetTotalBalanceUseCase(get()) }
 
-    factory { GetCategoryTypesUseCase(get()) }
+    factory { GetTransactionCategoriesForTypeUseCase(get()) }
 
     factory { AddTransactionUseCase(get()) }
 
@@ -110,5 +110,5 @@ val appModule = module {
 
     factory { ResolveDebtUseCase(get(), get()) }
 
-    factory { GetAllCategoriesTypesUseCase(get()) }
+    factory { GetAllTransactionCategoriesUseCase(get()) }
 }

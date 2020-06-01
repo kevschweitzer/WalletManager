@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.schweitzering.data.transaction.TransactionEntity
 import com.schweitzering.domain.schedule.Schedule
 import com.schweitzering.domain.transaction.Transaction
 import java.sql.Timestamp
@@ -12,7 +13,7 @@ import java.sql.Timestamp
 class FixedExpenseGeneratorEntity(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "generator_id")
     var id: Int,
-    @Embedded var expense: Transaction,
+    @Embedded var expense: TransactionEntity,
     var creationDate: Timestamp,
     @Embedded var schedule: Schedule
 )

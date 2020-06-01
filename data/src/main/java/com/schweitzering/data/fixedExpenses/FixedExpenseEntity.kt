@@ -4,14 +4,14 @@ import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.schweitzering.data.transaction.TransactionEntity
 import com.schweitzering.domain.transaction.Transaction
-import com.schweitzering.domain.transaction.TransactionCategory
 import java.sql.Timestamp
 
 @Entity(tableName = "fixed_expenses")
 data class FixedExpenseEntity (
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "fixed_expense_id") var id: Int = 0,
-    @Embedded var expense: Transaction,
+    @Embedded var expense: TransactionEntity,
     var isAlreadyPaid: Boolean = false, //In the current period
     var creationDate: Timestamp,
     var paymentDate: Timestamp? = null

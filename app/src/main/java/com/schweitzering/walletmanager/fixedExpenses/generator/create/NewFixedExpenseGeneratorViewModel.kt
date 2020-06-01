@@ -1,6 +1,7 @@
 package com.schweitzering.walletmanager.fixedExpenses.generator.create
 
 import androidx.lifecycle.MutableLiveData
+import com.schweitzering.domain.categories.TransactionCategory
 import com.schweitzering.domain.fixedExpenses.generator.NewFixedExpenseGeneratorUseCase
 import com.schweitzering.domain.schedule.Schedule
 import com.schweitzering.domain.schedule.TimePeriod
@@ -37,28 +38,28 @@ class NewFixedExpenseGeneratorViewModel(private val newFixedExpenseGeneratorUseC
     private fun getWeekFixedExpenseGenerator() = FixedExpenseGeneratorProfile(expense = Transaction(
         value = 120f,
         description = "",
-        categoryId = 0),
+        category = TransactionCategory()),
         creationDate = Timestamp(System.currentTimeMillis()),
         schedule = Schedule(TimePeriod.WEEK, Timestamp(1589425200000)))
 
     private fun getMonthFixedExpenseGenerator() =
         FixedExpenseGeneratorProfile(expense = Transaction(value = 2400f,
             description = "",
-            categoryId = 0),
+            category = TransactionCategory()),
             creationDate = Timestamp(System.currentTimeMillis()),
             schedule = Schedule(TimePeriod.MONTH, Timestamp(1590375600000)))
 
     private fun getDayFixedExpenseGenerator() = FixedExpenseGeneratorProfile(expense = Transaction(
         value = 25f,
         description = "",
-        categoryId = 0),
+        category = TransactionCategory()),
         creationDate = Timestamp(System.currentTimeMillis()),
         schedule = Schedule(TimePeriod.DAY, Timestamp(1584045000000)))
 
     private fun getCurrentFixedExpenseGenerator() =
         FixedExpenseGeneratorProfile(expense = Transaction(value = 120f,
             description = "",
-            categoryId = 0),
+            category = TransactionCategory()),
             creationDate = Timestamp(System.currentTimeMillis()),
             schedule = Schedule(period, startDate))
 }

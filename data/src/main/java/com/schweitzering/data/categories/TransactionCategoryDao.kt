@@ -20,5 +20,8 @@ interface TransactionCategoryDao {
     @Query("SELECT * FROM transaction_categories")
     fun getAll(): LiveData<List<TransactionCategoryEntity>>
 
+    @Query("SELECT * FROM transaction_categories WHERE id == :id")
+    fun getById(id: Int): LiveData<TransactionCategoryEntity>
+
 
 }

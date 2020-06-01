@@ -41,7 +41,7 @@
             android:id="@+id/categoryType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{viewHolder.transaction.categoryId}" />
+            android:text="@{viewHolder.transaction.category.name}" />
 
         <TextView
             android:id="@+id/description"

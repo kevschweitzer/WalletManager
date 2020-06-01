@@ -24,6 +24,13 @@
             android:textSize="14sp"
             android:paddingVertical="10dp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{Integer.toString(viewHolder.transactionCategory.id)}"
+            android:textSize="14sp"
+            android:paddingVertical="10dp"/>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -16,22 +16,23 @@ fun Transaction.toTransactionEntity() = TransactionEntity(
     date = date, //Won't be null when transaction is created
     description = description,
     type = type,
-    categoryId = categoryId
-)
-fun TransactionEntity.toTransaction() = Transaction(value = value, date = date, description = description, type = type, categoryId = categoryId)
+    categoryId = category.id
+).apply { category = this@toTransactionEntity.category.toTransactionCategoryEntity() }
+
+fun TransactionEntity.toTransaction() = Transaction(value = value, date = date, description = description, type = type, category = category.toTransactionCategory())
 
 
 fun TransactionCategory.toTransactionCategoryEntity() = TransactionCategoryEntity(id = id, type = type, name = name)
 fun TransactionCategoryEntity.toTransactionCategory() = TransactionCategory(id = id, type = type, name = name)
 
 
-fun FixedExpenseEntity.toFixedExpense() = FixedExpense(id, expense, isAlreadyPaid, creationDate, paymentDate)
+fun FixedExpenseEntity.toFixedExpense() = FixedExpense(id, expense.toTransaction(), isAlreadyPaid, creationDate, paymentDate)
 
-fun FixedExpense.toFixedExpenseEntity() = FixedExpenseEntity(id, expense, isAlreadyPaid, creationDate, paymentDate)
+fun FixedExpense.toFixedExpenseEntity() = FixedExpenseEntity(id, expense.toTransactionEntity(), isAlreadyPaid, creationDate, paymentDate)
 
 
-fun FixedExpenseGeneratorEntity.toFixedExpenseGenerator() = FixedExpenseGenerator(id, expense, creationDate, schedule)
-fun FixedExpenseGenerator.toFixedExpenseGeneratorEntity() = FixedExpenseGeneratorEntity(id ?: 0, expense, creationDate, schedule)
+fun FixedExpenseGeneratorEntity.toFixedExpenseGenerator() = FixedExpenseGenerator(id, expense.toTransaction(), creationDate, schedule)
+fun FixedExpenseGenerator.toFixedExpenseGeneratorEntity() = FixedExpenseGeneratorEntity(id ?: 0, expense.toTransactionEntity(), creationDate, schedule)
 
-fun Debt.toDebtEntity() = DebtEntity(id, transaction, creationDate, isResolved, resolveDate)
-fun DebtEntity.toDebt() = Debt(id, transaction, creationDate, isResolved, resolveDate)
+fun Debt.toDebtEntity() = DebtEntity(id, transaction.toTransactionEntity(), creationDate, isResolved, resolveDate)
+fun DebtEntity.toDebt() = Debt(id, transaction.toTransaction(), creationDate, isResolved, resolveDate)

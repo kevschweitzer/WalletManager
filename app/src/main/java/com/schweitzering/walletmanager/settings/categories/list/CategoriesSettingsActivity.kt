@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.ActivityCategoriesSettingsBinding
 import com.schweitzering.walletmanager.settings.categories.create.CRUDCategoryActivity
@@ -35,8 +36,14 @@ class CategoriesSettingsActivity : AppCompatActivity(), DataBindingProtocol {
                 is CategoriesSettingsViewModel.State.CreateCategory -> startActivity(
                     CRUDCategoryActivity.getCreateIntent(this, it.type))
                 is CategoriesSettingsViewModel.State.EditCategory -> startActivity(
-                    CRUDCategoryActivity.getUpdateIntent(this, it.transaction)
+                    CRUDCategoryActivity.getUpdateIntent(this, it.category)
                 )
+                is CategoriesSettingsViewModel.State.DeleteCategory ->
+                    MaterialAlertDialogBuilder(this)
+                        .setMessage("Are you sure you want to delete this Category?")
+                        .setPositiveButton("Yes"){_,_-> viewModel.deleteCategory(it.category)}
+                        .setNegativeButton("No"){_,_->}
+                        .show()
             }
         })
     }

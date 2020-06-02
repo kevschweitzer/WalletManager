@@ -10,7 +10,8 @@ class CategoriesSettingsViewModel(private val getAllTransactionCategoriesUseCase
 
     sealed class State {
         class CreateCategory(val type: TransactionType) : State()
-        class EditCategory(val transaction: TransactionCategory) : State()
+        class EditCategory(val category: TransactionCategory) : State()
+        class DeleteCategory(val category: TransactionCategory): State()
     }
 
     val categories = Transformations.map(getAllTransactionCategoriesUseCase.execute()) {
@@ -36,5 +37,13 @@ class CategoriesSettingsViewModel(private val getAllTransactionCategoriesUseCase
 
     fun onEditCategoryClicked(transactionCategory: TransactionCategory) {
         state.value = State.EditCategory(transactionCategory)
+    }
+
+    fun onDeleteCategoryClicked(transactionCategory: TransactionCategory) {
+        state.value = State.DeleteCategory(transactionCategory)
+    }
+
+    fun deleteCategory(category: TransactionCategory) {
+
     }
 }

@@ -38,6 +38,13 @@
             android:layout_gravity="center"
             android:onClick="@{() -> viewModel.onEditCategoryClicked(viewHolder.transactionCategory)}" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:layout_gravity="center"
+            android:onClick="@{() -> viewModel.onDeleteCategoryClicked(viewHolder.transactionCategory)}"/>
+
         <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"

@@ -40,9 +40,9 @@ class CategoriesSettingsActivity : AppCompatActivity(), DataBindingProtocol {
                 )
                 is CategoriesSettingsViewModel.State.DeleteCategory ->
                     MaterialAlertDialogBuilder(this)
-                        .setMessage("Are you sure you want to delete this Category?")
-                        .setPositiveButton("Yes"){_,_-> viewModel.deleteCategory(it.category)}
-                        .setNegativeButton("No"){_,_->}
+                        .setMessage(getString(R.string.delete_category_message))
+                        .setPositiveButton(getString(R.string.default_confirmation)){ _, _-> viewModel.deleteCategory(it.category)}
+                        .setNegativeButton(getString(R.string.default_negation)){ _, _->}
                         .show()
             }
         })

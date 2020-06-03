@@ -3,6 +3,7 @@ package com.schweitzering.walletmanager.inject
 import com.schweitzering.domain.balance.GetPartialBalanceUseCase
 import com.schweitzering.domain.balance.GetTotalBalanceUseCase
 import com.schweitzering.domain.categories.AddTransactionCategoryUseCase
+import com.schweitzering.domain.categories.DeleteTransactionCategoryUseCase
 import com.schweitzering.domain.categories.GetAllTransactionCategoriesUseCase
 import com.schweitzering.domain.categories.GetTransactionCategoriesForTypeUseCase
 import com.schweitzering.domain.debts.GetAllDebtsUseCase
@@ -70,7 +71,7 @@ val appModule = module {
 
     scope(named<CategoriesSettingsActivity>()) {
         scoped {
-            CategoriesSettingsViewModel(get())
+            CategoriesSettingsViewModel(get(), get())
         }
     }
 
@@ -111,4 +112,6 @@ val appModule = module {
     factory { ResolveDebtUseCase(get(), get()) }
 
     factory { GetAllTransactionCategoriesUseCase(get()) }
+
+    factory { DeleteTransactionCategoryUseCase(get()) }
 }

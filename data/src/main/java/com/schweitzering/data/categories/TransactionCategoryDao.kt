@@ -2,7 +2,6 @@ package com.schweitzering.data.categories
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.schweitzering.domain.categories.TransactionCategory
 import com.schweitzering.domain.transaction.TransactionType
 
 @Dao

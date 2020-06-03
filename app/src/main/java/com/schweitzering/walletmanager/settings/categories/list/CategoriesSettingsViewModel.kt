@@ -2,11 +2,15 @@ package com.schweitzering.walletmanager.settings.categories.list
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import com.schweitzering.domain.categories.DeleteTransactionCategoryUseCase
 import com.schweitzering.domain.categories.TransactionCategory
 import com.schweitzering.domain.categories.GetAllTransactionCategoriesUseCase
 import com.schweitzering.domain.transaction.TransactionType
 
-class CategoriesSettingsViewModel(private val getAllTransactionCategoriesUseCase: GetAllTransactionCategoriesUseCase) {
+class CategoriesSettingsViewModel(
+    private val getAllTransactionCategoriesUseCase: GetAllTransactionCategoriesUseCase,
+    private val deleteTransactionCategoryUseCase: DeleteTransactionCategoryUseCase
+) {
 
     sealed class State {
         class CreateCategory(val type: TransactionType) : State()
@@ -44,6 +48,6 @@ class CategoriesSettingsViewModel(private val getAllTransactionCategoriesUseCase
     }
 
     fun deleteCategory(category: TransactionCategory) {
-
+        deleteTransactionCategoryUseCase.execute(category)
     }
 }

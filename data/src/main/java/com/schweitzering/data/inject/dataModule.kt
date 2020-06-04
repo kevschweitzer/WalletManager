@@ -23,7 +23,7 @@ val dataModule = module {
 
     single { AppDatabase.getInstance(androidContext()) }
 
-    factory<TransactionCategoryRepository> {TransactionCategoryRepositoryImpl(androidContext(), get())}
+    factory<TransactionCategoryRepository> {TransactionCategoryRepositoryImpl(get())}
 
     factory {TransactionCategoryDatabaseManager(get())}
 

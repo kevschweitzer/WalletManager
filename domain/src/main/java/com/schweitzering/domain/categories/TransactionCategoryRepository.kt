@@ -1,6 +1,7 @@
 package com.schweitzering.domain.categories
 
 import androidx.lifecycle.LiveData
+import com.schweitzering.domain.ActionResponse
 import com.schweitzering.domain.transaction.TransactionType
 
 interface TransactionCategoryRepository {
@@ -9,7 +10,7 @@ interface TransactionCategoryRepository {
 
     fun addCategory(transactionCategory: TransactionCategory)
 
-    fun removeCategory(transactionCategory: TransactionCategory)
+    fun removeCategory(transactionCategory: TransactionCategory): LiveData<ActionResponse>
 
     fun getAll(): LiveData<List<TransactionCategory>>
 

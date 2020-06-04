@@ -8,6 +8,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.schweitzering.domain.ActionResponse
+import com.schweitzering.domain.categories.TransactionCategory
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.ActivityCategoriesSettingsBinding
 import com.schweitzering.walletmanager.settings.categories.create.CRUDCategoryActivity
@@ -41,8 +43,25 @@ class CategoriesSettingsActivity : AppCompatActivity(), DataBindingProtocol {
                 is CategoriesSettingsViewModel.State.DeleteCategory ->
                     MaterialAlertDialogBuilder(this)
                         .setMessage(getString(R.string.delete_category_message))
-                        .setPositiveButton(getString(R.string.default_confirmation)){ _, _-> viewModel.deleteCategory(it.category)}
+                        .setPositiveButton(getString(R.string.default_confirmation)){ _, _-> deleteCategory(it.category)}
                         .setNegativeButton(getString(R.string.default_negation)){ _, _->}
+                        .show()
+            }
+        })
+    }
+
+    private fun deleteCategory(category: TransactionCategory) {
+        viewModel.deleteCategory(category).observe(this, Observer {
+            when(it) {
+                is ActionResponse.Correct ->
+                    MaterialAlertDialogBuilder(this)
+                        .setMessage(getString(R.string.delete_category_ok_message))
+                        .setPositiveButton(getString(R.string.ok_confirmation)){ _, _-> finish()}
+                        .show()
+                is ActionResponse.CannotDeleteError ->
+                    MaterialAlertDialogBuilder(this)
+                        .setMessage(getString(R.string.cannot_delete_category_message))
+                        .setPositiveButton(getString(R.string.ok_confirmation)){ _, _-> }
                         .show()
             }
         })

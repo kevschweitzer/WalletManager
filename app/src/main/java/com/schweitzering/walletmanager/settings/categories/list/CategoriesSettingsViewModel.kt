@@ -2,6 +2,7 @@ package com.schweitzering.walletmanager.settings.categories.list
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import com.schweitzering.domain.ActionResponse
 import com.schweitzering.domain.categories.DeleteTransactionCategoryUseCase
 import com.schweitzering.domain.categories.TransactionCategory
 import com.schweitzering.domain.categories.GetAllTransactionCategoriesUseCase
@@ -47,7 +48,6 @@ class CategoriesSettingsViewModel(
         state.value = State.DeleteCategory(transactionCategory)
     }
 
-    fun deleteCategory(category: TransactionCategory) {
+    fun deleteCategory(category: TransactionCategory) =
         deleteTransactionCategoryUseCase.execute(category)
-    }
 }

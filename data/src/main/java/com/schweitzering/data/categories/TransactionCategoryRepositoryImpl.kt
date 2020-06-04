@@ -20,9 +20,8 @@ class TransactionCategoryRepositoryImpl(private val databaseTransaction: Transac
         databaseTransaction.add(transactionCategory.toTransactionCategoryEntity())
     }
 
-    override fun removeCategory(transactionCategory: TransactionCategory) {
+    override fun removeCategory(transactionCategory: TransactionCategory) =
         databaseTransaction.remove(transactionCategory.toTransactionCategoryEntity())
-    }
 
     override fun getAll() = Transformations.map(databaseTransaction.getAll()) {
        it.map { it.toTransactionCategory() }

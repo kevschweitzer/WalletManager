@@ -12,6 +12,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="settings_transaction_categories">Transaction categories</string>
     <string name="delete_category_message">Are you sure you want to delete this Category?</string>
+    <string name="delete_category_ok_message">Category deleted correctly</string>
+    <string name="cannot_delete_category_message">You cannot delete this category because it is associated to some transaction. Please delete related transactions before</string>
     <string name="default_confirmation">Yes</string>
+    <string name="ok_confirmation">Ok</string>
     <string name="default_negation">No</string>
 </resources>

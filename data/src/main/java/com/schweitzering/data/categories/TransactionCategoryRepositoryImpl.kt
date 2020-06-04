@@ -1,17 +1,13 @@
 package com.schweitzering.data.categories
 
-import android.content.Context
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.schweitzering.data.R
 import com.schweitzering.data.xsupport.mappers.toTransactionCategory
 import com.schweitzering.data.xsupport.mappers.toTransactionCategoryEntity
 import com.schweitzering.domain.categories.TransactionCategory
 import com.schweitzering.domain.categories.TransactionCategoryRepository
 import com.schweitzering.domain.transaction.TransactionType
 
-class TransactionCategoryRepositoryImpl(private val context: Context,
-                                        private val databaseTransaction: TransactionCategoryDatabaseManager): TransactionCategoryRepository {
+class TransactionCategoryRepositoryImpl(private val databaseTransaction: TransactionCategoryDatabaseManager): TransactionCategoryRepository {
 
 
 

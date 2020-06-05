@@ -16,5 +16,5 @@ interface FixedExpensesGeneratorsDao {
     suspend fun delete(generator: FixedExpenseGeneratorEntity)
 
     @Query("SELECT * FROM fixed_expenses_generators")
-    fun getAll(): Single<List<FixedExpenseGeneratorEntity>>
+    fun getAll(): List<FixedExpenseGeneratorEntity>
 }

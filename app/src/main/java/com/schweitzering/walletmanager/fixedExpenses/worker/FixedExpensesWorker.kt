@@ -1,9 +1,11 @@
 package com.schweitzering.walletmanager.fixedExpenses.worker
 
 import android.content.Context
+import android.os.Bundle
 import androidx.work.PeriodicWorkRequest
 import androidx.work.RxWorker
 import androidx.work.WorkerParameters
+import com.google.firebase.analytics.FirebaseAnalytics
 import io.reactivex.Observable
 import io.reactivex.Single
 import org.koin.core.KoinComponent
@@ -15,7 +17,8 @@ import java.util.concurrent.TimeUnit
     Execute worker once a day roughly at 00.00 AM to check if there's a FixedExpense to create
     that have entered a new period
  */
-class FixedExpensesWorker(appContext: Context, workerParams: WorkerParameters) :
+class FixedExpensesWorker(appContext: Context,
+                          workerParams: WorkerParameters) :
     RxWorker(appContext, workerParams), KoinComponent {
 
     companion object {
@@ -39,10 +42,18 @@ class FixedExpensesWorker(appContext: Context, workerParams: WorkerParameters) :
     private val viewModel: FixedExpensesWorkerViewModel by inject()
 
     override fun createWork(): Single<Result> {
+        val bundle = Bundle()
         return Observable.range(0,1)
             .flatMapSingle { viewModel.createFixedExpensesForPeriod() }
             .toList()
-            .map { Result.success() }
-            .onErrorReturn { Result.failure() }
+            .map {
+                bundle.putLong(FirebaseAnalytics.Param.START_DATE, System.currentTimeMillis())
+                FirebaseAnalytics.getInstance(applicationContext).logEvent("correct_generator", bundle)
+                Result.success()
+            }
+            .onErrorReturn {
+                FirebaseAnalytics.getInstance(applicationContext).logEvent("incorrect_generator", bundle)
+                Result.failure()
+            }
     }
 }

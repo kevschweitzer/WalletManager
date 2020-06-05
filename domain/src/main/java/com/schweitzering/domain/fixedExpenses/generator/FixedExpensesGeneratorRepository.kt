@@ -1,6 +1,5 @@
 package com.schweitzering.domain.fixedExpenses.generator
 
-import io.reactivex.Maybe
 import io.reactivex.Single
 
 /*

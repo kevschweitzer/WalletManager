@@ -1,6 +1,6 @@
 package com.schweitzering.data.fixedExpenses.generator
 
-    import com.schweitzering.data.xsupport.database.AppDatabase
+import com.schweitzering.data.xsupport.database.AppDatabase
 import kotlinx.coroutines.runBlocking
 
 class FixedExpensesGeneratorDatabaseManager(private val appDatabase: AppDatabase) {

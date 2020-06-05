@@ -1,6 +1,5 @@
 package com.schweitzering.data.fixedExpenses.generator
 
-import androidx.lifecycle.Transformations
 import com.schweitzering.data.xsupport.mappers.toFixedExpenseGenerator
 import com.schweitzering.data.xsupport.mappers.toFixedExpenseGeneratorEntity
 import com.schweitzering.domain.fixedExpenses.generator.FixedExpenseGenerator

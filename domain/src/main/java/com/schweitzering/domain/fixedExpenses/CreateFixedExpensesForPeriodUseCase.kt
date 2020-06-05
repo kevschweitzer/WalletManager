@@ -2,7 +2,6 @@ package com.schweitzering.domain.fixedExpenses
 
 import com.schweitzering.domain.fixedExpenses.generator.FixedExpenseGenerator
 import com.schweitzering.domain.fixedExpenses.generator.FixedExpensesGeneratorRepository
-import io.reactivex.Maybe
 import io.reactivex.Single
 import java.sql.Timestamp
 

@@ -1,10 +1,11 @@
 package com.schweitzering.walletmanager.fixedExpenses.worker
 
 import android.content.Context
-import androidx.work.*
+import androidx.work.PeriodicWorkRequest
+import androidx.work.RxWorker
+import androidx.work.WorkerParameters
 import io.reactivex.Observable
 import io.reactivex.Single
-import io.reactivex.disposables.CompositeDisposable
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import java.util.*

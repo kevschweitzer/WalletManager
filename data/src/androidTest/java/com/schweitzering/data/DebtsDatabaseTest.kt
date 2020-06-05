@@ -5,17 +5,13 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
-import com.schweitzering.data.Constants.Companion.CLOTHES_TYPE
-import com.schweitzering.data.Constants.Companion.FOOD_TYPE
 import com.schweitzering.data.debts.DebtEntity
 import com.schweitzering.data.debts.DebtsDatabaseManager
+import com.schweitzering.data.transaction.TransactionEntity
 import com.schweitzering.data.xsupport.database.AppDatabase
 import com.schweitzering.domain.transaction.TransactionType
-import org.junit.After
+import org.junit.*
 import org.junit.Assert.assertEquals
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
 import org.junit.runner.RunWith
 import java.sql.Timestamp
 
@@ -30,17 +26,25 @@ class DebtsDatabaseTest {
 
     private val entity1 = DebtEntity(
         id = 1,
-        value = 500f,
-        category = TransactionType.EXPENSE,
-        categoryType = FOOD_TYPE,
+        transaction = TransactionEntity(
+            categoryId = 0,
+            date = Timestamp(System.currentTimeMillis()),
+            description = "",
+            type = TransactionType.SAVING,
+            value = 50f
+        ),
         creationDate = Timestamp(System.currentTimeMillis())
     )
 
     private val entity2 = DebtEntity(
         id = 2,
-        value = 50f,
-        category = TransactionType.INCOME,
-        categoryType = CLOTHES_TYPE,
+        transaction = TransactionEntity(
+            categoryId = 0,
+            date = Timestamp(System.currentTimeMillis()),
+            description = "other description",
+            type = TransactionType.INVESTMENT,
+            value = 500f
+        ),
         creationDate = Timestamp(System.currentTimeMillis())
     )
 

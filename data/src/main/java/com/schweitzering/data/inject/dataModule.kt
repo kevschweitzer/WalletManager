@@ -1,5 +1,6 @@
 package com.schweitzering.data.inject
 
+import com.schweitzering.data.accounts.AccountRepositoryImpl
 import com.schweitzering.data.categories.TransactionCategoryDatabaseManager
 import com.schweitzering.data.categories.TransactionCategoryRepositoryImpl
 import com.schweitzering.data.debts.DebtsDatabaseManager
@@ -11,6 +12,7 @@ import com.schweitzering.data.fixedExpenses.generator.FixedExpensesGeneratorRepo
 import com.schweitzering.data.transaction.TransactionDatabaseManager
 import com.schweitzering.data.transaction.TransactionsRepositoryImpl
 import com.schweitzering.data.xsupport.database.AppDatabase
+import com.schweitzering.domain.accounts.AccountRepository
 import com.schweitzering.domain.categories.TransactionCategoryRepository
 import com.schweitzering.domain.debts.DebtsRepository
 import com.schweitzering.domain.fixedExpenses.FixedExpensesRepository
@@ -43,4 +45,5 @@ val dataModule = module {
 
     factory { DebtsDatabaseManager(get()) }
 
+    factory<AccountRepository> { AccountRepositoryImpl(get()) }
 }

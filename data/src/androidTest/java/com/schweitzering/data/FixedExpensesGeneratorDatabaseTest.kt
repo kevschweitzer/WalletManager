@@ -9,15 +9,14 @@ import com.schweitzering.data.Constants.Companion.CLOTHES_TYPE
 import com.schweitzering.data.Constants.Companion.FOOD_TYPE
 import com.schweitzering.data.fixedExpenses.generator.FixedExpenseGeneratorEntity
 import com.schweitzering.data.fixedExpenses.generator.FixedExpensesGeneratorDatabaseManager
+import com.schweitzering.data.transaction.TransactionEntity
 import com.schweitzering.data.xsupport.database.AppDatabase
 import com.schweitzering.domain.schedule.Schedule
 import com.schweitzering.domain.schedule.TimePeriod
+import com.schweitzering.domain.transaction.TransactionType
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
-import org.junit.After
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
+import org.junit.*
 import org.junit.runner.RunWith
 import java.sql.Timestamp
 
@@ -32,16 +31,26 @@ class FixedExpensesGeneratorDatabaseTest {
 
     val entity1 by lazy { FixedExpenseGeneratorEntity(
         id = 1,
-        value = 550f,
-        categoryType = FOOD_TYPE,
+        expense = TransactionEntity(
+            categoryId = 0,
+            date = Timestamp(System.currentTimeMillis()),
+            description = "other description",
+            type = TransactionType.EXPENSE,
+            value = 500f
+        ),
         creationDate = Timestamp(System.currentTimeMillis()),
         schedule = schedule1
     )}
 
     val entity2 by lazy { FixedExpenseGeneratorEntity(
         id = 2,
-        value = 200f,
-        categoryType = CLOTHES_TYPE,
+        expense = TransactionEntity(
+            categoryId = 0,
+            date = Timestamp(System.currentTimeMillis()),
+            description = "other description",
+            type = TransactionType.EXPENSE,
+            value = 500f
+        ),
         creationDate = Timestamp(System.currentTimeMillis()),
         schedule = schedule2
     )}

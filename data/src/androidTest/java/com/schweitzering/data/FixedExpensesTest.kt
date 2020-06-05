@@ -7,13 +7,11 @@ import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
 import com.schweitzering.data.fixedExpenses.FixedExpenseEntity
 import com.schweitzering.data.fixedExpenses.FixedExpensesDatabaseManager
+import com.schweitzering.data.transaction.TransactionEntity
 import com.schweitzering.data.xsupport.database.AppDatabase
 import com.schweitzering.domain.transaction.TransactionType
 import junit.framework.Assert.assertEquals
-import org.junit.After
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
+import org.junit.*
 import org.junit.runner.RunWith
 import java.sql.Timestamp
 
@@ -28,17 +26,25 @@ class FixedExpensesTest {
 
     val entity1 = FixedExpenseEntity(
         id = 1,
-        value = 300f,
-        category = TransactionType.EXPENSE, //Each Transaction has a category
-        categoryType = Constants.FOOD_TYPE,
+        expense = TransactionEntity(
+            categoryId = 0,
+            date = Timestamp(System.currentTimeMillis()),
+            description = "one description",
+            type = TransactionType.INVESTMENT,
+            value = 50f
+        ),
         creationDate = Timestamp(System.currentTimeMillis())
     )
 
     val entity2 = FixedExpenseEntity(
         id = 2,
-        value = 150f,
-        category = TransactionType.EXPENSE, //Each Transaction has a category
-        categoryType = Constants.CLOTHES_TYPE,
+        expense = TransactionEntity(
+            categoryId = 0,
+            date = Timestamp(System.currentTimeMillis()),
+            description = "other description",
+            type = TransactionType.INVESTMENT,
+            value = 500f
+        ),
         creationDate = Timestamp(System.currentTimeMillis())
     )
 

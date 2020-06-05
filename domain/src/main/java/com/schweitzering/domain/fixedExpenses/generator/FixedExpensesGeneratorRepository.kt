@@ -1,6 +1,6 @@
 package com.schweitzering.domain.fixedExpenses.generator
 
-import io.reactivex.Maybe
+import io.reactivex.Single
 
 /*
     Generator of Fixed Expenses.
@@ -10,5 +10,5 @@ interface FixedExpensesGeneratorRepository {
 
     fun insert(generator: FixedExpenseGenerator)
     fun delete(generator: FixedExpenseGenerator)
-    fun getAll(): Maybe<List<FixedExpenseGenerator>>
+    fun getAll(): Single<List<FixedExpenseGenerator>>
 }

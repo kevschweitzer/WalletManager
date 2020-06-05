@@ -2,7 +2,7 @@ package com.schweitzering.domain.fixedExpenses
 
 import com.schweitzering.domain.fixedExpenses.generator.FixedExpenseGenerator
 import com.schweitzering.domain.fixedExpenses.generator.FixedExpensesGeneratorRepository
-import io.reactivex.Maybe
+import io.reactivex.Single
 import java.sql.Timestamp
 
 /*
@@ -12,7 +12,7 @@ import java.sql.Timestamp
 class CreateFixedExpensesForPeriodUseCase(private val generatorsRepository: FixedExpensesGeneratorRepository,
                                             private val fixedExpensesRepository: FixedExpensesRepository) {
 
-    fun execute(): Maybe<List<FixedExpenseGenerator>> {
+    fun execute(): Single<List<FixedExpenseGenerator>> {
         return generatorsRepository.getAll().doOnSuccess {
             it.forEach {
                 if (it.schedule.todayMeetsRequirements()) {

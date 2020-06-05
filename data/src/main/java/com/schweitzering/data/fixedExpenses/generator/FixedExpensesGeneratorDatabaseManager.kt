@@ -1,6 +1,8 @@
 package com.schweitzering.data.fixedExpenses.generator
 
-    import com.schweitzering.data.xsupport.database.AppDatabase
+import com.schweitzering.data.xsupport.database.AppDatabase
+import com.schweitzering.domain.fixedExpenses.generator.FixedExpenseGenerator
+import io.reactivex.Single
 import kotlinx.coroutines.runBlocking
 
 class FixedExpensesGeneratorDatabaseManager(private val appDatabase: AppDatabase) {
@@ -19,5 +21,7 @@ class FixedExpensesGeneratorDatabaseManager(private val appDatabase: AppDatabase
         }
     }
 
-    fun getAll() = fixedExpensesGeneratorDao.getAll()
+    fun getAll() = Single.create<List<FixedExpenseGeneratorEntity>> {
+        it.onSuccess(fixedExpensesGeneratorDao.getAll())
+    }
 }

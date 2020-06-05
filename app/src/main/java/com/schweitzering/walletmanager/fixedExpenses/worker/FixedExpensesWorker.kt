@@ -2,8 +2,9 @@ package com.schweitzering.walletmanager.fixedExpenses.worker
 
 import android.content.Context
 import androidx.work.*
+import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import java.util.*
@@ -14,43 +15,33 @@ import java.util.concurrent.TimeUnit
     that have entered a new period
  */
 class FixedExpensesWorker(appContext: Context, workerParams: WorkerParameters) :
-    Worker(appContext, workerParams), KoinComponent {
+    RxWorker(appContext, workerParams), KoinComponent {
 
     companion object {
-        const val WORKER_ID = "fixed_exp_worker"
-        fun getWorker(): OneTimeWorkRequest {
+        const val WORKER_ID = "fixed_expense_worker"
+        fun getWorker(): PeriodicWorkRequest {
             val currentDate = Calendar.getInstance()
-            val dueDate = Calendar.getInstance()
-            dueDate.set(Calendar.HOUR_OF_DAY, 1)
-            dueDate.set(Calendar.MINUTE, 0)
-            dueDate.set(Calendar.SECOND, 0)
-            if (dueDate.before(currentDate)) {
-                dueDate.add(Calendar.HOUR_OF_DAY, 24)
-            }
-            val timeDiff = dueDate.timeInMillis - currentDate.timeInMillis
-            return OneTimeWorkRequestBuilder<FixedExpensesWorker>().setInitialDelay(timeDiff,
-                    TimeUnit.MILLISECONDS).build()
+            val runDate = Calendar.getInstance()
+            runDate.set(Calendar.HOUR_OF_DAY, 0)
+            runDate.set(Calendar.MINUTE, 0)
+            runDate.set(Calendar.SECOND, 0)
+            runDate.add(Calendar.HOUR_OF_DAY, 24)
+
+            val timeDiff = runDate.timeInMillis - currentDate.timeInMillis
+            return PeriodicWorkRequest.Builder(
+                FixedExpensesWorker::class.java, 24, TimeUnit.HOURS)
+                .setInitialDelay(timeDiff, TimeUnit.MILLISECONDS)
+                .build()
         }
     }
 
     private val viewModel: FixedExpensesWorkerViewModel by inject()
-    private val disposables = CompositeDisposable()
 
-    //TODO: Add retry policy
-    override fun doWork(): Result {
-        val disposable =
-            viewModel.createFixedExpensesForPeriod().subscribeOn(Schedulers.io()).subscribe()
-        disposables.add(disposable)
-
-        //create again for next day
-        WorkManager.getInstance(applicationContext)
-            .enqueueUniqueWork(WORKER_ID, ExistingWorkPolicy.KEEP, getWorker())
-
-        return Result.success()
-    }
-
-    override fun onStopped() {
-        super.onStopped()
-        disposables.clear()
+    override fun createWork(): Single<Result> {
+        return Observable.range(0,1)
+            .flatMapSingle { viewModel.createFixedExpensesForPeriod() }
+            .toList()
+            .map { Result.success() }
+            .onErrorReturn { Result.failure() }
     }
 }

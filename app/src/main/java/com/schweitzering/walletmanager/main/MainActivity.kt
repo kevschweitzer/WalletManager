@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
-import androidx.work.ExistingWorkPolicy
+import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.WorkManager
 import com.google.android.material.tabs.TabLayoutMediator
 import com.schweitzering.walletmanager.R
@@ -34,8 +34,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun periodicWorkerSetup() {
-        val worker = FixedExpensesWorker.getWorker()
-        WorkManager.getInstance(this).enqueueUniqueWork(WORKER_ID, ExistingWorkPolicy.KEEP, worker)
+        WorkManager.getInstance(this).enqueueUniquePeriodicWork(WORKER_ID,
+                ExistingPeriodicWorkPolicy.KEEP,
+                FixedExpensesWorker.getWorker())
     }
 
     override fun onResume() {

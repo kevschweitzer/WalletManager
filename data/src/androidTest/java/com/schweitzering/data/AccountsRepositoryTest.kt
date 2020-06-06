@@ -89,5 +89,4 @@ class AccountsRepositoryTest {
             assertEquals(it, listOf(entity1, entity2))
         }
     }
-
 }

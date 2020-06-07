@@ -36,7 +36,8 @@ class FixedExpensesGeneratorDatabaseTest {
             date = Timestamp(System.currentTimeMillis()),
             description = "other description",
             type = TransactionType.EXPENSE,
-            value = 500f
+            value = 500f,
+            accountId = 1
         ),
         creationDate = Timestamp(System.currentTimeMillis()),
         schedule = schedule1
@@ -49,7 +50,8 @@ class FixedExpensesGeneratorDatabaseTest {
             date = Timestamp(System.currentTimeMillis()),
             description = "other description",
             type = TransactionType.EXPENSE,
-            value = 500f
+            value = 500f,
+            accountId = 1
         ),
         creationDate = Timestamp(System.currentTimeMillis()),
         schedule = schedule2

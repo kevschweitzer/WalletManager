@@ -9,7 +9,8 @@ data class Transaction(
     var date: Timestamp? = null,
     var description: String,
     var type: TransactionType = TransactionType.EXPENSE,
-    var category: TransactionCategory
+    var category: TransactionCategory,
+    var accountId: Int
 )
 
 enum class TransactionType {

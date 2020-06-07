@@ -31,7 +31,8 @@ class DebtsDatabaseTest {
             date = Timestamp(System.currentTimeMillis()),
             description = "",
             type = TransactionType.SAVING,
-            value = 50f
+            value = 50f,
+            accountId = 1
         ),
         creationDate = Timestamp(System.currentTimeMillis())
     )
@@ -43,7 +44,8 @@ class DebtsDatabaseTest {
             date = Timestamp(System.currentTimeMillis()),
             description = "other description",
             type = TransactionType.INVESTMENT,
-            value = 500f
+            value = 500f,
+            accountId = 1
         ),
         creationDate = Timestamp(System.currentTimeMillis())
     )

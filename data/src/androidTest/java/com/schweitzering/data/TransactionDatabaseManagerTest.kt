@@ -34,28 +34,32 @@ class TransactionsDaoTest {
         date = Timestamp(System.currentTimeMillis()),
         description = "one description",
         type = TransactionType.INCOME,
-        value = 50f
+        value = 50f,
+        accountId = 1
     )
     private val entity2 = TransactionEntity(
         categoryId = 0,
         date = Timestamp(System.currentTimeMillis()),
         description = "two description",
         type = TransactionType.EXPENSE,
-        value = 500f
+        value = 500f,
+        accountId = 1
     )
     private val entity3 = TransactionEntity(
         categoryId = 0,
         date = Timestamp(System.currentTimeMillis()),
         description = "three description",
         type = TransactionType.EXPENSE,
-        value = 5000f
+        value = 5000f,
+        accountId = 1
     )
     private val entity4 = TransactionEntity(
         categoryId = 0,
         date = Timestamp(System.currentTimeMillis()),
         description = "four description",
         type = TransactionType.EXPENSE,
-        value = 50000f
+        value = 50000f,
+        accountId = 1
     )
 
     companion object {

@@ -7,6 +7,7 @@ import com.schweitzering.data.debts.DebtEntity
 import com.schweitzering.data.fixedExpenses.FixedExpenseEntity
 import com.schweitzering.data.fixedExpenses.generator.FixedExpenseGeneratorEntity
 import com.schweitzering.data.transaction.TransactionEntity
+import com.schweitzering.data.transaction.TransactionWithCategoryRelation
 import com.schweitzering.domain.accounts.Account
 import com.schweitzering.domain.accounts.AccountWithTransactions
 import com.schweitzering.domain.categories.TransactionCategory
@@ -17,16 +18,18 @@ import com.schweitzering.domain.transaction.Transaction
 
 fun Transaction.toTransactionEntity() =
     TransactionEntity(
+                id = id,
                 value = value,
                 date = date, //Won't be null when transaction is created
                 description = description,
                 type = type,
                 categoryId = category.id,
                 accountId = accountId
-    ).apply { category = this@toTransactionEntity.category.toTransactionCategoryEntity() }
+    )
 
 fun TransactionEntity.toTransaction() =
-    Transaction(value = value,
+    Transaction(id = id,
+                value = value,
                 date = date,
                 description = description,
                 type = type,
@@ -56,6 +59,17 @@ fun Debt.toDebtEntity() =
     DebtEntity(id, transaction.toTransactionEntity(), creationDate, isResolved, resolveDate)
 fun DebtEntity.toDebt() =
     Debt(id, transaction.toTransaction(), creationDate, isResolved, resolveDate)
+
+
+fun TransactionWithCategoryRelation.toTransaction() = Transaction(
+    id = transaction.id,
+    value = transaction.value,
+    date = transaction.date,
+    description = transaction.description,
+    type = transaction.type,
+    category = category.toTransactionCategory()
+)
+
 
 fun Account.toAccountEntity() =
     AccountEntity(id, name, description)

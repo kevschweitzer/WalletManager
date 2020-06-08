@@ -4,7 +4,7 @@ import com.schweitzering.domain.categories.TransactionCategory
 import java.sql.Timestamp
 
 data class Transaction(
-    var id: Int? = null,
+    var id: Int = 0,
     var value: Float,
     var date: Timestamp? = null,
     var description: String,

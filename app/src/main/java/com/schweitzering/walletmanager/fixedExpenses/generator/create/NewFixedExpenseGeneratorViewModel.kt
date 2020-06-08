@@ -16,10 +16,6 @@ class NewFixedExpenseGeneratorViewModel(private val newFixedExpenseGeneratorUseC
         object FixedExpenseCreationSuccess : State()
     }
 
-    companion object {
-        const val ONE_DAY_IN_MILLIS = 86400000
-    }
-
     var value: Float = 120f
     var categoryType: String = "Gym"
     var period = TimePeriod.WEEK

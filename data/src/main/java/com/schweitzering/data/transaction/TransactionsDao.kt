@@ -10,7 +10,7 @@ interface TransactionsDao {
     suspend fun insert(entity: TransactionEntity)
 
     @Query("SELECT * FROM transactions")
-    fun getAll(): LiveData<List<TransactionEntity>>
+    fun getAll(): LiveData<List<TransactionWithCategoryRelation>>
 
     @Delete
     suspend fun delete(entity: TransactionEntity)
@@ -22,5 +22,5 @@ interface TransactionsDao {
     fun getByType(type: String): LiveData<List<TransactionEntity>>
 
     @Query("SELECT * FROM transactions WHERE date BETWEEN :initialDate AND :finalDate")
-    fun getBetween(initialDate: Long?, finalDate: Long?): LiveData<List<TransactionEntity>>
+    fun getBetween(initialDate: Long?, finalDate: Long?): LiveData<List<TransactionWithCategoryRelation>>
 }

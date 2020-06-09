@@ -12,5 +12,6 @@ data class TransactionEntity (
     var date: Timestamp?,
     var description: String,
     var type: TransactionType,
-    var categoryId: Int
+    var categoryId: Int,
+    var accountId: Int
 )

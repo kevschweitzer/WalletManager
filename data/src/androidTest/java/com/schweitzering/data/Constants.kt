@@ -24,7 +24,8 @@ val transaction1 by lazy {Transaction(
     date = Timestamp(System.currentTimeMillis() - ONE_DAY_IN_MILLIS),
     description = "transaction 1",
     type = TransactionType.INCOME,
-    category = categoryIncome
+    category = categoryIncome,
+    accountId = 1
 )}
 
 val transaction2 by lazy {Transaction(
@@ -33,7 +34,8 @@ val transaction2 by lazy {Transaction(
     date = Timestamp(System.currentTimeMillis() - ONE_DAY_IN_MILLIS*3),
     description = "transaction 2",
     type = TransactionType.EXPENSE,
-    category = categoryExpense
+    category = categoryExpense,
+    accountId = 1
 )}
 
 val transaction3 by lazy {Transaction(
@@ -42,7 +44,8 @@ val transaction3 by lazy {Transaction(
     date = Timestamp(System.currentTimeMillis()),
     description = "transaction 3",
     type = TransactionType.EXPENSE,
-    category = categoryExpense
+    category = categoryExpense,
+    accountId = 1
 )}
 
 val categoryIncome = TransactionCategory(

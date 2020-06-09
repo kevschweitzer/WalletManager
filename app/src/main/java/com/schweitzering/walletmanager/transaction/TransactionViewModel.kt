@@ -53,7 +53,8 @@ class TransactionViewModel(private val addTransactionUseCase: AddTransactionUseC
                 Timestamp(System.currentTimeMillis()),
                 description,
                 transactionType,
-                it)
+                it,
+                accountId = 1)
         }
     }
 }

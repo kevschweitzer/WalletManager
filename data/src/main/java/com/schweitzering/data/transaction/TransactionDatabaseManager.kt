@@ -32,6 +32,8 @@ class TransactionDatabaseManager(private val database: AppDatabase) {
     fun getBetween(initialDate: Timestamp, finalDate: Timestamp) =
         transactionsDao.getBetween(converters.fromTimestamp(initialDate),
             converters.fromTimestamp(finalDate))
+
+    fun getByAccount(accountId: Int) = transactionsDao.getByAccount(accountId)
 }
 
 fun LocalDate.startOfDay(): String {

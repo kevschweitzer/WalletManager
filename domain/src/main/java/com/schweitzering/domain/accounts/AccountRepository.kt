@@ -11,6 +11,4 @@ interface AccountRepository {
     fun getAll(): LiveData<List<Account>>
 
     fun update(account: Account)
-
-    fun getAccountsWithTransactions(): LiveData<List<AccountWithTransactions>>
 }

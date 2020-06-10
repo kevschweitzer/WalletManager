@@ -1,14 +1,11 @@
 package com.schweitzering.data.accounts
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.schweitzering.data.xsupport.database.AppDatabase
 import com.schweitzering.data.xsupport.mappers.toAccount
 import com.schweitzering.data.xsupport.mappers.toAccountEntity
-import com.schweitzering.data.xsupport.mappers.toAccountWithTransactions
 import com.schweitzering.domain.accounts.Account
 import com.schweitzering.domain.accounts.AccountRepository
-import com.schweitzering.domain.accounts.AccountWithTransactions
 import kotlinx.coroutines.runBlocking
 
 class AccountRepositoryImpl(private val appDatabase: AppDatabase): AccountRepository {
@@ -36,9 +33,4 @@ class AccountRepositoryImpl(private val appDatabase: AppDatabase): AccountReposi
             dao.update(account.toAccountEntity())
         }
     }
-
-    override fun getAccountsWithTransactions() =
-        Transformations.map(dao.getAccountsWithTransactions()) {
-            it.map { it.toAccountWithTransactions() }
-        }
 }

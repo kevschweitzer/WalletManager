@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
-import com.schweitzering.data.Constants.Companion.ONE_DAY_IN_MILLIS
+import com.schweitzering.Constants.Companion.ONE_DAY_IN_MILLIS
 import com.schweitzering.data.categories.TransactionCategoryDatabaseManager
 import com.schweitzering.data.categories.TransactionCategoryRepositoryImpl
 import com.schweitzering.data.transaction.TransactionDatabaseManager
@@ -13,6 +13,9 @@ import com.schweitzering.data.xsupport.database.AppDatabase
 import com.schweitzering.domain.categories.TransactionCategoryRepository
 import com.schweitzering.domain.transaction.Transaction
 import com.schweitzering.domain.transaction.TransactionsRepository
+import com.schweitzering.transaction1
+import com.schweitzering.transaction2
+import com.schweitzering.transaction3
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -72,7 +75,8 @@ class TransactionRepositoryTest {
         transactionRepository.add(transaction1)
         transactionRepository.add(transaction2)
         transactionRepository.getAll().observeOnce {
-            assertEquals(it, listOf(transaction1, transaction2))
+            assertEquals(it, listOf(transaction1,
+                transaction2))
         }
     }
 
@@ -86,7 +90,8 @@ class TransactionRepositoryTest {
         val twoDaysAgo = Timestamp(System.currentTimeMillis() - ONE_DAY_IN_MILLIS*2)
         val today = Timestamp(System.currentTimeMillis())
         transactionRepository.getBetween(twoDaysAgo, today).observeOnce {
-            assertEquals(it, listOf(transaction1, transaction3))
+            assertEquals(it, listOf(transaction1,
+                transaction3))
         }
     }
 }

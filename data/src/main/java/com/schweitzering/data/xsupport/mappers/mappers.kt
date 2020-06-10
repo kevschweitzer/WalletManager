@@ -9,7 +9,6 @@ import com.schweitzering.data.fixedExpenses.generator.FixedExpenseGeneratorEntit
 import com.schweitzering.data.transaction.TransactionEntity
 import com.schweitzering.data.transaction.TransactionWithCategoryRelation
 import com.schweitzering.domain.accounts.Account
-import com.schweitzering.domain.accounts.AccountWithTransactions
 import com.schweitzering.domain.categories.TransactionCategory
 import com.schweitzering.domain.debts.Debt
 import com.schweitzering.domain.fixedExpenses.FixedExpense
@@ -73,10 +72,11 @@ fun TransactionWithCategoryRelation.toTransaction() = Transaction(
 
 
 fun Account.toAccountEntity() =
-    AccountEntity(id, name, description)
-fun AccountEntity.toAccount() =
-    Account(id, name, description)
+    AccountEntity(id, name, description,balance)
 
-fun AccountWithTransactionsRelation.toAccountWithTransactions() = AccountWithTransactions(
-    account = account.toAccount(),
-    transactions = transactions.map { it.toTransaction() })
+fun AccountWithTransactionsRelation.toAccount() = Account(
+    id = account.id,
+    name = account.name,
+    description = account.description,
+    balance = account.balance
+)

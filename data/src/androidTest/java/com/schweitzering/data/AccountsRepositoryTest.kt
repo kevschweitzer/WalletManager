@@ -5,6 +5,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
+import com.schweitzering.account1
+import com.schweitzering.account2
 import com.schweitzering.data.accounts.AccountRepositoryImpl
 import com.schweitzering.data.xsupport.database.AppDatabase
 import com.schweitzering.domain.accounts.Account
@@ -23,18 +25,6 @@ class AccountsRepositoryTest {
     private lateinit var appDatabase: AppDatabase
 
     private lateinit var context: Context
-
-    private val entity1 = Account(
-        id = 1,
-        name = "account 1",
-        description = "Some description"
-    )
-
-    private val entity2 = Account(
-        id = 2,
-        name = "account 2",
-        description = "Other description"
-    )
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -55,16 +45,16 @@ class AccountsRepositoryTest {
 
     @Test
     fun insertTest() {
-        accountRepository.add(entity1)
+        accountRepository.add(account1)
         accountRepository.getAll().observeOnce {
-            assertEquals(it, listOf(entity1))
+            assertEquals(it, listOf(account1))
         }
     }
 
     @Test
     fun deleteTest() {
-        accountRepository.add(entity1)
-        accountRepository.remove(entity1)
+        accountRepository.add(account1)
+        accountRepository.remove(account1)
         accountRepository.getAll().observeOnce {
             assertEquals(it, listOf<Account>())
         }
@@ -72,10 +62,10 @@ class AccountsRepositoryTest {
 
     @Test
     fun updateTest() {
-        accountRepository.add(entity1)
+        accountRepository.add(account1)
         val newName = "changed name"
-        entity1.name = newName
-        accountRepository.update(entity1)
+        account1.name = newName
+        accountRepository.update(account1)
         accountRepository.getAll().observeOnce {
             assertEquals(it.first().name, newName)
         }
@@ -83,10 +73,11 @@ class AccountsRepositoryTest {
 
     @Test
     fun getAllTest() {
-        accountRepository.add(entity1)
-        accountRepository.add(entity2)
+        accountRepository.add(account1)
+        accountRepository.add(account2)
         accountRepository.getAll().observeOnce {
-            assertEquals(it, listOf(entity1, entity2))
+            assertEquals(it, listOf(account1,
+                account2))
         }
     }
 }

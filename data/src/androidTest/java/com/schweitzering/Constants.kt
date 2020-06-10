@@ -1,8 +1,9 @@
-package com.schweitzering.data
+package com.schweitzering
 
-import com.schweitzering.data.Constants.Companion.FOOD_TYPE
-import com.schweitzering.data.Constants.Companion.ONE_DAY_IN_MILLIS
-import com.schweitzering.data.Constants.Companion.SALARY_TYPE
+import com.schweitzering.Constants.Companion.FOOD_TYPE
+import com.schweitzering.Constants.Companion.ONE_DAY_IN_MILLIS
+import com.schweitzering.Constants.Companion.SALARY_TYPE
+import com.schweitzering.domain.accounts.Account
 import com.schweitzering.domain.categories.TransactionCategory
 import com.schweitzering.domain.transaction.Transaction
 import com.schweitzering.domain.transaction.TransactionType
@@ -25,7 +26,7 @@ val transaction1 by lazy {Transaction(
     description = "transaction 1",
     type = TransactionType.INCOME,
     category = categoryIncome,
-    accountId = 1
+    accountId = account1.id
 )}
 
 val transaction2 by lazy {Transaction(
@@ -35,7 +36,7 @@ val transaction2 by lazy {Transaction(
     description = "transaction 2",
     type = TransactionType.EXPENSE,
     category = categoryExpense,
-    accountId = 1
+    accountId = account2.id
 )}
 
 val transaction3 by lazy {Transaction(
@@ -45,7 +46,7 @@ val transaction3 by lazy {Transaction(
     description = "transaction 3",
     type = TransactionType.EXPENSE,
     category = categoryExpense,
-    accountId = 1
+    accountId = account2.id
 )}
 
 val categoryIncome = TransactionCategory(
@@ -58,4 +59,18 @@ val categoryExpense =  TransactionCategory(
     id = 2,
     type = TransactionType.EXPENSE,
     name = FOOD_TYPE
+)
+
+val account1 = Account(
+    id = 1,
+    name = "account 1",
+    description = "Some description",
+    balance = 0f
+)
+
+val account2 = Account(
+    id = 2,
+    name = "account 2",
+    description = "Other description",
+    balance = 0f
 )

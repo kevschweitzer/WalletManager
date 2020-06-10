@@ -23,4 +23,7 @@ interface TransactionsDao {
 
     @Query("SELECT * FROM transactions WHERE date BETWEEN :initialDate AND :finalDate")
     fun getBetween(initialDate: Long?, finalDate: Long?): LiveData<List<TransactionWithCategoryRelation>>
+
+    @Query("SELECT * FROM transactions WHERE accountId == :accountId")
+    fun getByAccount(accountId: Int): LiveData<List<TransactionWithCategoryRelation>>
 }

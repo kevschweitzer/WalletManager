@@ -17,4 +17,5 @@
     <string name="default_confirmation">Yes</string>
     <string name="ok_confirmation">Ok</string>
     <string name="default_negation">No</string>
+    <string name="create_account_btn_text">Create</string>
 </resources>

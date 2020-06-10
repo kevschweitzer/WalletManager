@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.schweitzering.walletmanager.R
+import com.schweitzering.walletmanager.accounts.create.NewAccountActivity
 import com.schweitzering.walletmanager.databinding.FragmentAccountsBinding
 import kotlinx.android.synthetic.main.fragment_accounts.*
 import org.koin.androidx.scope.currentScope
@@ -20,6 +21,13 @@ class AccountsFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         observeAccounts()
+        observeState()
+    }
+
+    private fun observeState() {
+        viewModel.state.observe(this, Observer {
+            startActivity(NewAccountActivity.getIntent(requireContext()))
+        })
     }
 
     override fun onCreateView(inflater: LayoutInflater,

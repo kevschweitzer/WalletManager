@@ -20,6 +20,8 @@ import com.schweitzering.domain.fixedExpenses.generator.NewFixedExpenseGenerator
 import com.schweitzering.domain.transaction.AddTransactionUseCase
 import com.schweitzering.domain.transaction.GetAllTransactionsUseCase
 import com.schweitzering.walletmanager.accounts.AccountsViewModel
+import com.schweitzering.walletmanager.accounts.create.NewAccountActivity
+import com.schweitzering.walletmanager.accounts.create.NewAccountViewModel
 import com.schweitzering.walletmanager.balance.BalanceViewModel
 import com.schweitzering.walletmanager.debts.DebtsViewModel
 import com.schweitzering.walletmanager.debts.create.NewDebtActivity
@@ -83,6 +85,10 @@ val appModule = module {
         scoped { CRUDCategoryViewModel(get()) }
     }
 
+    scope(named<NewAccountActivity>()) {
+        scoped { NewAccountViewModel() }
+    }
+
     factory { AddTransactionCategoryUseCase(get()) }
 
     factory { GetPartialBalanceUseCase(get()) }
@@ -119,7 +125,7 @@ val appModule = module {
 
     factory { DeleteTransactionCategoryUseCase(get()) }
 
-    factory { GetAllAccountsUseCase(get()) }
+    factory { GetAllAccountsUseCase(get(), get()) }
 
     factory { NewAccountUseCase(get())}
 }

@@ -25,6 +25,5 @@
         android:layout_height="wrap_content"
         android:text="@{viewHolder.account.description}"/>
 
-
 </LinearLayout>
 </layout>

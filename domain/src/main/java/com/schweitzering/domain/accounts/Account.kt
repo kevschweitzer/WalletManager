@@ -7,6 +7,6 @@ data class Account(
     var id: Int = 0,
     var name: String,
     var description: String,
-    var balance: Float,
+    var balance: Float = 0f,
     var transactions: MutableList<Transaction> = mutableListOf()
 )

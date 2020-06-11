@@ -86,7 +86,7 @@ val appModule = module {
     }
 
     scope(named<NewAccountActivity>()) {
-        scoped { NewAccountViewModel() }
+        scoped { NewAccountViewModel(get()) }
     }
 
     factory { AddTransactionCategoryUseCase(get()) }

@@ -6,4 +6,5 @@ sealed class ActionResponse {
     object DatabaseError: ActionResponse()
     object NetworkConnectionError: ActionResponse()
     object CannotDeleteError: ActionResponse()
+    object NotEmptyAccountError: ActionResponse()
 }

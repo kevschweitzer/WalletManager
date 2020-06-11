@@ -25,5 +25,21 @@
         android:layout_height="wrap_content"
         android:text="@{viewHolder.account.description}"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@{Float.toString(viewHolder.account.balance)}"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EDIT"
+        android:onClick="@{() -> viewModel.onEditClicked(viewHolder.account)}"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DELETE"
+        android:onClick="@{() -> viewModel.onDeleteClicked(viewHolder.account)}"/>
 </LinearLayout>
 </layout>

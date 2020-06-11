@@ -13,10 +13,10 @@ class GetAllAccountsUseCase(private val accountRepository: AccountRepository,
             val mediator = MediatorLiveData<List<Account>>()
             accountsList.forEach { account ->
                 mediator.addSource(transactionsRepository.getByAccount(account.id)) {
-                    account.transactions.addAll(it)
-                    mediator.postValue(accountsList)
+                    account.transactions.toMutableList().addAll(it)
                 }
             }
+            mediator.postValue(accountsList)
             mediator
         }
     }

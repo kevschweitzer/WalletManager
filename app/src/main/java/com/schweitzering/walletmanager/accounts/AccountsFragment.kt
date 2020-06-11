@@ -8,6 +8,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.schweitzering.domain.ActionResponse
+import com.schweitzering.domain.accounts.Account
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.accounts.create.NewAccountActivity
 import com.schweitzering.walletmanager.databinding.FragmentAccountsBinding
@@ -26,7 +29,37 @@ class AccountsFragment: Fragment() {
 
     private fun observeState() {
         viewModel.state.observe(this, Observer {
-            startActivity(NewAccountActivity.getIntent(requireContext()))
+            when(it) {
+                is AccountsViewModel.State.NewAccountState ->
+                    startActivity(NewAccountActivity.getCreateIntent(requireContext()))
+                is AccountsViewModel.State.EditAccountState ->
+                    startActivity(NewAccountActivity.getUpdateIntent(requireContext(), it.account))
+                is AccountsViewModel.State.DeleteAccountState ->
+                    MaterialAlertDialogBuilder(requireContext())
+                        .setMessage(getString(R.string.delete_account_message))
+                        .setPositiveButton(getString(R.string.default_confirmation)){ _, _-> deleteAccount(it.account)}
+                        .setNegativeButton(getString(R.string.default_negation)){ _, _->}
+                        .show()
+            }
+        })
+    }
+
+    private fun deleteAccount(account: Account) {
+        viewModel.deleteAccount(account).observe(this, Observer {
+            when(it) {
+                is ActionResponse.Correct -> MaterialAlertDialogBuilder(requireContext())
+                    .setMessage(getString(R.string.delete_account_ok_message))
+                    .setPositiveButton(getString(R.string.ok_confirmation)){ _, _-> }
+                    .show()
+                is ActionResponse.NotEmptyAccountError -> MaterialAlertDialogBuilder(requireContext())
+                    .setMessage(getString(R.string.delete_account_not_empty_message))
+                    .setPositiveButton(getString(R.string.ok_confirmation)){ _, _-> }
+                    .show()
+                is ActionResponse.CannotDeleteError -> MaterialAlertDialogBuilder(requireContext())
+                    .setMessage(getString(R.string.delete_account_wrong_message))
+                    .setPositiveButton(getString(R.string.ok_confirmation)){ _, _-> }
+                    .show()
+            }
         })
     }
 

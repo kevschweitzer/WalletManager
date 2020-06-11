@@ -1,12 +1,16 @@
 package com.schweitzering.data.accounts
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.schweitzering.data.xsupport.database.AppDatabase
 import com.schweitzering.data.xsupport.mappers.toAccount
 import com.schweitzering.data.xsupport.mappers.toAccountEntity
+import com.schweitzering.domain.ActionResponse
 import com.schweitzering.domain.accounts.Account
 import com.schweitzering.domain.accounts.AccountRepository
 import kotlinx.coroutines.runBlocking
+import java.sql.SQLException
 
 class AccountRepositoryImpl(private val appDatabase: AppDatabase): AccountRepository {
 
@@ -18,10 +22,18 @@ class AccountRepositoryImpl(private val appDatabase: AppDatabase): AccountReposi
         }
     }
 
-    override fun remove(account: Account) {
+    override fun remove(account: Account): LiveData<ActionResponse> {
+        val response = MutableLiveData<ActionResponse>()
         runBlocking {
-            dao.remove(account.toAccountEntity())
+            response.postValue(try {
+                dao.remove(account.toAccountEntity())
+                ActionResponse.Correct
+            } catch (e: SQLException) {
+                e.printStackTrace()
+                ActionResponse.CannotDeleteError
+            })
         }
+        return response
     }
 
     override fun getAll() = Transformations.map(dao.getAll()) {

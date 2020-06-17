@@ -49,7 +49,7 @@ import org.koin.dsl.module
 val appModule = module {
 
     scope(named<TransactionActivity>()) {
-        scoped { TransactionViewModel(get(), get()) }
+        scoped { TransactionViewModel(get(), get(), get()) }
     }
 
     scope(named<MainActivity>()) {

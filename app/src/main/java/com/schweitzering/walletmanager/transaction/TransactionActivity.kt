@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -76,12 +77,12 @@ class TransactionActivity : AppCompatActivity(), DataBindingProtocol {
                                         id: Long) {
                 viewModel.selectedCategoryPosition = position
             }
-
         }
     }
 
     private fun observeCategories() {
-        viewModel.categories.observe(this, Observer { addItemsToSpinner(it.map { it.name }) })
+        viewModel.categories.observe(this, Observer { addItemsToSpinner(spinner_category, it.map { it.name }) })
+        viewModel.accounts.observe(this, Observer { addItemsToSpinner(spinner_account, it.map { it.name }) })
     }
 
     override fun setDataBinding() {
@@ -90,9 +91,9 @@ class TransactionActivity : AppCompatActivity(), DataBindingProtocol {
         binding.viewModel = viewModel
     }
 
-    private fun addItemsToSpinner(categories: List<String>) {
+    private fun addItemsToSpinner(spinner: Spinner, items: List<String>) {
         val arrayAdapter =
-            ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, categories)
-        spinner_category.adapter = arrayAdapter
+            ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, items)
+        spinner.adapter = arrayAdapter
     }
 }

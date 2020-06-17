@@ -1,10 +1,12 @@
 package com.schweitzering.walletmanager.transaction
 
+import android.accounts.Account
 import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.schweitzering.domain.accounts.GetAllAccountsUseCase
 import com.schweitzering.domain.categories.GetTransactionCategoriesForTypeUseCase
 import com.schweitzering.domain.categories.TransactionCategory
 import com.schweitzering.domain.transaction.AddTransactionUseCase
@@ -14,7 +16,8 @@ import com.schweitzering.walletmanager.xsupport.utils.Constants.Companion.TRANSA
 import java.sql.Timestamp
 
 class TransactionViewModel(private val addTransactionUseCase: AddTransactionUseCase,
-                           private val getTransactionCategoriesForTypeUseCase: GetTransactionCategoriesForTypeUseCase) :
+                           private val getTransactionCategoriesForTypeUseCase: GetTransactionCategoriesForTypeUseCase,
+                           private val getAllAccountsUseCase: GetAllAccountsUseCase) :
     ViewModel() {
 
     sealed class TransactionState {
@@ -29,6 +32,7 @@ class TransactionViewModel(private val addTransactionUseCase: AddTransactionUseC
     val categories: LiveData<List<TransactionCategory>> by lazy {
         getTransactionCategoriesForTypeUseCase.execute(transactionType)
     }
+    val accounts = getAllAccountsUseCase.execute()
 
     //UI fields
     var value: Float = 10f

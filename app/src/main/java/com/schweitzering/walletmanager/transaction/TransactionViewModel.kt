@@ -38,6 +38,7 @@ class TransactionViewModel(private val addTransactionUseCase: AddTransactionUseC
     var value: Float = 10f
     var description: String = ""
     var selectedCategoryPosition: Int = 0
+    var selectedAccountPosition: Int = 0
 
     fun handleIntent(intent: Intent?) {
         intent?.let {
@@ -52,13 +53,11 @@ class TransactionViewModel(private val addTransactionUseCase: AddTransactionUseC
     }
 
     private fun getCurrentTransaction(): TransactionProfile? {
-        return categories.value?.get(selectedCategoryPosition)?.let {
-            TransactionProfile(value,
+        return TransactionProfile(value,
                 Timestamp(System.currentTimeMillis()),
                 description,
                 transactionType,
-                it,
-                accountId = 1)
-        }
+                categories.value?.get(selectedCategoryPosition)!!,
+                accounts.value?.get(selectedAccountPosition)!!.id)
     }
 }

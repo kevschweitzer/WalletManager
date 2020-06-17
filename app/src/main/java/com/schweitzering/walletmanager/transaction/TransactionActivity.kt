@@ -54,8 +54,22 @@ class TransactionActivity : AppCompatActivity(), DataBindingProtocol {
         viewModel.handleIntent(intent)
 
         observeState()
-        observeCategories()
+        observeOptions()
         observeCategorySelection()
+        observeAccountSelection()
+    }
+
+    private fun observeAccountSelection() {
+        spinner_account.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+            override fun onItemSelected(parent: AdapterView<*>?,
+                                        view: View?,
+                                        position: Int,
+                                        id: Long) {
+                viewModel.selectedAccountPosition = position
+            }
+        }
     }
 
     private fun observeState() {
@@ -67,7 +81,6 @@ class TransactionActivity : AppCompatActivity(), DataBindingProtocol {
     }
 
     private fun observeCategorySelection() {
-        spinner_category.selectedItem
         spinner_category.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
@@ -80,7 +93,7 @@ class TransactionActivity : AppCompatActivity(), DataBindingProtocol {
         }
     }
 
-    private fun observeCategories() {
+    private fun observeOptions() {
         viewModel.categories.observe(this, Observer { addItemsToSpinner(spinner_category, it.map { it.name }) })
         viewModel.accounts.observe(this, Observer { addItemsToSpinner(spinner_account, it.map { it.name }) })
     }

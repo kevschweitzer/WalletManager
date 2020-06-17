@@ -19,7 +19,7 @@ fun Transaction.toTransactionEntity() =
     TransactionEntity(
                 id = id,
                 value = value,
-                date = date, //Won't be null when transaction is created
+                date = date,
                 description = description,
                 type = type,
                 categoryId = category.id,
@@ -35,7 +35,6 @@ fun TransactionEntity.toTransaction() =
                 category = TransactionCategory(name = "Teeest"),
                 accountId = accountId)
 
-
 fun TransactionCategory.toTransactionCategoryEntity() =
     TransactionCategoryEntity(id = id, type = type, name = name)
 fun TransactionCategoryEntity.toTransactionCategory() =
@@ -48,7 +47,6 @@ fun FixedExpenseEntity.toFixedExpense() =
 fun FixedExpense.toFixedExpenseEntity() =
     FixedExpenseEntity(id, expense.toTransactionEntity(), isAlreadyPaid, creationDate, paymentDate)
 
-
 fun FixedExpenseGeneratorEntity.toFixedExpenseGenerator() =
     FixedExpenseGenerator(id, expense.toTransaction(), creationDate, schedule)
 fun FixedExpenseGenerator.toFixedExpenseGeneratorEntity() =
@@ -59,7 +57,6 @@ fun Debt.toDebtEntity() =
 fun DebtEntity.toDebt() =
     Debt(id, transaction.toTransaction(), creationDate, isResolved, resolveDate)
 
-
 fun TransactionWithCategoryRelation.toTransaction() = Transaction(
     id = transaction.id,
     value = transaction.value,
@@ -69,7 +66,6 @@ fun TransactionWithCategoryRelation.toTransaction() = Transaction(
     accountId = transaction.accountId,
     category = category.toTransactionCategory()
 )
-
 
 fun Account.toAccountEntity() =
     AccountEntity(id, name, description,balance)

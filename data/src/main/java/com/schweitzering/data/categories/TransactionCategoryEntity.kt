@@ -6,7 +6,8 @@ import com.schweitzering.domain.transaction.TransactionType
 
 @Entity(tableName = "transaction_categories")
 data class TransactionCategoryEntity(
-    @PrimaryKey(autoGenerate = true) var id: Int = 0,
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0,
     var type: TransactionType = TransactionType.EXPENSE,
     var name: String = ""
 ) {

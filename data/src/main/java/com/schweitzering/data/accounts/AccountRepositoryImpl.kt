@@ -1,5 +1,6 @@
 package com.schweitzering.data.accounts
 
+import android.database.sqlite.SQLiteConstraintException
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -28,7 +29,7 @@ class AccountRepositoryImpl(private val appDatabase: AppDatabase): AccountReposi
             response.postValue(try {
                 dao.remove(account.toAccountEntity())
                 ActionResponse.Correct
-            } catch (e: SQLException) {
+            } catch (e: SQLiteConstraintException) {
                 e.printStackTrace()
                 ActionResponse.CannotDeleteError
             })

@@ -25,10 +25,6 @@ class TransactionDatabaseManager(private val database: AppDatabase) {
         }
     }
 
-    /*fun getByCategory(category: TransactionCategory) = transactionsDao.getByCategory(converters.fromTransactionCategory(category))
-
-    fun getByType(type: TransactionType) = transactionsDao.getByType(converters.fromTransactionType(type))*/
-
     fun getBetween(initialDate: Timestamp, finalDate: Timestamp) =
         transactionsDao.getBetween(converters.fromTimestamp(initialDate),
             converters.fromTimestamp(finalDate))

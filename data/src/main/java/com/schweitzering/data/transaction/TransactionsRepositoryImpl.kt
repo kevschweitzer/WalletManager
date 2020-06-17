@@ -33,16 +33,4 @@ class TransactionsRepositoryImpl(private val databaseManager: TransactionDatabas
         Transformations.map(databaseManager.getByAccount(accountId)) {
             it.map { it.toTransaction() }
         }
-
-    /*override fun getByCategory(type: TransactionType): LiveData<List<Transaction>> {
-        return Transformations.map(databaseManager.getByCategory(type)) { list ->
-            list.map { it.toTransaction() }
-        }
-    }
-
-    override fun getByCategoryType(type: String): LiveData<List<Transaction>> {
-        return Transformations.map(databaseManager.getByCategoryType(type)) { list ->
-            list.map { it.toTransaction() }
-        }
-    }*/
 }

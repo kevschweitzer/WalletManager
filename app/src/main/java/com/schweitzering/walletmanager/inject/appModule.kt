@@ -4,7 +4,6 @@ import com.schweitzering.domain.accounts.DeleteAccountUseCase
 import com.schweitzering.domain.accounts.GetAllAccountsUseCase
 import com.schweitzering.domain.accounts.NewAccountUseCase
 import com.schweitzering.domain.accounts.UpdateAccountUseCase
-import com.schweitzering.domain.balance.GetPartialBalanceUseCase
 import com.schweitzering.domain.balance.GetTotalBalanceUseCase
 import com.schweitzering.domain.categories.AddTransactionCategoryUseCase
 import com.schweitzering.domain.categories.DeleteTransactionCategoryUseCase
@@ -53,7 +52,7 @@ val appModule = module {
     }
 
     scope(named<MainActivity>()) {
-        factory { BalanceViewModel(get(), get(), get()) }
+        factory { BalanceViewModel(get(), get()) }
         factory { FixedExpensesViewModel(get(), get()) }
         factory { DebtsViewModel(get(), get()) }
         factory { AccountsViewModel(get(), get()) }
@@ -92,8 +91,6 @@ val appModule = module {
     }
 
     factory { AddTransactionCategoryUseCase(get()) }
-
-    factory { GetPartialBalanceUseCase(get()) }
 
     factory { GetTotalBalanceUseCase(get()) }
 

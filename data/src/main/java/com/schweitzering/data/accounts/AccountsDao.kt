@@ -15,6 +15,7 @@ interface AccountsDao {
     @Update
     suspend fun update(entity: AccountEntity)
 
+    @Transaction
     @Query("SELECT * FROM accounts")
     fun getAll(): LiveData<List<AccountWithTransactionsRelation>>
 

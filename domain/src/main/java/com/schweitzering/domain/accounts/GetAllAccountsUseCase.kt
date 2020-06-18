@@ -25,10 +25,9 @@ class GetAllAccountsUseCase(private val accountRepository: AccountRepository,
     }
 
     private fun getBalance(transactions: List<Transaction>): Float {
-        return (transactions.filter {
-            it.type == TransactionType.INCOME || it.type == TransactionType.SAVING || it.type == TransactionType.INVESTMENT
-        }
-            .sumByDouble { it.value.toDouble() } + transactions.filter { it.type == TransactionType.EXPENSE }
+        return (transactions.filter { it.type == TransactionType.INCOME }
+            .sumByDouble { it.value.toDouble() }
+        + transactions.filter { it.type == TransactionType.EXPENSE }
             .sumByDouble { -it.value.toDouble() }).toFloat()
     }
 }

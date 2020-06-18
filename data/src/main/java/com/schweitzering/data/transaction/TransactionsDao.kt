@@ -9,6 +9,7 @@ interface TransactionsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(entity: TransactionEntity)
 
+    @Transaction
     @Query("SELECT * FROM transactions")
     fun getAll(): LiveData<List<TransactionWithCategoryRelation>>
 
@@ -21,9 +22,11 @@ interface TransactionsDao {
     @Query("SELECT * FROM transactions WHERE type == :type")
     fun getByType(type: String): LiveData<List<TransactionEntity>>
 
+    @Transaction
     @Query("SELECT * FROM transactions WHERE date BETWEEN :initialDate AND :finalDate")
     fun getBetween(initialDate: Long?, finalDate: Long?): LiveData<List<TransactionWithCategoryRelation>>
 
+    @Transaction
     @Query("SELECT * FROM transactions WHERE accountId == :accountId")
     fun getByAccount(accountId: Int): LiveData<List<TransactionWithCategoryRelation>>
 }

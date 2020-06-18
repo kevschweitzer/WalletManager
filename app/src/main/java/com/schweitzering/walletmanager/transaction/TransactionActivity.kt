@@ -34,18 +34,6 @@ class TransactionActivity : AppCompatActivity(), DataBindingProtocol {
             intent.putExtra(TRANSACTION_CATEGORY, TransactionType.INCOME)
             return intent
         }
-
-        fun getSavingIntent(context: Context): Intent {
-            val intent = Intent(context, TransactionActivity::class.java)
-            intent.putExtra(TRANSACTION_CATEGORY, TransactionType.SAVING)
-            return intent
-        }
-
-        fun getInvestmentIntent(context: Context): Intent {
-            val intent = Intent(context, TransactionActivity::class.java)
-            intent.putExtra(TRANSACTION_CATEGORY, TransactionType.INVESTMENT)
-            return intent
-        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

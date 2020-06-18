@@ -18,11 +18,7 @@ data class TransactionCategoryEntity(
             TransactionCategoryEntity(type = TransactionType.EXPENSE, name = "Car"),
             TransactionCategoryEntity(type = TransactionType.INCOME, name = "Salary"),
             TransactionCategoryEntity(type = TransactionType.INCOME, name = "Sale"),
-            TransactionCategoryEntity(type = TransactionType.INCOME, name = "Loan"),
-            TransactionCategoryEntity(type = TransactionType.INVESTMENT, name = "Bonds"),
-            TransactionCategoryEntity(type = TransactionType.INVESTMENT, name = "Shares"),
-            TransactionCategoryEntity(type = TransactionType.SAVING, name = "Cash"),
-            TransactionCategoryEntity(type = TransactionType.SAVING, name = "Bank Account")
+            TransactionCategoryEntity(type = TransactionType.INCOME, name = "Loan")
         )
     }
 }

@@ -54,10 +54,6 @@ class BalanceFragment : Fragment() {
                     requireContext()))
                 BalanceViewModel.FlowState.NewExpense -> startActivity(TransactionActivity.getExpenseIntent(
                     requireContext()))
-                BalanceViewModel.FlowState.NewSaving -> startActivity(TransactionActivity.getSavingIntent(
-                    requireContext()))
-                BalanceViewModel.FlowState.NewInvestment -> startActivity(TransactionActivity.getInvestmentIntent(
-                    requireContext()))
             }
         })
     }

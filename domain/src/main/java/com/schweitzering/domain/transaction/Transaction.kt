@@ -14,5 +14,5 @@ data class Transaction(
 )
 
 enum class TransactionType {
-    INCOME, EXPENSE, SAVING, INVESTMENT
+    INCOME, EXPENSE
 }

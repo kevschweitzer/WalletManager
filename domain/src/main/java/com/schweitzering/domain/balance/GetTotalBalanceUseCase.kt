@@ -14,7 +14,6 @@ class GetTotalBalanceUseCase(private val transactionsRepository: TransactionsRep
             when(transaction.type) {
                 TransactionType.INCOME-> balance += transaction.value
                 TransactionType.EXPENSE -> balance -= transaction.value
-                else -> Unit
             }
         }
         balance

@@ -12,4 +12,15 @@ data class AccountEntity(
     var name: String,
     var description: String,
     var balance: Float
-)
+) {
+    companion object {
+        fun getPredefinedAccount(): AccountEntity {
+            return AccountEntity(
+                id = 0,
+                name = "Wallet",
+                description = "Cash",
+                balance = 0f
+            )
+        }
+    }
+}

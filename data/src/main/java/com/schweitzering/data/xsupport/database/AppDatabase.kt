@@ -61,7 +61,7 @@ abstract class AppDatabase : RoomDatabase() {
                             TransactionCategoryEntity.getPredefinedCategories().forEach {
                                 getInstance(context).transactionCategoriesDao().insert(it)
                             }
-
+                            getInstance(context).accountsDao().insert(AccountEntity.getPredefinedAccount())
                         }
                     }
                 }).build()

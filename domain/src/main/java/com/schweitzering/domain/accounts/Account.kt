@@ -9,5 +9,5 @@ data class Account(
     var name: String,
     var description: String,
     var balance: Float = 0f,
-    var transactions: Array<Transaction> = arrayOf()
+    var transactions: List<Transaction> = listOf()
 ): Serializable

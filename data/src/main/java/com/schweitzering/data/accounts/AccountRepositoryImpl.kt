@@ -26,13 +26,15 @@ class AccountRepositoryImpl(private val appDatabase: AppDatabase): AccountReposi
     override fun remove(account: Account): LiveData<ActionResponse> {
         val response = MutableLiveData<ActionResponse>()
         runBlocking {
-            response.postValue(try {
-                dao.remove(account.toAccountEntity())
-                ActionResponse.Correct
-            } catch (e: SQLiteConstraintException) {
-                e.printStackTrace()
-                ActionResponse.CannotDeleteError
-            })
+            response.postValue(
+                try {
+                    dao.remove(account.toAccountEntity())
+                    ActionResponse.Correct
+                } catch (e: SQLiteConstraintException) {
+                    e.printStackTrace()
+                    ActionResponse.CannotDeleteError
+                }
+            )
         }
         return response
     }

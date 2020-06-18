@@ -2,21 +2,20 @@ package com.schweitzering.domain.accounts
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import com.schweitzering.domain.ActionResponse
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class DeleteAccountUseCase(private val repository: AccountRepository) {
 
     fun execute(account: Account): LiveData<ActionResponse> {
-        return if(account.balance == 0f){
-            repository.remove(account)
-        } else {
-            val response = MutableLiveData<ActionResponse>()
-            GlobalScope.launch {
-                response.postValue(ActionResponse.NotEmptyAccountError)
+        return Transformations.switchMap(repository.getAll()) {
+            if (it.size > 1 && account.balance == 0f) {
+                repository.remove(account)
+            } else {
+                val response = MutableLiveData<ActionResponse>()
+                response.value = ActionResponse.CannotDeleteError
+                response
             }
-            response
         }
     }
 }

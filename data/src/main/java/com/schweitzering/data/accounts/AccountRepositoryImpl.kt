@@ -4,6 +4,7 @@ import android.database.sqlite.SQLiteConstraintException
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import androidx.lifecycle.liveData
 import com.schweitzering.data.xsupport.database.AppDatabase
 import com.schweitzering.data.xsupport.mappers.toAccount
 import com.schweitzering.data.xsupport.mappers.toAccountEntity
@@ -24,19 +25,15 @@ class AccountRepositoryImpl(private val appDatabase: AppDatabase): AccountReposi
     }
 
     override fun remove(account: Account): LiveData<ActionResponse> {
-        val response = MutableLiveData<ActionResponse>()
-        runBlocking {
-            response.postValue(
-                try {
-                    dao.remove(account.toAccountEntity())
-                    ActionResponse.Correct
-                } catch (e: SQLiteConstraintException) {
-                    e.printStackTrace()
-                    ActionResponse.CannotDeleteError
-                }
-            )
+        return liveData {
+            try {
+                dao.remove(account.toAccountEntity())
+                emit(ActionResponse.Correct)
+            } catch (e: SQLiteConstraintException) {
+                e.printStackTrace()
+                emit(ActionResponse.CannotDeleteError)
+            }
         }
-        return response
     }
 
     override fun getAll() = Transformations.map(dao.getAll()) {

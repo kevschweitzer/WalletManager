@@ -2,6 +2,7 @@ package com.schweitzering.walletmanager.accounts
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.schweitzering.domain.ActionResponse
 import com.schweitzering.domain.accounts.Account
 import com.schweitzering.domain.accounts.DeleteAccountUseCase
 import com.schweitzering.domain.accounts.GetAllAccountsUseCase
@@ -32,6 +33,8 @@ class AccountsViewModel(getAllAccountsUseCase: GetAllAccountsUseCase,
         _state.value = State.DeleteAccountState(account)
     }
 
-    fun deleteAccount(account: Account)  = deleteAccountUseCase.execute(account)
+    fun deleteAccount(account: Account): LiveData<ActionResponse>  {
+        return deleteAccountUseCase.execute(account)
+    }
 
 }

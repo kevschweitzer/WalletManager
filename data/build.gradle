@@ -58,4 +58,5 @@ dependencies {
     androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
     // RxJava support for Room
     implementation 'android.arch.persistence.room:rxjava2:1.1.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-alpha04'
 }

@@ -12,4 +12,6 @@ interface AccountRepository {
     fun getAll(): LiveData<List<Account>>
 
     fun update(account: Account)
+
+    fun getById(id: Int): LiveData<Account>
 }

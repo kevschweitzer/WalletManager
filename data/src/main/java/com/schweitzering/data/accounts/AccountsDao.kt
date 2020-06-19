@@ -22,4 +22,8 @@ interface AccountsDao {
     @Transaction
     @Query("SELECT * FROM accounts")
     fun getAccountsWithTransactions(): LiveData<List<AccountWithTransactionsRelation>>
+
+    @Transaction
+    @Query("SELECT * FROM accounts WHERE account_id = :id")
+    fun getById(id: Int): LiveData<AccountWithTransactionsRelation>
 }

@@ -96,7 +96,7 @@ val appModule = module {
 
     factory { GetTransactionCategoriesForTypeUseCase(get()) }
 
-    factory { AddTransactionUseCase(get()) }
+    factory { AddTransactionUseCase(get(), get()) }
 
     factory { GetAllTransactionsUseCase(get()) }
 

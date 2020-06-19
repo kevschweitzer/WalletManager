@@ -45,4 +45,9 @@ class AccountRepositoryImpl(private val appDatabase: AppDatabase): AccountReposi
             dao.update(account.toAccountEntity())
         }
     }
+
+    override fun getById(id: Int) = Transformations.map(dao.getById(id)) {
+        it.toAccount()
+    }
+
 }

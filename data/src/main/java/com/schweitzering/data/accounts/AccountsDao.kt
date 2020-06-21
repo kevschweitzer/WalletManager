@@ -6,7 +6,7 @@ import androidx.room.*
 @Dao
 interface AccountsDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(entity: AccountEntity)
 
     @Delete
@@ -25,5 +25,5 @@ interface AccountsDao {
 
     @Transaction
     @Query("SELECT * FROM accounts WHERE account_id = :id")
-    fun getById(id: Int): LiveData<AccountWithTransactionsRelation>
+    fun getById(id: Int): LiveData<AccountEntity>
 }

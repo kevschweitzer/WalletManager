@@ -62,9 +62,15 @@ class TransactionActivity : AppCompatActivity(), DataBindingProtocol {
 
     private fun observeState() {
         viewModel.state.observe(this, Observer {
-            when (it) {
-                TransactionViewModel.TransactionState.Finished -> finish()
+            when(it) {
+                TransactionViewModel.TransactionState.ContinueClicked -> addTransaction()
             }
+        })
+    }
+
+    private fun addTransaction() {
+        viewModel.addTransaction().observe(this, Observer {
+            this@TransactionActivity.finish()
         })
     }
 

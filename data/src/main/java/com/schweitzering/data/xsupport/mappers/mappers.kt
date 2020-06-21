@@ -33,7 +33,7 @@ fun TransactionEntity.toTransaction() =
                 description = description,
                 type = type,
                 category = TransactionCategory(name = "Teeest"),
-                accountId = accountId)
+                accountId = id)
 
 fun TransactionCategory.toTransactionCategoryEntity() =
     TransactionCategoryEntity(id = id, type = type, name = name)
@@ -69,6 +69,8 @@ fun TransactionWithCategoryRelation.toTransaction() = Transaction(
 
 fun Account.toAccountEntity() =
     AccountEntity(id, name, description,balance)
+
+fun AccountEntity.toAccount() = Account(id,name,description,balance)
 
 fun AccountWithTransactionsRelation.toAccount() = Account(
     id = account.id,

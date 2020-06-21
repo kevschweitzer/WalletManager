@@ -1,16 +1,25 @@
 package com.schweitzering.domain.transaction
 
-import androidx.lifecycle.Transformations
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.liveData
+import com.schweitzering.domain.ActionResponse
+import com.schweitzering.domain.accounts.Account
 import com.schweitzering.domain.accounts.AccountRepository
 
 class AddTransactionUseCase(private val repository: TransactionsRepository,
                             private val accountRepository: AccountRepository) {
 
-    fun execute(transaction: Transaction){
-        repository.add(transaction)
-        Transformations.map(accountRepository.getById(transaction.accountId)) {
-            it.balance += transaction.value
-            accountRepository.update(it)
+    fun execute(transaction: Transaction, account: Account?): LiveData<ActionResponse> {
+        return liveData {
+            account?.let {
+                repository.add(transaction)
+                when(transaction.type) {
+                    TransactionType.EXPENSE -> account.balance -= transaction.value
+                    TransactionType.INCOME -> account.balance += transaction.value
+                }
+                accountRepository.update(account)
+                emit(ActionResponse.Correct)
+            } ?: emit(ActionResponse.UnknownError)
         }
     }
 }

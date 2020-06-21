@@ -2,7 +2,6 @@ package com.schweitzering.data.accounts
 
 import android.database.sqlite.SQLiteConstraintException
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.liveData
 import com.schweitzering.data.xsupport.database.AppDatabase
@@ -12,7 +11,6 @@ import com.schweitzering.domain.ActionResponse
 import com.schweitzering.domain.accounts.Account
 import com.schweitzering.domain.accounts.AccountRepository
 import kotlinx.coroutines.runBlocking
-import java.sql.SQLException
 
 class AccountRepositoryImpl(private val appDatabase: AppDatabase): AccountRepository {
 

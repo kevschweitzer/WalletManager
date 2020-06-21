@@ -27,7 +27,7 @@ class NewAccountViewModel(private val newAccountUseCase: NewAccountUseCase,
             it.apply {
                 name = this@NewAccountViewModel.name
                 description = this@NewAccountViewModel.description
-                balance = 0f
+                balance = it.balance
             }
             updateAccountUseCase.execute(it)
         } ?: newAccountUseCase.execute(Account(name = name, description = description))

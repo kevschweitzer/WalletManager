@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.schweitzering.walletmanager.transfer.TransferViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".transaction.TransactionActivity"
+        android:layout_gravity="center">
+
+        <EditText
+            android:id="@+id/et_value"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/value_input_et_height"
+            android:layout_marginStart="@dimen/standard_margin_separation"
+            android:layout_marginEnd="@dimen/standard_margin_separation"
+            android:text="@={`` + viewModel.value}"
+            android:hint="$0 usd"
+            android:inputType="number"
+            android:digits="0123456789"
+            android:background="@drawable/bg_description_et"
+            style="@style/BalanceText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_category"
+            style="@style/TransactionTitles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/category_title"
+            android:layout_marginTop="@dimen/view_separation"
+            android:layout_marginStart="@dimen/standard_margin_separation"
+            app:layout_constraintTop_toBottomOf="@+id/et_value"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinner_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/standard_margin_separation"
+            android:layout_marginEnd="@dimen/standard_margin_separation"
+            app:layout_constraintTop_toBottomOf="@+id/tv_category"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/title_description_separation" />
+
+        <TextView
+            android:id="@+id/tv_origin_account"
+            style="@style/TransactionTitles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/origin_account_title"
+            android:layout_marginTop="@dimen/view_separation"
+            android:layout_marginStart="@dimen/standard_margin_separation"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_category"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinner_origin_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/standard_margin_separation"
+            android:layout_marginEnd="@dimen/standard_margin_separation"
+            app:layout_constraintTop_toBottomOf="@+id/tv_origin_account"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/title_description_separation" />
+
+        <TextView
+            android:id="@+id/tv_destination_account"
+            style="@style/TransactionTitles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/destination_account_title"
+            android:layout_marginTop="@dimen/view_separation"
+            android:layout_marginStart="@dimen/standard_margin_separation"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_origin_account"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinner_destination_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/standard_margin_separation"
+            android:layout_marginEnd="@dimen/standard_margin_separation"
+            app:layout_constraintTop_toBottomOf="@+id/tv_destination_account"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/title_description_separation" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            style="@style/TransactionTitles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/description_title"
+            android:layout_marginTop="@dimen/view_separation"
+            android:layout_marginStart="@dimen/standard_margin_separation"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_destination_account"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/et_description_height"
+            android:inputType="textMultiLine"
+            android:layout_marginStart="@dimen/standard_margin_separation"
+            android:layout_marginEnd="@dimen/standard_margin_separation"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="top"
+            android:text="@={viewModel.description}"
+            android:padding="@dimen/standard_margin_separation"
+            android:hint="@string/description_et_hint"
+            android:background="@drawable/bg_description_et"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/title_description_separation" />
+
+        <Button
+            android:id="@+id/btn_continue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_continue"
+            android:textColor="@color/main_text_color"
+            android:background="@color/colorPrimary"
+            android:onClick="@{() -> viewModel.onContinueClicked()}"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

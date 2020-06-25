@@ -8,12 +8,12 @@ class TransferWithAccounts(
     @Embedded val transfer: TransferEntity,
     @Relation(
         parentColumn = "originAccountId",
-        entityColumn = "id"
+        entityColumn = "account_id"
     )
     val originAccount: AccountEntity,
     @Relation(
         parentColumn = "destinationAccountId",
-        entityColumn = "id"
+        entityColumn = "account_id"
     )
     val destinationAccount: AccountEntity
 )

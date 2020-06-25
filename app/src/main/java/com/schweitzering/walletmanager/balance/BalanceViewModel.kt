@@ -14,11 +14,11 @@ class BalanceViewModel(private val getAllTransactionsUseCase: GetAllTransactions
     sealed class FlowState {
         object NewExpense : FlowState()
         object NewIncome : FlowState()
+        object NewTransfer: FlowState()
     }
 
-    //Exposed data
-    val _state = MutableLiveData<FlowState>()
-    val state:LiveData<FlowState> = _state
+    private val _state = MutableLiveData<FlowState>()
+    val state: LiveData<FlowState> = _state
     val lastTransactions = Transformations.map(getAllTransactionsUseCase.execute()) {
         it.map { it.toTransactionProfile() }.reversed()
     }
@@ -30,5 +30,9 @@ class BalanceViewModel(private val getAllTransactionsUseCase: GetAllTransactions
 
     fun onNewIncomeClicked() {
         _state.value = FlowState.NewIncome
+    }
+
+    fun onNewTransferClicked() {
+        _state.value = FlowState.NewTransfer
     }
 }

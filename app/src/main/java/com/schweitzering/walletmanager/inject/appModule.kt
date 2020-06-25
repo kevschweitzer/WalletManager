@@ -42,6 +42,8 @@ import com.schweitzering.walletmanager.settings.categories.list.CategoriesSettin
 import com.schweitzering.walletmanager.settings.categories.list.CategoriesSettingsViewModel
 import com.schweitzering.walletmanager.transaction.TransactionActivity
 import com.schweitzering.walletmanager.transaction.TransactionViewModel
+import com.schweitzering.walletmanager.transfer.TransferActivity
+import com.schweitzering.walletmanager.transfer.TransferViewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -49,6 +51,10 @@ val appModule = module {
 
     scope(named<TransactionActivity>()) {
         scoped { TransactionViewModel(get(), get(), get()) }
+    }
+
+    scope(named<TransferActivity>()) {
+        scoped { TransferViewModel() }
     }
 
     scope(named<MainActivity>()) {

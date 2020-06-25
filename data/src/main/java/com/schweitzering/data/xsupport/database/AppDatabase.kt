@@ -21,6 +21,7 @@ import com.schweitzering.data.fixedExpenses.generator.FixedExpensesGeneratorsDao
 import com.schweitzering.data.transaction.TransactionEntity
 import com.schweitzering.data.transaction.TransactionsDao
 import com.schweitzering.data.transfer.TransferDao
+import com.schweitzering.data.transfer.TransferEntity
 import com.schweitzering.data.xsupport.utils.Converters
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -31,7 +32,8 @@ import kotlinx.coroutines.launch
     FixedExpenseEntity::class,
     FixedExpenseGeneratorEntity::class,
     DebtEntity::class,
-    AccountEntity::class],
+    AccountEntity::class,
+    TransferEntity::class],
     version = 1)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {

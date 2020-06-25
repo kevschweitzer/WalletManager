@@ -11,7 +11,6 @@ import com.schweitzering.data.fixedExpenses.generator.FixedExpensesGeneratorData
 import com.schweitzering.data.fixedExpenses.generator.FixedExpensesGeneratorRepositoryImpl
 import com.schweitzering.data.transaction.TransactionDatabaseManager
 import com.schweitzering.data.transaction.TransactionsRepositoryImpl
-import com.schweitzering.data.transfer.TransferDao
 import com.schweitzering.data.transfer.TransferRepositoryImpl
 import com.schweitzering.data.xsupport.database.AppDatabase
 import com.schweitzering.domain.accounts.AccountRepository
@@ -52,5 +51,5 @@ val dataModule = module {
 
     factory<TransferRepository> { TransferRepositoryImpl(get()) }
 
-    factory{ AppDatabase.getInstance(androidContext()).transferDao()}
+    factory{ (get<AppDatabase>()).transferDao() }
 }

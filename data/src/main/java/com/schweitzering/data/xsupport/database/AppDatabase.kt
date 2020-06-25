@@ -20,6 +20,7 @@ import com.schweitzering.data.fixedExpenses.generator.FixedExpenseGeneratorEntit
 import com.schweitzering.data.fixedExpenses.generator.FixedExpensesGeneratorsDao
 import com.schweitzering.data.transaction.TransactionEntity
 import com.schweitzering.data.transaction.TransactionsDao
+import com.schweitzering.data.transfer.TransferDao
 import com.schweitzering.data.xsupport.utils.Converters
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -42,6 +43,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun fixedExpensesGeneratorDao(): FixedExpensesGeneratorsDao
     abstract fun debtsDao(): DebtsDao
     abstract fun accountsDao(): AccountsDao
+    abstract fun transferDao(): TransferDao
 
     companion object {
 

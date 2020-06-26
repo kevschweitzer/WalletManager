@@ -18,6 +18,7 @@ import com.schweitzering.domain.fixedExpenses.NewFixedExpenseUseCase
 import com.schweitzering.domain.fixedExpenses.PayFixedExpenseUseCase
 import com.schweitzering.domain.fixedExpenses.generator.GetAllFixedExpensesGeneratorsUseCase
 import com.schweitzering.domain.fixedExpenses.generator.NewFixedExpenseGeneratorUseCase
+import com.schweitzering.domain.tranfer.AddTransferUseCase
 import com.schweitzering.domain.transaction.AddTransactionUseCase
 import com.schweitzering.domain.transaction.GetAllTransactionsUseCase
 import com.schweitzering.walletmanager.accounts.AccountsViewModel
@@ -54,7 +55,7 @@ val appModule = module {
     }
 
     scope(named<TransferActivity>()) {
-        scoped { TransferViewModel() }
+        scoped { TransferViewModel(get(), get()) }
     }
 
     scope(named<MainActivity>()) {
@@ -137,4 +138,6 @@ val appModule = module {
     factory { DeleteAccountUseCase(get())}
 
     factory { UpdateAccountUseCase(get()) }
+
+    factory { AddTransferUseCase(get()) }
 }

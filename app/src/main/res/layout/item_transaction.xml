@@ -23,15 +23,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000000"
-            android:text="@{Float.toString(viewHolder.transaction.value)}" />
+            android:text="@{Float.toString(viewHolder.movement.value)}" />
 
         <TextView
             android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{viewHolder.transaction.date.toString()}" />
+            android:text="@{viewHolder.movement.date.toString()}" />
 
-        <TextView
+        <!--<TextView
             android:id="@+id/category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,13 +41,13 @@
             android:id="@+id/categoryType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{viewHolder.transaction.category.name}" />
+            android:text="@{viewHolder.transaction.category.name}" />-->
 
         <TextView
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{viewHolder.transaction.description}" />
+            android:text="@{viewHolder.movement.description}" />
 
         <View
             android:layout_width="wrap_content"

@@ -1,17 +1,18 @@
 package com.schweitzering.domain.transaction
 
 import com.schweitzering.domain.categories.TransactionCategory
+import com.schweitzering.domain.movements.Movement
 import java.sql.Timestamp
 
-data class Transaction(
+class Transaction(
     var id: Int = 0,
-    var value: Float,
-    var date: Timestamp? = null,
-    var description: String,
+    value: Float,
+    date: Timestamp? = null,
+    description: String,
     var type: TransactionType = TransactionType.EXPENSE,
     var category: TransactionCategory,
     var accountId: Int
-)
+): Movement(value, description, date)
 
 enum class TransactionType {
     INCOME, EXPENSE

@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.schweitzering.domain.movements.Movement
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.ItemTransactionBinding
 import com.schweitzering.walletmanager.transaction.TransactionProfile
 
 
-class TransactionsAdapter(private val transactionsList: List<TransactionProfile>,
+class TransactionsAdapter(private val transactionsList: List<Movement>,
                           private val viewModel: BalanceViewModel) :
     RecyclerView.Adapter<TransactionsAdapter.TransactionsViewHolder>() {
 
@@ -32,12 +33,12 @@ class TransactionsAdapter(private val transactionsList: List<TransactionProfile>
                                  val viewModel: BalanceViewModel) :
         RecyclerView.ViewHolder(binding.root) {
 
-        lateinit var transaction: TransactionProfile
+        lateinit var movement: Movement
 
-        fun bind(transaction: TransactionProfile) {
+        fun bind(movement: Movement) {
             binding.viewModel = viewModel
             binding.viewHolder = this
-            this.transaction = transaction
+            this.movement = movement
         }
     }
 }

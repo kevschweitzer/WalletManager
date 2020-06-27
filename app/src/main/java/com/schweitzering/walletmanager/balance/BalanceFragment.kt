@@ -40,7 +40,7 @@ class BalanceFragment : Fragment() {
     }
 
     private fun observeLastTransactions() {
-        viewModel.lastTransactions.observe(this, Observer {
+        viewModel.lastMovements.observe(this, Observer {
             transaction_list.apply {
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = TransactionsAdapter(it, viewModel)

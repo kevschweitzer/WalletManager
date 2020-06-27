@@ -1,13 +1,14 @@
 package com.schweitzering.domain.tranfer
 
 import com.schweitzering.domain.accounts.Account
+import com.schweitzering.domain.movements.Movement
 import java.sql.Timestamp
 
-data class Transfer(
+class Transfer(
     var id: Int = 0,
-    var value: Float,
-    var description: String,
-    var date: Timestamp,
+    value: Float,
+    description: String,
+    date: Timestamp?,
     var originAccount: Account,
     var destinationAccount: Account
-)
+): Movement(value, description, date)

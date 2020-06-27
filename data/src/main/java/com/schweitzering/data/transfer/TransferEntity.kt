@@ -10,7 +10,7 @@ data class TransferEntity(
     var id: Int,
     var value: Float,
     var description: String,
-    var date: Timestamp,
+    var date: Timestamp?,
     var originAccountId: Int,
     var destinationAccountId: Int
 )

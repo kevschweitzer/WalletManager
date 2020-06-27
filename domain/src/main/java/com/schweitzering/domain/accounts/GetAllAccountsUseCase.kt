@@ -16,7 +16,6 @@ class GetAllAccountsUseCase(private val accountRepository: AccountRepository,
             accountsList.forEach { account ->
                 mediator.addSource(transactionsRepository.getByAccount(account.id)) {
                     account.transactions.toMutableList().addAll(it)
-                    account.balance = getBalance(it)
                 }
             }
             mediator.postValue(accountsList)

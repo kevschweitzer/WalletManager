@@ -9,9 +9,8 @@ import com.schweitzering.domain.transaction.GetAllTransactionsUseCase
 import com.schweitzering.walletmanager.xsupport.mappers.toTransactionProfile
 
 
-class BalanceViewModel(private val getAllTransactionsUseCase: GetAllTransactionsUseCase,
-                       private val getTotalBalanceUseCase: GetTotalBalanceUseCase,
-                        private val getLastMovementsUseCase: GetLastMovementsUseCase) {
+class BalanceViewModel(private val getTotalBalanceUseCase: GetTotalBalanceUseCase,
+                       private val getLastMovementsUseCase: GetLastMovementsUseCase) {
 
     sealed class FlowState {
         object NewExpense : FlowState()

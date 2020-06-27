@@ -60,7 +60,7 @@ val appModule = module {
     }
 
     scope(named<MainActivity>()) {
-        factory { BalanceViewModel(get(), get(), get()) }
+        factory { BalanceViewModel(get(), get()) }
         factory { FixedExpensesViewModel(get(), get()) }
         factory { DebtsViewModel(get(), get()) }
         factory { AccountsViewModel(get(), get()) }
@@ -140,7 +140,7 @@ val appModule = module {
 
     factory { UpdateAccountUseCase(get()) }
 
-    factory { AddTransferUseCase(get()) }
+    factory { AddTransferUseCase(get(), get()) }
 
     factory { GetLastMovementsUseCase(get(), get())}
 }

@@ -1,8 +1,16 @@
 package com.schweitzering.domain.tranfer
 
-class AddTransferUseCase(private val repository: TransferRepository) {
+import com.schweitzering.domain.accounts.AccountRepository
+
+class AddTransferUseCase(private val transferRepository: TransferRepository,
+                         private val accountRepository: AccountRepository) {
 
     fun execute(transfer: Transfer) {
-        repository.insert(transfer)
+        transferRepository.insert(transfer)
+        transfer.destinationAccount.balance += transfer.value
+        transfer.originAccount.balance -= transfer.value
+        accountRepository.update(transfer.originAccount)
+        accountRepository.update(transfer.destinationAccount)
     }
+
 }

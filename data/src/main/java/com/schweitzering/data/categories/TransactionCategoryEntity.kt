@@ -6,7 +6,8 @@ import com.schweitzering.domain.transaction.TransactionType
 
 @Entity(tableName = "transaction_categories")
 data class TransactionCategoryEntity(
-    @PrimaryKey(autoGenerate = true) var id: Int = 0,
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0,
     var type: TransactionType = TransactionType.EXPENSE,
     var name: String = ""
 ) {
@@ -17,11 +18,7 @@ data class TransactionCategoryEntity(
             TransactionCategoryEntity(type = TransactionType.EXPENSE, name = "Car"),
             TransactionCategoryEntity(type = TransactionType.INCOME, name = "Salary"),
             TransactionCategoryEntity(type = TransactionType.INCOME, name = "Sale"),
-            TransactionCategoryEntity(type = TransactionType.INCOME, name = "Loan"),
-            TransactionCategoryEntity(type = TransactionType.INVESTMENT, name = "Bonds"),
-            TransactionCategoryEntity(type = TransactionType.INVESTMENT, name = "Shares"),
-            TransactionCategoryEntity(type = TransactionType.SAVING, name = "Cash"),
-            TransactionCategoryEntity(type = TransactionType.SAVING, name = "Bank Account")
+            TransactionCategoryEntity(type = TransactionType.INCOME, name = "Loan")
         )
     }
 }

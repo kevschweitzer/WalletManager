@@ -7,7 +7,6 @@ import com.schweitzering.data.xsupport.mappers.toTransactionEntity
 import com.schweitzering.domain.transaction.Transaction
 import com.schweitzering.domain.transaction.TransactionsRepository
 import java.sql.Timestamp
-import java.time.LocalDate
 
 class TransactionsRepositoryImpl(private val databaseManager: TransactionDatabaseManager): TransactionsRepository {
 
@@ -30,15 +29,8 @@ class TransactionsRepositoryImpl(private val databaseManager: TransactionDatabas
         }
     }
 
-    /*override fun getByCategory(type: TransactionType): LiveData<List<Transaction>> {
-        return Transformations.map(databaseManager.getByCategory(type)) { list ->
-            list.map { it.toTransaction() }
+    override fun getByAccount(accountId: Int) =
+        Transformations.map(databaseManager.getByAccount(accountId)) {
+            it.map { it.toTransaction() }
         }
-    }
-
-    override fun getByCategoryType(type: String): LiveData<List<Transaction>> {
-        return Transformations.map(databaseManager.getByCategoryType(type)) { list ->
-            list.map { it.toTransaction() }
-        }
-    }*/
 }

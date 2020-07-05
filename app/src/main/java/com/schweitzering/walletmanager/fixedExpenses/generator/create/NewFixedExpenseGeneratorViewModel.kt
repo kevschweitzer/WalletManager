@@ -34,28 +34,32 @@ class NewFixedExpenseGeneratorViewModel(private val newFixedExpenseGeneratorUseC
     private fun getWeekFixedExpenseGenerator() = FixedExpenseGeneratorProfile(expense = Transaction(
         value = 120f,
         description = "",
-        category = TransactionCategory()),
+        category = TransactionCategory(),
+        accountId = 1),
         creationDate = Timestamp(System.currentTimeMillis()),
         schedule = Schedule(TimePeriod.WEEK, Timestamp(1589425200000)))
 
     private fun getMonthFixedExpenseGenerator() =
         FixedExpenseGeneratorProfile(expense = Transaction(value = 2400f,
             description = "",
-            category = TransactionCategory()),
+            category = TransactionCategory(),
+            accountId = 1),
             creationDate = Timestamp(System.currentTimeMillis()),
             schedule = Schedule(TimePeriod.MONTH, Timestamp(1591585200000)))
 
     private fun getDayFixedExpenseGenerator() = FixedExpenseGeneratorProfile(expense = Transaction(
         value = 25f,
         description = "",
-        category = TransactionCategory()),
+        category = TransactionCategory(),
+        accountId = 1),
         creationDate = Timestamp(System.currentTimeMillis()),
         schedule = Schedule(TimePeriod.DAY, Timestamp(1584045000000)))
 
     private fun getCurrentFixedExpenseGenerator() =
         FixedExpenseGeneratorProfile(expense = Transaction(value = 120f,
             description = "",
-            category = TransactionCategory()),
+            category = TransactionCategory(),
+            accountId = 1),
             creationDate = Timestamp(System.currentTimeMillis()),
             schedule = Schedule(period, startDate))
 }

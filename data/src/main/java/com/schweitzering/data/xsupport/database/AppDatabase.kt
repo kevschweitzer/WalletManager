@@ -6,6 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.schweitzering.data.accounts.AccountEntity
+import com.schweitzering.data.accounts.AccountsDao
 import com.schweitzering.data.balance.BalanceDao
 import com.schweitzering.data.balance.BalanceEntity
 import com.schweitzering.data.categories.TransactionCategoryDao
@@ -22,7 +24,13 @@ import com.schweitzering.data.xsupport.utils.Converters
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [BalanceEntity::class, TransactionEntity::class, TransactionCategoryEntity::class, FixedExpenseEntity::class, FixedExpenseGeneratorEntity::class, DebtEntity::class],
+@Database(entities = [BalanceEntity::class,
+    TransactionEntity::class,
+    TransactionCategoryEntity::class,
+    FixedExpenseEntity::class,
+    FixedExpenseGeneratorEntity::class,
+    DebtEntity::class,
+    AccountEntity::class],
     version = 1)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
@@ -33,6 +41,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun fixedExpensesDao(): FixedExpensesDao
     abstract fun fixedExpensesGeneratorDao(): FixedExpensesGeneratorsDao
     abstract fun debtsDao(): DebtsDao
+    abstract fun accountsDao(): AccountsDao
 
     companion object {
 
@@ -52,7 +61,7 @@ abstract class AppDatabase : RoomDatabase() {
                             TransactionCategoryEntity.getPredefinedCategories().forEach {
                                 getInstance(context).transactionCategoriesDao().insert(it)
                             }
-
+                            getInstance(context).accountsDao().insert(AccountEntity.getPredefinedAccount())
                         }
                     }
                 }).build()

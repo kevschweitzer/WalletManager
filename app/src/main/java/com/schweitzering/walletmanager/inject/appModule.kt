@@ -1,6 +1,9 @@
 package com.schweitzering.walletmanager.inject
 
-import com.schweitzering.domain.balance.GetPartialBalanceUseCase
+import com.schweitzering.domain.accounts.DeleteAccountUseCase
+import com.schweitzering.domain.accounts.GetAllAccountsUseCase
+import com.schweitzering.domain.accounts.NewAccountUseCase
+import com.schweitzering.domain.accounts.UpdateAccountUseCase
 import com.schweitzering.domain.balance.GetTotalBalanceUseCase
 import com.schweitzering.domain.categories.AddTransactionCategoryUseCase
 import com.schweitzering.domain.categories.DeleteTransactionCategoryUseCase
@@ -17,6 +20,9 @@ import com.schweitzering.domain.fixedExpenses.generator.GetAllFixedExpensesGener
 import com.schweitzering.domain.fixedExpenses.generator.NewFixedExpenseGeneratorUseCase
 import com.schweitzering.domain.transaction.AddTransactionUseCase
 import com.schweitzering.domain.transaction.GetAllTransactionsUseCase
+import com.schweitzering.walletmanager.accounts.AccountsViewModel
+import com.schweitzering.walletmanager.accounts.create.NewAccountActivity
+import com.schweitzering.walletmanager.accounts.create.NewAccountViewModel
 import com.schweitzering.walletmanager.balance.BalanceViewModel
 import com.schweitzering.walletmanager.debts.DebtsViewModel
 import com.schweitzering.walletmanager.debts.create.NewDebtActivity
@@ -42,13 +48,14 @@ import org.koin.dsl.module
 val appModule = module {
 
     scope(named<TransactionActivity>()) {
-        scoped { TransactionViewModel(get(), get()) }
+        scoped { TransactionViewModel(get(), get(), get()) }
     }
 
     scope(named<MainActivity>()) {
-        factory { BalanceViewModel(get(), get(), get()) }
+        factory { BalanceViewModel(get(), get()) }
         factory { FixedExpensesViewModel(get(), get()) }
         factory { DebtsViewModel(get(), get()) }
+        factory { AccountsViewModel(get(), get()) }
     }
 
     scope(named<NewFixedExpenseGeneratorActivity>()) {
@@ -79,15 +86,17 @@ val appModule = module {
         scoped { CRUDCategoryViewModel(get()) }
     }
 
-    factory { AddTransactionCategoryUseCase(get()) }
+    scope(named<NewAccountActivity>()) {
+        scoped { NewAccountViewModel(get(), get()) }
+    }
 
-    factory { GetPartialBalanceUseCase(get()) }
+    factory { AddTransactionCategoryUseCase(get()) }
 
     factory { GetTotalBalanceUseCase(get()) }
 
     factory { GetTransactionCategoriesForTypeUseCase(get()) }
 
-    factory { AddTransactionUseCase(get()) }
+    factory { AddTransactionUseCase(get(), get()) }
 
     factory { GetAllTransactionsUseCase(get()) }
 
@@ -114,4 +123,12 @@ val appModule = module {
     factory { GetAllTransactionCategoriesUseCase(get()) }
 
     factory { DeleteTransactionCategoryUseCase(get()) }
+
+    factory { GetAllAccountsUseCase(get(), get()) }
+
+    factory { NewAccountUseCase(get())}
+
+    factory { DeleteAccountUseCase(get())}
+
+    factory { UpdateAccountUseCase(get()) }
 }

@@ -14,13 +14,15 @@ fun TransactionProfile.toTransaction() = Transaction(
     date = date,
     description = description,
     type = type,
-    category = category)
+    category = category,
+    accountId = accountId)
 
 fun Transaction.toTransactionProfile() = TransactionProfile(value = value,
     date = date,
     description = description,
     type = type,
-    category = category)
+    category = category,
+    accountId = accountId)
 
 fun FixedExpenseProfile.toFixedExpense() =
     FixedExpense(id, expense, isAlreadyPaid, creationDate, paymentDate)

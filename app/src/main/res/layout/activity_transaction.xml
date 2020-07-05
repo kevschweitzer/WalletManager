@@ -57,6 +57,28 @@
             android:layout_marginTop="@dimen/title_description_separation" />
 
         <TextView
+            android:id="@+id/tv_account"
+            style="@style/TransactionTitles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/account_title"
+            android:layout_marginTop="@dimen/view_separation"
+            android:layout_marginStart="@dimen/standard_margin_separation"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_category"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinner_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/standard_margin_separation"
+            android:layout_marginEnd="@dimen/standard_margin_separation"
+            app:layout_constraintTop_toBottomOf="@+id/tv_account"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/title_description_separation" />
+
+        <TextView
             android:id="@+id/tv_description"
             style="@style/TransactionTitles"
             android:layout_width="wrap_content"
@@ -64,7 +86,7 @@
             android:text="@string/description_title"
             android:layout_marginTop="@dimen/view_separation"
             android:layout_marginStart="@dimen/standard_margin_separation"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_category"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_account"
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
@@ -84,7 +106,7 @@
             android:layout_marginTop="@dimen/title_description_separation" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btn_continue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/text_continue"

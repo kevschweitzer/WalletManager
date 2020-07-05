@@ -46,19 +46,6 @@
                 android:text="Income"
                 android:onClick="@{() -> viewModel.onCreateIncomeClicked()}" />
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="0.25"
-                android:layout_height="wrap_content"
-                android:text="Saving"
-                android:onClick="@{() -> viewModel.onCreateSavingClicked()}" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="0.25"
-                android:layout_height="wrap_content"
-                android:text="Invest"
-                android:onClick="@{() -> viewModel.onCreateInvestmentClicked()}" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,14 +32,6 @@ class CategoriesSettingsViewModel(
         state.value = State.CreateCategory(TransactionType.EXPENSE)
     }
 
-    fun onCreateSavingClicked() {
-        state.value = State.CreateCategory(TransactionType.SAVING)
-    }
-
-    fun onCreateInvestmentClicked() {
-        state.value = State.CreateCategory(TransactionType.INVESTMENT)
-    }
-
     fun onEditCategoryClicked(transactionCategory: TransactionCategory) {
         state.value = State.EditCategory(transactionCategory)
     }

@@ -4,6 +4,7 @@ class Constants {
 
     companion object {
         const val MAX_AMOUNT_DIGITS = 8
+        const val EMPTY_STRING = ""
         const val TRANSACTION_CATEGORY = "transaction_category"
     }
 }

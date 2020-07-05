@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -33,18 +34,6 @@ class TransactionActivity : AppCompatActivity(), DataBindingProtocol {
             intent.putExtra(TRANSACTION_CATEGORY, TransactionType.INCOME)
             return intent
         }
-
-        fun getSavingIntent(context: Context): Intent {
-            val intent = Intent(context, TransactionActivity::class.java)
-            intent.putExtra(TRANSACTION_CATEGORY, TransactionType.SAVING)
-            return intent
-        }
-
-        fun getInvestmentIntent(context: Context): Intent {
-            val intent = Intent(context, TransactionActivity::class.java)
-            intent.putExtra(TRANSACTION_CATEGORY, TransactionType.INVESTMENT)
-            return intent
-        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,20 +42,39 @@ class TransactionActivity : AppCompatActivity(), DataBindingProtocol {
         viewModel.handleIntent(intent)
 
         observeState()
-        observeCategories()
+        observeOptions()
         observeCategorySelection()
+        observeAccountSelection()
+    }
+
+    private fun observeAccountSelection() {
+        spinner_account.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+            override fun onItemSelected(parent: AdapterView<*>?,
+                                        view: View?,
+                                        position: Int,
+                                        id: Long) {
+                viewModel.selectedAccountPosition = position
+            }
+        }
     }
 
     private fun observeState() {
         viewModel.state.observe(this, Observer {
-            when (it) {
-                TransactionViewModel.TransactionState.Finished -> finish()
+            when(it) {
+                TransactionViewModel.TransactionState.ContinueClicked -> addTransaction()
             }
         })
     }
 
+    private fun addTransaction() {
+        viewModel.addTransaction().observe(this, Observer {
+            this@TransactionActivity.finish()
+        })
+    }
+
     private fun observeCategorySelection() {
-        spinner_category.selectedItem
         spinner_category.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
@@ -76,12 +84,12 @@ class TransactionActivity : AppCompatActivity(), DataBindingProtocol {
                                         id: Long) {
                 viewModel.selectedCategoryPosition = position
             }
-
         }
     }
 
-    private fun observeCategories() {
-        viewModel.categories.observe(this, Observer { addItemsToSpinner(it.map { it.name }) })
+    private fun observeOptions() {
+        viewModel.categories.observe(this, Observer { addItemsToSpinner(spinner_category, it.map { it.name }) })
+        viewModel.accounts.observe(this, Observer { addItemsToSpinner(spinner_account, it.map { it.name }) })
     }
 
     override fun setDataBinding() {
@@ -90,9 +98,9 @@ class TransactionActivity : AppCompatActivity(), DataBindingProtocol {
         binding.viewModel = viewModel
     }
 
-    private fun addItemsToSpinner(categories: List<String>) {
+    private fun addItemsToSpinner(spinner: Spinner, items: List<String>) {
         val arrayAdapter =
-            ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, categories)
-        spinner_category.adapter = arrayAdapter
+            ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, items)
+        spinner.adapter = arrayAdapter
     }
 }

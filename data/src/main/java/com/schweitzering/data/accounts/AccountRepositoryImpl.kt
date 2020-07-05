@@ -1,0 +1,51 @@
+package com.schweitzering.data.accounts
+
+import android.database.sqlite.SQLiteConstraintException
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.liveData
+import com.schweitzering.data.xsupport.database.AppDatabase
+import com.schweitzering.data.xsupport.mappers.toAccount
+import com.schweitzering.data.xsupport.mappers.toAccountEntity
+import com.schweitzering.domain.ActionResponse
+import com.schweitzering.domain.accounts.Account
+import com.schweitzering.domain.accounts.AccountRepository
+import kotlinx.coroutines.runBlocking
+
+class AccountRepositoryImpl(private val appDatabase: AppDatabase): AccountRepository {
+
+    private val dao = appDatabase.accountsDao()
+
+    override fun add(account: Account) {
+        runBlocking {
+            dao.insert(account.toAccountEntity())
+        }
+    }
+
+    override fun remove(account: Account): LiveData<ActionResponse> {
+        return liveData {
+            try {
+                dao.remove(account.toAccountEntity())
+                emit(ActionResponse.Correct)
+            } catch (e: SQLiteConstraintException) {
+                e.printStackTrace()
+                emit(ActionResponse.CannotDeleteError)
+            }
+        }
+    }
+
+    override fun getAll() = Transformations.map(dao.getAll()) {
+        it.map { it.toAccount() }
+    }
+
+    override fun update(account: Account) {
+        runBlocking {
+            dao.update(account.toAccountEntity())
+        }
+    }
+
+    override fun getById(id: Int) = Transformations.map(dao.getById(id)) {
+        it.toAccount()
+    }
+
+}

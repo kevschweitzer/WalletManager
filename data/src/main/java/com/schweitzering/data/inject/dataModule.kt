@@ -11,12 +11,14 @@ import com.schweitzering.data.fixedExpenses.generator.FixedExpensesGeneratorData
 import com.schweitzering.data.fixedExpenses.generator.FixedExpensesGeneratorRepositoryImpl
 import com.schweitzering.data.transaction.TransactionDatabaseManager
 import com.schweitzering.data.transaction.TransactionsRepositoryImpl
+import com.schweitzering.data.transfer.TransferRepositoryImpl
 import com.schweitzering.data.xsupport.database.AppDatabase
 import com.schweitzering.domain.accounts.AccountRepository
 import com.schweitzering.domain.categories.TransactionCategoryRepository
 import com.schweitzering.domain.debts.DebtsRepository
 import com.schweitzering.domain.fixedExpenses.FixedExpensesRepository
 import com.schweitzering.domain.fixedExpenses.generator.FixedExpensesGeneratorRepository
+import com.schweitzering.domain.tranfer.TransferRepository
 import com.schweitzering.domain.transaction.TransactionsRepository
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -46,4 +48,8 @@ val dataModule = module {
     factory { DebtsDatabaseManager(get()) }
 
     factory<AccountRepository> { AccountRepositoryImpl(get()) }
+
+    factory<TransferRepository> { TransferRepositoryImpl(get()) }
+
+    factory{ (get<AppDatabase>()).transferDao() }
 }

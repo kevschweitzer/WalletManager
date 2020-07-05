@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.FragmentBalanceBinding
 import com.schweitzering.walletmanager.transaction.TransactionActivity
+import com.schweitzering.walletmanager.transfer.TransferActivity
 import kotlinx.android.synthetic.main.fragment_balance.*
 import org.koin.androidx.scope.currentScope
 
@@ -39,7 +40,7 @@ class BalanceFragment : Fragment() {
     }
 
     private fun observeLastTransactions() {
-        viewModel.lastTransactions.observe(this, Observer {
+        viewModel.lastMovements.observe(this, Observer {
             transaction_list.apply {
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = TransactionsAdapter(it, viewModel)
@@ -54,6 +55,9 @@ class BalanceFragment : Fragment() {
                     requireContext()))
                 BalanceViewModel.FlowState.NewExpense -> startActivity(TransactionActivity.getExpenseIntent(
                     requireContext()))
+                BalanceViewModel.FlowState.NewTransfer -> startActivity(TransferActivity.getIntent(
+                    requireContext()
+                ))
             }
         })
     }

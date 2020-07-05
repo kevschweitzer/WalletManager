@@ -4,6 +4,7 @@ import com.schweitzering.domain.accounts.DeleteAccountUseCase
 import com.schweitzering.domain.accounts.GetAllAccountsUseCase
 import com.schweitzering.domain.accounts.NewAccountUseCase
 import com.schweitzering.domain.accounts.UpdateAccountUseCase
+import com.schweitzering.domain.balance.GetLastMovementsUseCase
 import com.schweitzering.domain.balance.GetTotalBalanceUseCase
 import com.schweitzering.domain.categories.AddTransactionCategoryUseCase
 import com.schweitzering.domain.categories.DeleteTransactionCategoryUseCase
@@ -18,6 +19,7 @@ import com.schweitzering.domain.fixedExpenses.NewFixedExpenseUseCase
 import com.schweitzering.domain.fixedExpenses.PayFixedExpenseUseCase
 import com.schweitzering.domain.fixedExpenses.generator.GetAllFixedExpensesGeneratorsUseCase
 import com.schweitzering.domain.fixedExpenses.generator.NewFixedExpenseGeneratorUseCase
+import com.schweitzering.domain.tranfer.AddTransferUseCase
 import com.schweitzering.domain.transaction.AddTransactionUseCase
 import com.schweitzering.domain.transaction.GetAllTransactionsUseCase
 import com.schweitzering.walletmanager.accounts.AccountsViewModel
@@ -42,6 +44,8 @@ import com.schweitzering.walletmanager.settings.categories.list.CategoriesSettin
 import com.schweitzering.walletmanager.settings.categories.list.CategoriesSettingsViewModel
 import com.schweitzering.walletmanager.transaction.TransactionActivity
 import com.schweitzering.walletmanager.transaction.TransactionViewModel
+import com.schweitzering.walletmanager.transfer.TransferActivity
+import com.schweitzering.walletmanager.transfer.TransferViewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -49,6 +53,10 @@ val appModule = module {
 
     scope(named<TransactionActivity>()) {
         scoped { TransactionViewModel(get(), get(), get()) }
+    }
+
+    scope(named<TransferActivity>()) {
+        scoped { TransferViewModel(get(), get()) }
     }
 
     scope(named<MainActivity>()) {
@@ -131,4 +139,8 @@ val appModule = module {
     factory { DeleteAccountUseCase(get())}
 
     factory { UpdateAccountUseCase(get()) }
+
+    factory { AddTransferUseCase(get(), get()) }
+
+    factory { GetLastMovementsUseCase(get(), get())}
 }

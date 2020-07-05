@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".accounts.create.NewAccountActivity"></activity>
+        <activity android:name=".transfer.TransferActivity"></activity>
+        <activity android:name=".accounts.create.NewAccountActivity" />
         <activity android:name=".settings.categories.create.CRUDCategoryActivity" />
         <activity android:name=".settings.categories.list.CategoriesSettingsActivity" />
         <activity android:name=".settings.SettingsActivity" />

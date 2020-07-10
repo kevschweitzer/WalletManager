@@ -1,14 +1,15 @@
 package com.schweitzering.domain.debts
 
 import androidx.lifecycle.LiveData
+import com.schweitzering.domain.BaseRepository
 
-interface DebtsRepository {
+interface DebtsRepository: BaseRepository<Debt> {
 
-    fun getAll(): LiveData<List<Debt>>
+    override fun getAll(): LiveData<List<Debt>>
 
-    fun insert(debt: Debt)
+    override fun insert(model: Debt)
 
-    fun delete(debt: Debt)
+    override fun delete(model: Debt)
 
-    fun update(debt: Debt)
+    override fun update(model: Debt)
 }

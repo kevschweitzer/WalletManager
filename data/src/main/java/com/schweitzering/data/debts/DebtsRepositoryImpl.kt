@@ -12,15 +12,15 @@ class DebtsRepositoryImpl(private val databaseManager: DebtsDatabaseManager): De
         it.map { it.toDebt() }
     }
 
-    override fun insert(debt: Debt) {
-        databaseManager.insert(debt.toDebtEntity())
+    override fun insert(model: Debt) {
+        databaseManager.insert(model.toDebtEntity())
     }
 
-    override fun delete(debt: Debt) {
-        databaseManager.delete(debt.toDebtEntity())
+    override fun delete(model: Debt) {
+        databaseManager.delete(model.toDebtEntity())
     }
 
-    override fun update(debt: Debt) {
-        databaseManager.update(debt.toDebtEntity())
+    override fun update(model: Debt) {
+        databaseManager.update(model.toDebtEntity())
     }
 }

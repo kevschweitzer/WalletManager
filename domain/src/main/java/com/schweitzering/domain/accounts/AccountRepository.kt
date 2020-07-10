@@ -2,16 +2,17 @@ package com.schweitzering.domain.accounts
 
 import androidx.lifecycle.LiveData
 import com.schweitzering.domain.ActionResponse
+import com.schweitzering.domain.BaseRepository
 
-interface AccountRepository {
+interface AccountRepository: BaseRepository<Account> {
 
-    fun add(account: Account)
+    override fun insert(model: Account)
 
-    fun remove(account: Account): LiveData<ActionResponse>
+    override fun delete(model: Account): LiveData<ActionResponse>
 
-    fun getAll(): LiveData<List<Account>>
+    override fun getAll(): LiveData<List<Account>>
 
-    fun update(account: Account)
+    override fun update(model: Account)
 
     fun getById(id: Int): LiveData<Account>
 }

@@ -1,15 +1,18 @@
 package com.schweitzering.domain.transaction
 
 import androidx.lifecycle.LiveData
+import com.schweitzering.domain.BaseRepository
 import java.sql.Timestamp
 
-interface TransactionsRepository {
+interface TransactionsRepository: BaseRepository<Transaction> {
 
-    fun add(entity: Transaction)
+    override fun insert (model: Transaction)
 
-    fun remove(entity: Transaction)
+    override fun delete(model: Transaction)
 
-    fun getAll(): LiveData<List<Transaction>>
+    override fun update(model: Transaction)
+
+    override fun getAll(): LiveData<List<Transaction>>
 
     fun getBetween(initialDate: Timestamp, finalDate: Timestamp): LiveData<List<Transaction>>
 

@@ -7,7 +7,7 @@ class DeleteAccountUseCase(private val repository: AccountRepository) {
 
     fun execute(account: Account): LiveData<ActionResponse> {
         return if(account.balance == 0f) {
-            repository.remove(account)
+            repository.delete(account)
         } else {
             liveData<ActionResponse> { emit(ActionResponse.CannotDeleteError) }
         }

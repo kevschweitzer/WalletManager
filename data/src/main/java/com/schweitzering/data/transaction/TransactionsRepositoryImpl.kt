@@ -10,16 +10,20 @@ import java.sql.Timestamp
 
 class TransactionsRepositoryImpl(private val databaseManager: TransactionDatabaseManager): TransactionsRepository {
 
-    override fun add(entity: Transaction) {
-        databaseManager.insert(entity.toTransactionEntity())
+    override fun insert(model: Transaction) {
+        databaseManager.insert(model.toTransactionEntity())
     }
 
-    override fun remove(entity: Transaction) {
-        databaseManager.delete(entity.toTransactionEntity())
+    override fun delete(model: Transaction) {
+        databaseManager.delete(model.toTransactionEntity())
     }
 
     override fun getAll() = Transformations.map(databaseManager.getAll()) { list ->
            list.map { it.toTransaction()}
+    }
+
+    override fun update(model: Transaction) {
+        databaseManager.update(model.toTransactionEntity())
     }
 
     override fun getBetween(initialDate: Timestamp,

@@ -12,8 +12,8 @@ class PayFixedExpenseUseCase(private val fixedExpenseRepository: FixedExpensesRe
 
     fun execute(fixedExpense: FixedExpense) {
         fixedExpense.isAlreadyPaid = true
-        fixedExpenseRepository.updateFixedExpense(fixedExpense)
+        fixedExpenseRepository.update(fixedExpense)
         fixedExpense.expense.date = Timestamp(System.currentTimeMillis())
-        transactionsRepository.add(fixedExpense.expense)
+        transactionsRepository.insert(fixedExpense.expense)
     }
 }

@@ -1,14 +1,15 @@
 package com.schweitzering.domain.fixedExpenses
 
 import androidx.lifecycle.LiveData
+import com.schweitzering.domain.BaseRepository
 
-interface FixedExpensesRepository {
+interface FixedExpensesRepository: BaseRepository<FixedExpense> {
 
-    fun getFixedExpenses(): LiveData<List<FixedExpense>>
+    override fun getAll(): LiveData<List<FixedExpense>>
 
-    fun removeFixedExpense(expense: FixedExpense)
+    override fun delete(model: FixedExpense)
 
-    fun addFixedExpense(expense: FixedExpense)
+    override fun insert(model: FixedExpense)
 
-    fun updateFixedExpense(expense: FixedExpense)
+    override fun update(model: FixedExpense)
 }

@@ -20,7 +20,7 @@ class CreateFixedExpensesForPeriodUseCase(private val generatorsRepository: Fixe
                         expense = it.expense,
                         creationDate = Timestamp(System.currentTimeMillis())
                     )
-                    fixedExpensesRepository.addFixedExpense(fixedExpense)
+                    fixedExpensesRepository.insert(fixedExpense)
                 }
             }
         }

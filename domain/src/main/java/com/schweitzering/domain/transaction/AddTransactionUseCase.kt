@@ -12,7 +12,7 @@ class AddTransactionUseCase(private val repository: TransactionsRepository,
     fun execute(transaction: Transaction, account: Account?): LiveData<ActionResponse> {
         return liveData {
             account?.let {
-                repository.add(transaction)
+                repository.insert(transaction)
                 when(transaction.type) {
                     TransactionType.EXPENSE -> account.balance -= transaction.value
                     TransactionType.INCOME -> account.balance += transaction.value

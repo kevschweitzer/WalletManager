@@ -12,7 +12,7 @@ class ResolveDebtUseCase(private val debtsRepository: DebtsRepository,
             resolveDate = Timestamp(System.currentTimeMillis())
         }
         debt.transaction.date = debt.resolveDate
-        transactionsRepository.add(debt.transaction)
+        transactionsRepository.insert(debt.transaction)
         debtsRepository.update(debt)
     }
 }

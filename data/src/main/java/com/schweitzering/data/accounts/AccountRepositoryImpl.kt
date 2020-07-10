@@ -16,16 +16,16 @@ class AccountRepositoryImpl(private val appDatabase: AppDatabase): AccountReposi
 
     private val dao = appDatabase.accountsDao()
 
-    override fun add(account: Account) {
+    override fun insert(model: Account) {
         runBlocking {
-            dao.insert(account.toAccountEntity())
+            dao.insert(model.toAccountEntity())
         }
     }
 
-    override fun remove(account: Account): LiveData<ActionResponse> {
+    override fun delete(model: Account): LiveData<ActionResponse> {
         return liveData {
             try {
-                dao.remove(account.toAccountEntity())
+                dao.remove(model.toAccountEntity())
                 emit(ActionResponse.Correct)
             } catch (e: SQLiteConstraintException) {
                 e.printStackTrace()
@@ -38,9 +38,9 @@ class AccountRepositoryImpl(private val appDatabase: AppDatabase): AccountReposi
         it.map { it.toAccount() }
     }
 
-    override fun update(account: Account) {
+    override fun update(model: Account) {
         runBlocking {
-            dao.update(account.toAccountEntity())
+            dao.update(model.toAccountEntity())
         }
     }
 

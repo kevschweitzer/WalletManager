@@ -8,21 +8,21 @@ import kotlinx.coroutines.runBlocking
 
 class TransferRepositoryImpl(private val transferDao: TransferDao): TransferRepository {
 
-    override fun insert(transfer: Transfer) {
+    override fun insert(model: Transfer) {
         runBlocking {
-            transferDao.insert(transfer.toTransferEntity())
+            transferDao.insert(model.toTransferEntity())
         }
     }
 
-    override fun delete(transfer: Transfer) {
+    override fun delete(model: Transfer) {
         runBlocking {
-            transferDao.delete(transfer.toTransferEntity())
+            transferDao.delete(model.toTransferEntity())
         }
     }
 
-    override fun update(transfer: Transfer) {
+    override fun update(model: Transfer) {
         runBlocking {
-            transferDao.update(transfer.toTransferEntity())
+            transferDao.update(model.toTransferEntity())
         }
     }
 

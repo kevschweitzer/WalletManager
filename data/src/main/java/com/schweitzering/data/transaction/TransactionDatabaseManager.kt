@@ -25,6 +25,12 @@ class TransactionDatabaseManager(private val database: AppDatabase) {
         }
     }
 
+    fun update(entity: TransactionEntity) {
+        runBlocking {
+            transactionsDao.update(entity)
+        }
+    }
+
     fun getBetween(initialDate: Timestamp, finalDate: Timestamp) =
         transactionsDao.getBetween(converters.fromTimestamp(initialDate),
             converters.fromTimestamp(finalDate))

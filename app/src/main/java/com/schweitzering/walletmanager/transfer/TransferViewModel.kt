@@ -1,5 +1,7 @@
 package com.schweitzering.walletmanager.transfer
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.schweitzering.domain.accounts.GetAllAccountsUseCase
 import com.schweitzering.domain.tranfer.AddTransferUseCase
@@ -9,15 +11,23 @@ import java.sql.Timestamp
 class TransferViewModel(private val getAllAccountsUseCase: GetAllAccountsUseCase,
                         private val addTransferUseCase: AddTransferUseCase): ViewModel(){
 
+    sealed class TransferState{
+        object ContinueClicked: TransferState()
+    }
+
     var value: Float = 10f
     var description: String = ""
     val accounts = getAllAccountsUseCase.execute()
     var selectedOriginPosition = 0
     var selectedDestinationPosition = 0
+    private val _state = MutableLiveData<TransferState>()
+    val state: LiveData<TransferState>
+        get() = _state
+
 
     fun onContinueClicked() {
         if(validAccounts()) {
-            addTransferUseCase.execute(getCurrentTransfer())
+            _state.value = TransferState.ContinueClicked
         }
     }
 
@@ -34,4 +44,7 @@ class TransferViewModel(private val getAllAccountsUseCase: GetAllAccountsUseCase
         val destination = accounts.value?.get(selectedDestinationPosition)
         return origin != null && destination != null
     }
+
+    fun newTransfer() = addTransferUseCase.execute(getCurrentTransfer())
+
 }

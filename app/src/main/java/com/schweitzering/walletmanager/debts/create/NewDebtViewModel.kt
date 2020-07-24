@@ -1,6 +1,7 @@
 package com.schweitzering.walletmanager.debts.create
 
 import androidx.lifecycle.MutableLiveData
+import com.schweitzering.domain.accounts.Account
 import com.schweitzering.domain.categories.TransactionCategory
 import com.schweitzering.domain.debts.NewDebtUseCase
 import com.schweitzering.domain.transaction.Transaction
@@ -23,7 +24,7 @@ class NewDebtViewModel(private val newDebtUseCase: NewDebtUseCase) {
             description = "",
             type = TransactionType.INCOME,
             category = TransactionCategory(),
-            accountId = 1
+            account = Account()
         ),
             creationDate = Timestamp(System.currentTimeMillis())).toDebt())
         state.value = FlowState.SuccessCreation

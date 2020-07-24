@@ -1,6 +1,7 @@
 package com.schweitzering.walletmanager.fixedExpenses.generator.create
 
 import androidx.lifecycle.MutableLiveData
+import com.schweitzering.domain.accounts.Account
 import com.schweitzering.domain.categories.TransactionCategory
 import com.schweitzering.domain.fixedExpenses.generator.NewFixedExpenseGeneratorUseCase
 import com.schweitzering.domain.schedule.Schedule
@@ -35,7 +36,7 @@ class NewFixedExpenseGeneratorViewModel(private val newFixedExpenseGeneratorUseC
         value = 120f,
         description = "",
         category = TransactionCategory(),
-        accountId = 1),
+        account = Account()),
         creationDate = Timestamp(System.currentTimeMillis()),
         schedule = Schedule(TimePeriod.WEEK, Timestamp(1589425200000)))
 
@@ -43,7 +44,7 @@ class NewFixedExpenseGeneratorViewModel(private val newFixedExpenseGeneratorUseC
         FixedExpenseGeneratorProfile(expense = Transaction(value = 2400f,
             description = "",
             category = TransactionCategory(),
-            accountId = 1),
+            account = Account()),
             creationDate = Timestamp(System.currentTimeMillis()),
             schedule = Schedule(TimePeriod.MONTH, Timestamp(1591585200000)))
 
@@ -51,7 +52,7 @@ class NewFixedExpenseGeneratorViewModel(private val newFixedExpenseGeneratorUseC
         value = 25f,
         description = "",
         category = TransactionCategory(),
-        accountId = 1),
+        account = Account()),
         creationDate = Timestamp(System.currentTimeMillis()),
         schedule = Schedule(TimePeriod.DAY, Timestamp(1584045000000)))
 
@@ -59,7 +60,7 @@ class NewFixedExpenseGeneratorViewModel(private val newFixedExpenseGeneratorUseC
         FixedExpenseGeneratorProfile(expense = Transaction(value = 120f,
             description = "",
             category = TransactionCategory(),
-            accountId = 1),
+            account = Account()),
             creationDate = Timestamp(System.currentTimeMillis()),
             schedule = Schedule(period, startDate))
 }

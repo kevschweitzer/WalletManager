@@ -10,4 +10,4 @@ data class TransactionProfile(var value: Float,
                               var description: String,
                               var type: TransactionType,
                               var category: TransactionCategory,
-                              var accountId: Int)
+                              var account: Account)

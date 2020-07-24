@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.schweitzering.domain.movements.Movement
+import com.schweitzering.domain.tranfer.Transfer
+import com.schweitzering.domain.transaction.Transaction
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.ItemTransactionBinding
-import com.schweitzering.walletmanager.transaction.TransactionProfile
 
 
 class TransactionsAdapter(private val transactionsList: List<Movement>,
@@ -33,12 +34,29 @@ class TransactionsAdapter(private val transactionsList: List<Movement>,
                                  val viewModel: BalanceViewModel) :
         RecyclerView.ViewHolder(binding.root) {
 
-        lateinit var movement: Movement
-
         fun bind(movement: Movement) {
             binding.viewModel = viewModel
-            binding.viewHolder = this
-            this.movement = movement
+            binding.movement = movement
+            setData(movement)
+        }
+
+        private fun setData(movement: Movement) {
+            when(movement) {
+                is Transaction -> {
+                    binding.category.text = movement.category.name
+                    binding.account.text = movement.account.name
+                }
+                is Transfer -> {
+                    binding.category.text = binding.root.resources.getString(R.string.transfer_title)
+                    binding.account.text =
+                        binding.root.resources.getString(
+                            R.string.transfer_description,
+                            movement.originAccount.name,
+                            movement.destinationAccount.name
+                        )
+                }
+            }
+
         }
     }
 }

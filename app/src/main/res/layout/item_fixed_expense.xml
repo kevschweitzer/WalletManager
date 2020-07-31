@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,28 +12,46 @@
         <variable
             name="viewHolder"
             type="com.schweitzering.walletmanager.fixedExpenses.list.FixedExpensesAdapter.FixedExpenseViewHolder" />
+
+        <import type="android.view.View"/>
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{Float.toString(viewHolder.fixedExpense.expense.value)}" />
+            android:layout_marginStart="20dp"
+            android:text="@{Float.toString(viewHolder.fixedExpense.expense.value)}"
+            tools:text="100.000,00"
+            app:layout_constraintBottom_toTopOf="@id/already_paid"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
+            android:id="@+id/already_paid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{Boolean.toString(viewHolder.fixedExpense.alreadyPaid)}" />
+            android:text="@{viewHolder.fixedExpense.alreadyPaid ? `Paid` : `Pending`}"
+            tools:text="Pending"
+            app:layout_constraintTop_toBottomOf="@id/value"
+            app:layout_constraintStart_toStartOf="@id/value"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="pay"
-            android:onClick="@{() -> viewModel.payFixedExpense(viewHolder.fixedExpense)}" />
+            android:visibility="@{viewHolder.fixedExpense.alreadyPaid ? View.GONE : View.VISIBLE}"
+            android:layout_marginEnd="20dp"
+            android:onClick="@{() -> viewModel.payFixedExpense(viewHolder.fixedExpense)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

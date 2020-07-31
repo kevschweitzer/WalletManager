@@ -48,7 +48,7 @@
             android:text="pay"
             android:visibility="@{viewHolder.fixedExpense.alreadyPaid ? View.GONE : View.VISIBLE}"
             android:layout_marginEnd="20dp"
-            android:onClick="@{() -> viewModel.payFixedExpense(viewHolder.fixedExpense)}"
+            android:onClick="@{() -> viewModel.onPayFixedExpenseClicked(viewHolder.fixedExpense)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>

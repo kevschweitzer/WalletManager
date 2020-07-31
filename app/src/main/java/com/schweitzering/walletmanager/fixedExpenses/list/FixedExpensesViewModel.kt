@@ -14,9 +14,9 @@ class FixedExpensesViewModel(private val getFixedExpensesUseCase: GetFixedExpens
     sealed class FlowState {
         object NewExepenseClicked : FlowState()
         object ShowGeneratorsClicked : FlowState()
+        class PayFixedExpenseClicked(val fixedExpense: FixedExpenseProfile): FlowState()
     }
 
-    //Exposed
     val state = MutableLiveData<FlowState>()
     val fixedExpenses = Transformations.map(getFixedExpensesUseCase.execute()) {
         it.sortedBy { it.isAlreadyPaid }.map { it.toFixedExpenseProfile() }
@@ -29,6 +29,11 @@ class FixedExpensesViewModel(private val getFixedExpensesUseCase: GetFixedExpens
     fun payFixedExpense(fixedExpense: FixedExpenseProfile) {
         payFixedExpenseUseCase.execute(fixedExpense.toFixedExpense())
     }
+
+    fun onPayFixedExpenseClicked(fixedExpense: FixedExpenseProfile) {
+        state.value = FlowState.PayFixedExpenseClicked(fixedExpense)
+    }
+
 
     fun onShowGeneratorsClicked() {
         state.value = FlowState.ShowGeneratorsClicked

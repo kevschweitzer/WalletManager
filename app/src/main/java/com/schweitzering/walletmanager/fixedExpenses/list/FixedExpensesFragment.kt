@@ -48,11 +48,12 @@ class FixedExpensesFragment : Fragment() {
     private fun observeFlowState() {
         viewModel.state.observe(this, Observer {
             when (it) {
-                FixedExpensesViewModel.FlowState.NewExepenseClicked -> startActivity(
-                    NewFixedExpenseGeneratorActivity.getIntent(requireContext()))
-                FixedExpensesViewModel.FlowState.ShowGeneratorsClicked -> startActivity(
-                    FixedExpensesGeneratorsActivity.getIntent(requireContext()))
-                is FixedExpensesViewModel.FlowState.PayFixedExpenseClicked -> showPayFixedExpenseDialog(it.fixedExpense)
+                is FixedExpensesViewModel.FlowState.NewExepenseClicked ->
+                    startActivity(NewFixedExpenseGeneratorActivity.getIntent(requireContext()))
+                is FixedExpensesViewModel.FlowState.ShowGeneratorsClicked ->
+                    startActivity(FixedExpensesGeneratorsActivity.getIntent(requireContext()))
+                is FixedExpensesViewModel.FlowState.PayFixedExpenseClicked ->
+                    showPayFixedExpenseDialog(it.fixedExpense)
             }
         })
     }

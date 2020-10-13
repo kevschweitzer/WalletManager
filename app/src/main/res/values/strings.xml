@@ -27,4 +27,5 @@
     <string name="destination_account_title">Destination Account</string>
     <string name="transfer_title">Transfer</string>
     <string name="transfer_description"><![CDATA[%1$s -> %2$s]]></string>
+    <string name="fixed_expense_payment_title">Fixed Expense Payment</string>
 </resources>

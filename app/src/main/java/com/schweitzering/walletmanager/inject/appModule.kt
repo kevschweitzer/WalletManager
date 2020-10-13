@@ -26,6 +26,7 @@ import com.schweitzering.walletmanager.accounts.AccountsViewModel
 import com.schweitzering.walletmanager.accounts.create.NewAccountActivity
 import com.schweitzering.walletmanager.accounts.create.NewAccountViewModel
 import com.schweitzering.walletmanager.balance.BalanceViewModel
+import com.schweitzering.walletmanager.commons.BaseTransactionViewModel
 import com.schweitzering.walletmanager.debts.DebtsViewModel
 import com.schweitzering.walletmanager.debts.create.NewDebtActivity
 import com.schweitzering.walletmanager.debts.create.NewDebtViewModel
@@ -46,14 +47,11 @@ import com.schweitzering.walletmanager.transaction.TransactionActivity
 import com.schweitzering.walletmanager.transaction.TransactionViewModel
 import com.schweitzering.walletmanager.transfer.TransferActivity
 import com.schweitzering.walletmanager.transfer.TransferViewModel
+import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val appModule = module {
-
-    scope(named<TransactionActivity>()) {
-        scoped { TransactionViewModel(get(), get(), get()) }
-    }
 
     scope(named<TransferActivity>()) {
         scoped { TransferViewModel(get(), get()) }
@@ -61,19 +59,21 @@ val appModule = module {
 
     scope(named<MainActivity>()) {
         factory { BalanceViewModel(get(), get()) }
-        factory { FixedExpensesViewModel(get(), get()) }
+        factory { FixedExpensesViewModel(get(), get(), get()) }
         factory { DebtsViewModel(get(), get()) }
         factory { AccountsViewModel(get(), get()) }
     }
 
-    scope(named<NewFixedExpenseGeneratorActivity>()) {
-        scoped {
-            NewFixedExpenseGeneratorViewModel(get())
-        }
+    viewModel {
+        NewFixedExpenseGeneratorViewModel(get(), get(), get())
     }
 
     scope(named<SettingsActivity>()) {
         scoped { SettingsViewModel() }
+    }
+
+    viewModel {
+        TransactionViewModel(get(), get(), get())
     }
 
     scope(named<FixedExpensesGeneratorsActivity>()) {

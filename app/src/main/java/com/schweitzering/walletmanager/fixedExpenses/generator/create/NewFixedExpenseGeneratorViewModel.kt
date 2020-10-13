@@ -2,22 +2,28 @@ package com.schweitzering.walletmanager.fixedExpenses.generator.create
 
 import androidx.lifecycle.MutableLiveData
 import com.schweitzering.domain.accounts.Account
+import com.schweitzering.domain.accounts.GetAllAccountsUseCase
+import com.schweitzering.domain.categories.GetTransactionCategoriesForTypeUseCase
 import com.schweitzering.domain.categories.TransactionCategory
 import com.schweitzering.domain.fixedExpenses.generator.NewFixedExpenseGeneratorUseCase
 import com.schweitzering.domain.schedule.Schedule
 import com.schweitzering.domain.schedule.TimePeriod
 import com.schweitzering.domain.transaction.Transaction
+import com.schweitzering.walletmanager.commons.BaseTransactionViewModel
 import com.schweitzering.walletmanager.fixedExpenses.generator.FixedExpenseGeneratorProfile
 import com.schweitzering.walletmanager.xsupport.mappers.toFixedExpenseGenerator
 import java.sql.Timestamp
 
-class NewFixedExpenseGeneratorViewModel(private val newFixedExpenseGeneratorUseCase: NewFixedExpenseGeneratorUseCase) {
+class NewFixedExpenseGeneratorViewModel(
+    private val newFixedExpenseGeneratorUseCase: NewFixedExpenseGeneratorUseCase,
+    getTransactionCategoriesForTypeUseCase: GetTransactionCategoriesForTypeUseCase,
+    getAllAccountsUseCase: GetAllAccountsUseCase
+): BaseTransactionViewModel(getTransactionCategoriesForTypeUseCase, getAllAccountsUseCase) {
 
     sealed class State {
         object FixedExpenseCreationSuccess : State()
     }
 
-    var value: Float = 120f
     var categoryType: String = "Gym"
     var period = TimePeriod.WEEK
     var startDate: Timestamp = Timestamp(1587477600000)
@@ -26,9 +32,6 @@ class NewFixedExpenseGeneratorViewModel(private val newFixedExpenseGeneratorUseC
     val state = MutableLiveData<State>()
 
     fun onCreateClicked() {
-        newFixedExpenseGeneratorUseCase.execute(getDayFixedExpenseGenerator().toFixedExpenseGenerator())
-        newFixedExpenseGeneratorUseCase.execute(getMonthFixedExpenseGenerator().toFixedExpenseGenerator())
-        newFixedExpenseGeneratorUseCase.execute(getWeekFixedExpenseGenerator().toFixedExpenseGenerator())
         state.value = State.FixedExpenseCreationSuccess
     }
 

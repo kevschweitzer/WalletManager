@@ -35,7 +35,12 @@ class TransferActivity : AppCompatActivity(), DataBindingProtocol {
 
     private fun observeState() {
         viewModel.state.observe(this, Observer {
-            viewModel.newTransfer()
+           newTransfer()
+        })
+    }
+
+    private fun newTransfer() {
+        viewModel.newTransfer().observe(this, Observer {
             finish()
         })
     }

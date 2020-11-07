@@ -25,7 +25,7 @@ abstract class BaseTransactionViewModel(
         get() = accounts.value?.get(selectedAccountPosition)
 
     //UI fields
-    var value: Float = 10f
+    var value: String = ""
     var description: String = ""
     var selectedCategoryPosition: Int = 0
     var selectedAccountPosition: Int = 0

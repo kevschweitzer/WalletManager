@@ -15,7 +15,7 @@ class TransferViewModel(private val getAllAccountsUseCase: GetAllAccountsUseCase
         object ContinueClicked: TransferState()
     }
 
-    var value: Float = 10f
+    var value: String = ""
     var description: String = ""
     val accounts = getAllAccountsUseCase.execute()
     var selectedOriginPosition = 0
@@ -32,7 +32,7 @@ class TransferViewModel(private val getAllAccountsUseCase: GetAllAccountsUseCase
     }
 
     private fun getCurrentTransfer() = Transfer(
-        value = value,
+        value = if(value.isNotEmpty()) value.toFloat() else 0f,
         description = description,
         date = Timestamp(System.currentTimeMillis()),
         originAccount = accounts.value!!.get(selectedOriginPosition),

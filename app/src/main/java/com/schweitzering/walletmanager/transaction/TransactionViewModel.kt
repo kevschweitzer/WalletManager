@@ -37,7 +37,7 @@ class TransactionViewModel(private val addTransactionUseCase: AddTransactionUseC
 
     private val currentTransaction: Transaction
         get() = TransactionProfile(
-                    value,
+                    if(value.isNotEmpty()) value.toFloat() else 0f,
                     Timestamp(System.currentTimeMillis()),
                     description,
                     transactionType,

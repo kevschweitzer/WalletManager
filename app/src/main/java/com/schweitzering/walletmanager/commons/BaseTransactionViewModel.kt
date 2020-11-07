@@ -30,6 +30,8 @@ abstract class BaseTransactionViewModel(
     var selectedCategoryPosition: Int = 0
     var selectedAccountPosition: Int = 0
 
+    abstract fun onContinueClicked()
+
     fun handleIntent(intent: Intent?) {
         intent?.let {
             transactionType =

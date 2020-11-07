@@ -15,24 +15,18 @@ import com.schweitzering.walletmanager.databinding.FragmentTransactionBinding
 import kotlinx.android.synthetic.main.fragment_transaction.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
-interface TransactionHandler {
-    var amount: Int
-    var description: String
-}
 
 class TransactionFragment(
     private val viewModel: BaseTransactionViewModel
-): Fragment(), TransactionHandler {
+): Fragment() {
 
-    override var amount: Int = 0
-    override var description = ""
     private var itemBinding: FragmentTransactionBinding? = null
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         itemBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_transaction, container, false)
-        itemBinding?.handler = this
+        itemBinding?.viewModel = viewModel
         return itemBinding?.root
     }
 

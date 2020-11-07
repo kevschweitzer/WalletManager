@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.schweitzering.walletmanager.transaction.TransactionViewModel" />
+            type="com.schweitzering.walletmanager.commons.BaseTransactionViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

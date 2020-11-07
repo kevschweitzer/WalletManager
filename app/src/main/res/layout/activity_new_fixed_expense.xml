@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.schweitzering.walletmanager.fixedExpenses.generator.create.NewFixedExpenseGeneratorViewModel" />
+            type="com.schweitzering.walletmanager.commons.BaseTransactionViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Create"
-            android:onClick="@{() -> viewModel.onCreateClicked()}"
+            android:onClick="@{() -> viewModel.onContinueClicked()}"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

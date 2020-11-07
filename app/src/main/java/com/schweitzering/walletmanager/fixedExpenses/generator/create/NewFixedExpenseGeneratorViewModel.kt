@@ -31,10 +31,6 @@ class NewFixedExpenseGeneratorViewModel(
     //Exposed
     val state = MutableLiveData<State>()
 
-    fun onCreateClicked() {
-        state.value = State.FixedExpenseCreationSuccess
-    }
-
     private fun getWeekFixedExpenseGenerator() = FixedExpenseGeneratorProfile(expense = Transaction(
         value = 120f,
         description = "",
@@ -66,4 +62,8 @@ class NewFixedExpenseGeneratorViewModel(
             account = Account()),
             creationDate = Timestamp(System.currentTimeMillis()),
             schedule = Schedule(period, startDate))
+
+    override fun onContinueClicked() {
+        state.value = State.FixedExpenseCreationSuccess
+    }
 }

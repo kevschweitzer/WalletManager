@@ -3,8 +3,8 @@
 
     <data>
         <variable
-            name="handler"
-            type="com.schweitzering.walletmanager.transaction.TransactionHandler" />
+            name="viewModel"
+            type="com.schweitzering.walletmanager.commons.BaseTransactionViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +19,7 @@
             android:layout_height="@dimen/value_input_et_height"
             android:layout_marginStart="@dimen/standard_margin_separation"
             android:layout_marginEnd="@dimen/standard_margin_separation"
-            android:text="@={`` + handler.amount}"
+            android:text="@={`` + viewModel.value}"
             android:hint="$0 usd"
             android:inputType="number"
             android:digits="0123456789"
@@ -93,7 +93,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_description"
             app:layout_constraintEnd_toEndOf="parent"
             android:gravity="top"
-            android:text="@={handler.description}"
+            android:text="@={viewModel.description}"
             android:padding="@dimen/standard_margin_separation"
             android:hint="@string/description_et_hint"
             android:background="@drawable/bg_description_et"

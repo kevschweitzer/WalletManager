@@ -19,15 +19,17 @@ class AddTransactionUseCase(private val repository: TransactionsRepository,
                         } else {
                             repository.insert(transaction)
                             account.balance -= transaction.value
+                            accountRepository.update(account)
+                            emit(ActionResponse.Correct)
                         }
                     }
                     TransactionType.INCOME -> {
                         repository.insert(transaction)
                         account.balance += transaction.value
+                        accountRepository.update(account)
+                        emit(ActionResponse.Correct)
                     }
                 }
-                accountRepository.update(account)
-                emit(ActionResponse.Correct)
             } ?: emit(ActionResponse.UnknownError)
         }
     }

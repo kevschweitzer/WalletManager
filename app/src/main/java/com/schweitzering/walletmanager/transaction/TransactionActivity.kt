@@ -6,6 +6,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.schweitzering.domain.ActionResponse
 import com.schweitzering.domain.transaction.TransactionType
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.ActivityTransactionBinding
@@ -56,7 +58,17 @@ class TransactionActivity : AppCompatActivity(), DataBindingProtocol {
 
     private fun addTransaction() {
         viewModel.addTransaction().observe(this, Observer {
-            this@TransactionActivity.finish()
+            when(it) {
+                ActionResponse.Correct -> finish()
+                ActionResponse.NotEnoughMoney -> MaterialAlertDialogBuilder(this@TransactionActivity)
+                    .setMessage(getString(R.string.not_enough_money_transaction))
+                    .setPositiveButton(getString(R.string.ok_confirmation)){ _, _-> }
+                    .show()
+                else -> MaterialAlertDialogBuilder(this@TransactionActivity)
+                    .setMessage(getString(R.string.unknown_error))
+                    .setPositiveButton(getString(R.string.ok_confirmation)){ _, _-> }
+                    .show()
+            }
         })
     }
 

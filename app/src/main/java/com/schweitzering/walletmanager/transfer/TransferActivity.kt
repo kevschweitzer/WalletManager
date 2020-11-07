@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.schweitzering.domain.ActionResponse
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.ActivityTransferBinding
 import com.schweitzering.walletmanager.xsupport.utils.DataBindingProtocol
@@ -41,7 +43,17 @@ class TransferActivity : AppCompatActivity(), DataBindingProtocol {
 
     private fun newTransfer() {
         viewModel.newTransfer().observe(this, Observer {
-            finish()
+            when(it) {
+                ActionResponse.Correct -> finish()
+                ActionResponse.NotEnoughMoney -> MaterialAlertDialogBuilder(this@TransferActivity)
+                    .setMessage(getString(R.string.not_enough_money_transfer))
+                    .setPositiveButton(getString(R.string.ok_confirmation)){ _, _-> }
+                    .show()
+                else -> MaterialAlertDialogBuilder(this@TransferActivity)
+                    .setMessage(getString(R.string.unknown_error))
+                    .setPositiveButton(getString(R.string.ok_confirmation)){ _, _-> }
+                    .show()
+            }
         })
     }
 

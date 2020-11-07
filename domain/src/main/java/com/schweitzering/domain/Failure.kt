@@ -8,4 +8,5 @@ sealed class ActionResponse {
     object NetworkConnectionError: ActionResponse()
     object CannotDeleteError: ActionResponse()
     object NotEmptyAccountError: ActionResponse()
+    object NotEnoughMoney: ActionResponse()
 }

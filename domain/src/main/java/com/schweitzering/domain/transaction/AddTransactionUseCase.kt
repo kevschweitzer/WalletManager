@@ -12,10 +12,19 @@ class AddTransactionUseCase(private val repository: TransactionsRepository,
     fun execute(transaction: Transaction, account: Account?): LiveData<ActionResponse> {
         return liveData {
             account?.let {
-                repository.insert(transaction)
                 when(transaction.type) {
-                    TransactionType.EXPENSE -> account.balance -= transaction.value
-                    TransactionType.INCOME -> account.balance += transaction.value
+                    TransactionType.EXPENSE -> {
+                        if(account.balance < transaction.value) {
+                            emit(ActionResponse.NotEnoughMoney)
+                        } else {
+                            repository.insert(transaction)
+                            account.balance -= transaction.value
+                        }
+                    }
+                    TransactionType.INCOME -> {
+                        repository.insert(transaction)
+                        account.balance += transaction.value
+                    }
                 }
                 accountRepository.update(account)
                 emit(ActionResponse.Correct)

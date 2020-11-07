@@ -10,8 +10,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.FragmentFixedExpensesBinding
+import com.schweitzering.walletmanager.fixedExpenses.FixedExpenseProfile
 import com.schweitzering.walletmanager.fixedExpenses.generator.create.NewFixedExpenseGeneratorActivity
 import com.schweitzering.walletmanager.fixedExpenses.generator.list.FixedExpensesGeneratorsActivity
+import com.schweitzering.walletmanager.fixedExpenses.utils.PayFixedExpenseDialog
 import kotlinx.android.synthetic.main.fragment_fixed_expenses.*
 import org.koin.androidx.scope.currentScope
 
@@ -46,11 +48,17 @@ class FixedExpensesFragment : Fragment() {
     private fun observeFlowState() {
         viewModel.state.observe(this, Observer {
             when (it) {
-                FixedExpensesViewModel.FlowState.NewExepenseClicked -> startActivity(
-                    NewFixedExpenseGeneratorActivity.getIntent(requireContext()))
-                FixedExpensesViewModel.FlowState.ShowGeneratorsClicked -> startActivity(
-                    FixedExpensesGeneratorsActivity.getIntent(requireContext()))
+                is FixedExpensesViewModel.FlowState.NewExepenseClicked ->
+                    startActivity(NewFixedExpenseGeneratorActivity.getIntent(requireContext()))
+                is FixedExpensesViewModel.FlowState.ShowGeneratorsClicked ->
+                    startActivity(FixedExpensesGeneratorsActivity.getIntent(requireContext()))
+                is FixedExpensesViewModel.FlowState.PayFixedExpenseClicked ->
+                    showPayFixedExpenseDialog(it.fixedExpense)
             }
         })
+    }
+
+    private fun showPayFixedExpenseDialog(fixedExpense: FixedExpenseProfile) {
+        PayFixedExpenseDialog.newInstance(requireFragmentManager(), fixedExpense)
     }
 }

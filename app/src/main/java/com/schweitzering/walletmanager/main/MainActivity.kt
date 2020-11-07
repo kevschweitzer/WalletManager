@@ -26,11 +26,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         periodicWorkerSetup()
-        settingsSetup()
-    }
-
-    private fun settingsSetup() {
-        toolbar.btn_settings.setOnClickListener { startActivity(SettingsActivity.getIntent(this)) }
     }
 
     private fun periodicWorkerSetup() {

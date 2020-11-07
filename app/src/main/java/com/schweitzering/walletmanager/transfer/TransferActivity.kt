@@ -28,8 +28,16 @@ class TransferActivity : AppCompatActivity(), DataBindingProtocol {
         super.onCreate(savedInstanceState)
         setDataBinding()
 
+        observeState()
         observeAccounts()
         observeAccountsSelection()
+    }
+
+    private fun observeState() {
+        viewModel.state.observe(this, Observer {
+            viewModel.newTransfer()
+            finish()
+        })
     }
 
     private fun observeAccounts() {

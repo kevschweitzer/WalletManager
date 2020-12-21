@@ -4,10 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.schweitzering.domain.debts.Debt
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.ItemDebtBinding
 
-class DebtsAdapter(private val debtsList: List<DebtProfile>,
+class DebtsAdapter(private val debtsList: List<Debt>,
                    private val viewModel: DebtsViewModel) :
     RecyclerView.Adapter<DebtsAdapter.DebtViewHolder>() {
 
@@ -27,9 +28,9 @@ class DebtsAdapter(private val debtsList: List<DebtProfile>,
     class DebtViewHolder(val binding: ItemDebtBinding, val viewModel: DebtsViewModel) :
         RecyclerView.ViewHolder(binding.root) {
 
-        lateinit var debt: DebtProfile
+        lateinit var debt: Debt
 
-        fun bind(debt: DebtProfile) {
+        fun bind(debt: Debt) {
             binding.viewModel = viewModel
             binding.viewHolder = this
             this.debt = debt

@@ -15,6 +15,7 @@ interface DebtsDao {
     @Update
     suspend fun update(debt: DebtEntity)
 
+    @Transaction
     @Query("SELECT * FROM debts")
-    fun getAll(): LiveData<List<DebtEntity>>
+    fun getAll(): LiveData<List<DebtWithCategoryRelation>>
 }

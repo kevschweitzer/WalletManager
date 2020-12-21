@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.schweitzering.walletmanager.R
 import com.schweitzering.walletmanager.databinding.ActivityNewDebtBinding
+import com.schweitzering.walletmanager.transaction.TransactionFragment
 import com.schweitzering.walletmanager.xsupport.utils.DataBindingProtocol
 import org.koin.androidx.scope.currentScope
 
@@ -22,7 +23,15 @@ class NewDebtActivity : AppCompatActivity(), DataBindingProtocol {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setDataBinding()
+        initView()
         observeFlow()
+    }
+
+    private fun initView() {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        val fragment = TransactionFragment(viewModel)
+        fragmentTransaction.add(R.id.transaction_container, fragment)
+        fragmentTransaction.commit()
     }
 
     private fun observeFlow() {

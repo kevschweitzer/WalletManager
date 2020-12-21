@@ -24,12 +24,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{Float.toString(viewHolder.debt.transaction.value)}" />
+            android:text="@{Float.toString(viewHolder.debt.value)}" />
 
         <Button
-            android:text="@{(viewHolder.debt.transaction.type == TransactionType.EXPENSE) ? `Pay` : `Receive`}"
+            android:text="@{(viewHolder.debt.type == TransactionType.EXPENSE) ? `Pay` : `Receive`}"
             android:visibility="@{viewHolder.debt.resolved ? View.GONE : View.VISIBLE}"
-            android:onClick="@{() -> viewModel.resolveDebt(viewHolder.debt)}"
+            android:onClick="@{() -> viewModel.resolveDebtClicked(viewHolder.debt)}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

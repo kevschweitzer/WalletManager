@@ -4,6 +4,7 @@ import com.schweitzering.data.accounts.AccountEntity
 import com.schweitzering.data.accounts.AccountWithTransactionsRelation
 import com.schweitzering.data.categories.TransactionCategoryEntity
 import com.schweitzering.data.debts.DebtEntity
+import com.schweitzering.data.debts.DebtWithCategoryRelation
 import com.schweitzering.data.fixedExpenses.FixedExpenseEntity
 import com.schweitzering.data.fixedExpenses.generator.FixedExpenseGeneratorEntity
 import com.schweitzering.data.transaction.TransactionEntity
@@ -53,9 +54,9 @@ fun FixedExpenseGenerator.toFixedExpenseGeneratorEntity() =
     FixedExpenseGeneratorEntity(id ?: 0, expense.toTransactionEntity(), creationDate, schedule)
 
 fun Debt.toDebtEntity() =
-    DebtEntity(id, transaction.toTransactionEntity(), creationDate, isResolved, resolveDate)
-fun DebtEntity.toDebt() =
-    Debt(id, transaction.toTransaction(), creationDate, isResolved, resolveDate)
+    DebtEntity(id ?: 0, value, description, category.id, creationDate, type, isResolved, resolveDate)
+fun DebtWithCategoryRelation.toDebt() =
+    Debt(debt.id, debt.value, debt.description, category.toTransactionCategory(), debt.creationDate, debt.type, debt.isResolved, debt.resolveDate)
 
 fun TransactionWithCategoryRelation.toTransaction() = Transaction(
     id = transaction.id,

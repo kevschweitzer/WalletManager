@@ -60,7 +60,7 @@ val appModule = module {
     scope(named<MainActivity>()) {
         factory { BalanceViewModel(get(), get()) }
         factory { FixedExpensesViewModel(get(), get(), get()) }
-        factory { DebtsViewModel(get(), get()) }
+        factory { DebtsViewModel(get(), get(), get()) }
         factory { AccountsViewModel(get(), get()) }
     }
 
@@ -81,7 +81,7 @@ val appModule = module {
     }
 
     scope(named<NewDebtActivity>()) {
-        scoped { NewDebtViewModel(get()) }
+        scoped { NewDebtViewModel(get(), get()) }
     }
 
     scope(named<CategoriesSettingsActivity>()) {

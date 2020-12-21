@@ -1,29 +1,41 @@
 package com.schweitzering.walletmanager.debts
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
+import com.schweitzering.domain.ActionResponse
+import com.schweitzering.domain.accounts.Account
+import com.schweitzering.domain.accounts.GetAllAccountsUseCase
+import com.schweitzering.domain.debts.Debt
 import com.schweitzering.domain.debts.GetAllDebtsUseCase
 import com.schweitzering.domain.debts.ResolveDebtUseCase
-import com.schweitzering.walletmanager.xsupport.mappers.toDebt
-import com.schweitzering.walletmanager.xsupport.mappers.toDebtProfile
 
-class DebtsViewModel(private val getAllDebtsUseCase: GetAllDebtsUseCase,
-                     private val resolveDebtUseCase: ResolveDebtUseCase) {
+class DebtsViewModel(
+    private val getAllDebtsUseCase: GetAllDebtsUseCase,
+    private val resolveDebtUseCase: ResolveDebtUseCase,
+    private val getAllAccountsUseCase: GetAllAccountsUseCase
+) {
 
     sealed class FlowState {
         object NewDebtClicked : FlowState()
+        class ResolveDebt(var debt: Debt) : FlowState()
     }
 
-    val debts = Transformations.map(getAllDebtsUseCase.execute()) {
-        it.map { it.toDebtProfile() }
-    }
+    val debts = getAllDebtsUseCase.execute()
+    val accounts = getAllAccountsUseCase.execute()
     val state = MutableLiveData<FlowState>()
+    val selectedAccountId = 0
+    val selectedAccount: Account?
+        get() = accounts.value?.get(selectedAccountId)
 
     fun onNewDebtClicked() {
         state.value = FlowState.NewDebtClicked
     }
 
-    fun resolveDebt(debt: DebtProfile) {
-        resolveDebtUseCase.execute(debt.toDebt())
+    fun resolveDebtClicked(debt: Debt) {
+        state.value = FlowState.ResolveDebt(debt)
+    }
+
+    fun resolveDebt(debt: Debt, account: Account): LiveData<ActionResponse> {
+        return resolveDebtUseCase.execute(debt, account)
     }
 }

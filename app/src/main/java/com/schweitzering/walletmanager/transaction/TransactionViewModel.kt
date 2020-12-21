@@ -42,6 +42,6 @@ class TransactionViewModel(private val addTransactionUseCase: AddTransactionUseC
                     description,
                     transactionType,
                     categories.value?.get(selectedCategoryPosition)!!,
-                    accounts.value?.get(selectedAccountPosition)!!
+                    accounts?.value?.get(selectedAccountPosition)!!
                 ).toTransaction()
 }

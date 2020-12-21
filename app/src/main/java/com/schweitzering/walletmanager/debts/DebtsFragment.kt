@@ -39,6 +39,9 @@ class DebtsFragment : Fragment() {
             when (it) {
                 is DebtsViewModel.FlowState.NewDebtClicked -> startActivity(NewDebtActivity.getIntent(
                     requireContext()))
+                is DebtsViewModel.FlowState.ResolveDebt -> {
+                    ResolveDebtDialog.newInstance(requireFragmentManager(), it.debt)
+                }
             }
         })
     }

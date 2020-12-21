@@ -1,16 +1,20 @@
 package com.schweitzering.walletmanager.debts.create
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.schweitzering.domain.accounts.Account
+import com.schweitzering.domain.accounts.GetAllAccountsUseCase
+import com.schweitzering.domain.categories.GetTransactionCategoriesForTypeUseCase
 import com.schweitzering.domain.categories.TransactionCategory
+import com.schweitzering.domain.debts.Debt
 import com.schweitzering.domain.debts.NewDebtUseCase
-import com.schweitzering.domain.transaction.Transaction
 import com.schweitzering.domain.transaction.TransactionType
-import com.schweitzering.walletmanager.debts.DebtProfile
-import com.schweitzering.walletmanager.xsupport.mappers.toDebt
+import com.schweitzering.walletmanager.commons.BaseTransactionViewModel
 import java.sql.Timestamp
 
-class NewDebtViewModel(private val newDebtUseCase: NewDebtUseCase) {
+class NewDebtViewModel(
+    private val newDebtUseCase: NewDebtUseCase,
+    getTransactionCategoriesForTypeUseCase: GetTransactionCategoriesForTypeUseCase
+): BaseTransactionViewModel(getTransactionCategoriesForTypeUseCase) {
 
     sealed class FlowState {
         object SuccessCreation : FlowState()
@@ -18,15 +22,20 @@ class NewDebtViewModel(private val newDebtUseCase: NewDebtUseCase) {
 
     val state = MutableLiveData<FlowState>()
 
-    fun onCreateDebtClicked() {
-        newDebtUseCase.execute(DebtProfile(transaction = Transaction(
-            value = 40f,
-            description = "",
-            type = TransactionType.INCOME,
-            category = TransactionCategory(),
-            account = Account()
-        ),
-            creationDate = Timestamp(System.currentTimeMillis())).toDebt())
+    init {
+        transactionType = TransactionType.INCOME
+    }
+
+    override fun onContinueClicked() {
+        newDebtUseCase.execute(
+            Debt(
+                value = if(value.isNotEmpty()) value.toFloat() else 0f,
+                description = description,
+                category = selectedCategory,
+                creationDate = Timestamp(System.currentTimeMillis()),
+                type = transactionType
+            )
+        )
         state.value = FlowState.SuccessCreation
     }
 }

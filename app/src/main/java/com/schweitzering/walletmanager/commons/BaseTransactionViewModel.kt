@@ -12,17 +12,20 @@ import com.schweitzering.walletmanager.xsupport.utils.Constants
 
 abstract class BaseTransactionViewModel(
     private val getTransactionCategoriesForTypeUseCase: GetTransactionCategoriesForTypeUseCase,
-    private val getAllAccountsUseCase: GetAllAccountsUseCase
+    private val getAllAccountsUseCase: GetAllAccountsUseCase? = null
 ): ViewModel() {
 
     lateinit var transactionType: TransactionType
     val categories: LiveData<List<TransactionCategory>> by lazy {
         getTransactionCategoriesForTypeUseCase.execute(transactionType)
     }
-    val accounts = getAllAccountsUseCase.execute()
+    val accounts = getAllAccountsUseCase?.execute()
 
     val selectedAccount: Account?
-        get() = accounts.value?.get(selectedAccountPosition)
+        get() = accounts?.value?.get(selectedAccountPosition)
+
+    val selectedCategory: TransactionCategory
+        get() = categories.value!![selectedCategoryPosition]
 
     //UI fields
     var value: String = ""

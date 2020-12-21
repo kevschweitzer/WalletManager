@@ -65,7 +65,7 @@ class TransactionFragment(
 
     private fun observeOptions() {
         viewModel.categories.observe(this, Observer { addItemsToSpinner(requireContext(), spinner_category, it.map { it.name }) })
-        viewModel.accounts.observe(this, Observer { addItemsToSpinner(requireContext(), spinner_account, it.map { it.name }) })
+        viewModel.accounts?.observe(this, Observer { addItemsToSpinner(requireContext(), spinner_account, it.map { it.name }) })
     }
 
     override fun onDestroy() {

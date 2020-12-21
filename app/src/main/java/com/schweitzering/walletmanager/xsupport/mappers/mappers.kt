@@ -4,7 +4,6 @@ import com.schweitzering.domain.debts.Debt
 import com.schweitzering.domain.fixedExpenses.FixedExpense
 import com.schweitzering.domain.fixedExpenses.generator.FixedExpenseGenerator
 import com.schweitzering.domain.transaction.Transaction
-import com.schweitzering.walletmanager.debts.DebtProfile
 import com.schweitzering.walletmanager.fixedExpenses.FixedExpenseProfile
 import com.schweitzering.walletmanager.fixedExpenses.generator.FixedExpenseGeneratorProfile
 import com.schweitzering.walletmanager.transaction.TransactionProfile
@@ -35,6 +34,3 @@ fun FixedExpenseGeneratorProfile.toFixedExpenseGenerator() =
 
 fun FixedExpenseGenerator.toFixedExpenseGeneratorProfile() =
     FixedExpenseGeneratorProfile(id, expense, creationDate, schedule)
-
-fun Debt.toDebtProfile() = DebtProfile(id, transaction, creationDate, isResolved)
-fun DebtProfile.toDebt() = Debt(id, transaction, creationDate, isResolved)

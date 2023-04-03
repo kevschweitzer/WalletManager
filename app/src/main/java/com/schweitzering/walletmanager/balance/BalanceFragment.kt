@@ -26,7 +26,9 @@ class BalanceFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         observeFlowChanges()
+        print("Hola")
         observeLastTransactions()
+        print("Chau")
     }
 
     override fun onCreateView(inflater: LayoutInflater,
